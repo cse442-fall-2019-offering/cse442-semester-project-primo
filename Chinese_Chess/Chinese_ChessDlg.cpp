@@ -59,12 +59,16 @@ CChineseChessDlg::CChineseChessDlg(CWnd* pParent /*=nullptr*/)
 void CChineseChessDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
+	DDX_Control(pDX, IDC_BSTART, BStart);
+	DDX_Control(pDX, IDC_BQUIT, BQuit);
 }
 
 BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
 	ON_WM_SYSCOMMAND()
 	ON_WM_PAINT()
 	ON_WM_QUERYDRAGICON()
+	ON_BN_CLICKED(IDC_BSTART, &CChineseChessDlg::OnBnClickedBstart)
+	ON_BN_CLICKED(IDC_BQUIT, &CChineseChessDlg::OnBnClickedBquit)
 END_MESSAGE_MAP()
 
 
@@ -98,6 +102,18 @@ BOOL CChineseChessDlg::OnInitDialog()
 	//  when the application's main window is not a dialog
 	SetIcon(m_hIcon, TRUE);			// Set big icon
 	SetIcon(m_hIcon, FALSE);		// Set small icon
+	BStart.SetButtonStyle(BS_BITMAP);
+
+	CBitmap Startbgp;
+	CBitmap Quitbgp;
+	CBitmap Volumnbgp;
+
+	Startbgp.LoadBitmap(IDB_BSTART);
+	Quitbgp.LoadBitmap(IDB_BQUIT);
+	Volumnbgp.LoadBitmap(IDB_BVOLUMN);
+	BStart.SetBitmap(Startbgp);
+	BQuit.SetBitmap(Quitbgp);
+	//BStart.Create(_T("1111"), WS_VISIBLE | BS_BITMAP, CRect(10,10,100,30), this, 1);
 
 	// TODO: Add extra initialization here
 
@@ -142,7 +158,23 @@ void CChineseChessDlg::OnPaint()
 	}
 	else
 	{
-		CDialogEx::OnPaint();
+		CBitmap bitmap; //bitmap object to hold your bitmap
+		bitmap.LoadBitmap(IDB_BGP); // IDB_BITMAPID is the id of bmp
+		CRect   rect;
+		GetClientRect(&rect);
+
+		CSize dim = bitmap.GetBitmapDimension();
+		CPaintDC dc(this); //device context of dialog box
+		CDC mem_dc; // memory device context
+
+		BITMAP Bitmap;
+		bitmap.GetBitmap(&Bitmap);
+		mem_dc.CreateCompatibleDC(&dc); // makes compatible with CPaintDC
+		mem_dc.SelectObject(bitmap); // Selects bitmap into CDC
+		dc.StretchBlt(0, 0, rect.Width(), rect.Height(), &mem_dc, 0, 0,
+			Bitmap.bmWidth, Bitmap.bmHeight, SRCCOPY);
+		//dc.BitBlt(0, 0, Bitmap.bmWidth, Bitmap.bmHeight, &mem_dc, 0, 0, SRCCOPY);
+		//CDialogEx::OnPaint();							//This is for refreshing the background;
 	}
 }
 
@@ -153,3 +185,19 @@ HCURSOR CChineseChessDlg::OnQueryDragIcon()
 	return static_cast<HCURSOR>(m_hIcon);
 }
 
+
+
+
+void CChineseChessDlg::OnBnClickedBstart()
+{
+	// TODO: Add your control notification handler code here
+}
+
+
+
+
+void CChineseChessDlg::OnBnClickedBquit()
+{
+	// TODO: Add your control notification handler code here
+	CDialogEx::OnCancel();
+}

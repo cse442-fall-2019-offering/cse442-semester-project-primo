@@ -59,25 +59,7 @@
     <Image Include="res\Chinese_Chess.ico">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="C:\Users\10944\OneDrive\桌面\New folder\bgp.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\bgp.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="C:\Users\10944\OneDrive\桌面\New folder\Quit.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="C:\Users\10944\OneDrive\桌面\New folder\Start.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="C:\Users\10944\OneDrive\桌面\New folder\Volumn.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="c:\users\10944\onedrive\桌面\new folder\bquit.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="c:\users\10944\onedrive\桌面\new folder\bstart.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\bquit.bmp">
