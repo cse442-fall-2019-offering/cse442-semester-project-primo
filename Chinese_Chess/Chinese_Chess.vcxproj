@@ -207,6 +207,16 @@
     <None Include="res\ChineseChess.rc2" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="C:\Users\10944\OneDrive\桌面\New folder\bgp.bmp" />
+    <Image Include="c:\users\10944\onedrive\桌面\new folder\bquit.bmp" />
+    <Image Include="c:\users\10944\onedrive\桌面\new folder\bstart.bmp" />
+    <Image Include="C:\Users\10944\OneDrive\桌面\New folder\Quit.bmp" />
+    <Image Include="C:\Users\10944\OneDrive\桌面\New folder\Start.bmp" />
+    <Image Include="C:\Users\10944\OneDrive\桌面\New folder\Volumn.bmp" />
+    <Image Include="res\bgp.bmp" />
+    <Image Include="res\bquit.bmp" />
+    <Image Include="res\bstart.bmp" />
+    <Image Include="res\bvolumn.bmp" />
     <Image Include="res\Chinese_Chess.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
