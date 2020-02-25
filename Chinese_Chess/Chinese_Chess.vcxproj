@@ -20,7 +20,7 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
-    <ProjectGuid>{65D260CC-8A65-4952-A5F8-D5702D276C71}</ProjectGuid>
+    <ProjectGuid>{34470007-1F69-4994-B47F-B7CE23C3B977}</ProjectGuid>
     <Keyword>MFCProj</Keyword>
     <RootNamespace>ChineseChess</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
