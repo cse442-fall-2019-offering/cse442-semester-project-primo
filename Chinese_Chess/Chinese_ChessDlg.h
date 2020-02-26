@@ -22,6 +22,13 @@ public:
 
 
 // Implementation
+
+#define Startup_Page 1
+#define Single_Page 2
+#define Multi_Page 3
+
+
+
 protected:
 	HICON m_hIcon;
 
@@ -30,10 +37,18 @@ protected:
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
+	afx_msg void Start_Button_ini();
+	afx_msg void Start_Page_ini();
+	afx_msg void SGame_Button_ini();
+	afx_msg void SGame_Page_ini();
 	DECLARE_MESSAGE_MAP()
 public:
 	CButton BStart;
 	afx_msg void OnBnClickedBstart();
 	CButton BQuit;
 	afx_msg void OnBnClickedBquit();
+	CButton BVol;
+	afx_msg void OnBnClickedBvol();
+private:
+	int Model = 1;
 };

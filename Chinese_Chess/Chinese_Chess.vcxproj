@@ -207,10 +207,12 @@
     <None Include="res\ChineseChess.rc2" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="C:\Users\10944\OneDrive\桌面\New folder\Chess_Board1.bmp" />
     <Image Include="res\bgp.bmp" />
     <Image Include="res\bquit.bmp" />
     <Image Include="res\bstart.bmp" />
     <Image Include="res\bvolumn.bmp" />
+    <Image Include="res\cb1.bmp" />
     <Image Include="res\Chinese_Chess.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

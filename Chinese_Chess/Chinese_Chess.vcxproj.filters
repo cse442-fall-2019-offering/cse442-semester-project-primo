@@ -71,5 +71,11 @@
     <Image Include="res\bvolumn.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="C:\Users\10944\OneDrive\桌面\New folder\Chess_Board1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\cb1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

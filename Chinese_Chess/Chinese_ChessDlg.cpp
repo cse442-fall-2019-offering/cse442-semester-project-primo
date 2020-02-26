@@ -61,6 +61,7 @@ void CChineseChessDlg::DoDataExchange(CDataExchange* pDX)
 	CDialogEx::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_BSTART, BStart);
 	DDX_Control(pDX, IDC_BQUIT, BQuit);
+	DDX_Control(pDX, IDC_BVOL, BVol);
 }
 
 BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
@@ -69,6 +70,7 @@ BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
 	ON_WM_QUERYDRAGICON()
 	ON_BN_CLICKED(IDC_BSTART, &CChineseChessDlg::OnBnClickedBstart)
 	ON_BN_CLICKED(IDC_BQUIT, &CChineseChessDlg::OnBnClickedBquit)
+	ON_BN_CLICKED(IDC_BVOL, &CChineseChessDlg::OnBnClickedBvol)
 END_MESSAGE_MAP()
 
 
@@ -104,15 +106,20 @@ BOOL CChineseChessDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 	BStart.SetButtonStyle(BS_BITMAP);
 
-	CBitmap Startbgp;
-	CBitmap Quitbgp;
-	CBitmap Volumnbgp;
+	switch (Model) {
+		case 1:
+			CChineseChessDlg::Start_Button_ini();
+			break;
+		case 2:
+			CChineseChessDlg::SGame_Button_ini();
+			break;
 
-	Startbgp.LoadBitmap(IDB_BSTART);
-	Quitbgp.LoadBitmap(IDB_BQUIT);
-	Volumnbgp.LoadBitmap(IDB_BVOLUMN);
-	BStart.SetBitmap(Startbgp);
-	BQuit.SetBitmap(Quitbgp);
+		default :
+			break;
+	}
+	
+	
+	
 	//BStart.Create(_T("1111"), WS_VISIBLE | BS_BITMAP, CRect(10,10,100,30), this, 1);
 
 	// TODO: Add extra initialization here
@@ -158,22 +165,18 @@ void CChineseChessDlg::OnPaint()
 	}
 	else
 	{
-		CBitmap bitmap; //bitmap object to hold your bitmap
-		bitmap.LoadBitmap(IDB_BGP); // IDB_BITMAPID is the id of bmp
-		CRect   rect;
-		GetClientRect(&rect);
+		switch (Model) {
+		case 1:
+			CChineseChessDlg::Start_Page_ini();
+			break;
+		case 2:
+			CChineseChessDlg::SGame_Page_ini();
+			break;
 
-		CSize dim = bitmap.GetBitmapDimension();
-		CPaintDC dc(this); //device context of dialog box
-		CDC mem_dc; // memory device context
-
-		BITMAP Bitmap;
-		bitmap.GetBitmap(&Bitmap);
-		mem_dc.CreateCompatibleDC(&dc); // makes compatible with CPaintDC
-		mem_dc.SelectObject(bitmap); // Selects bitmap into CDC
-		dc.StretchBlt(0, 0, rect.Width(), rect.Height(), &mem_dc, 0, 0,
-			Bitmap.bmWidth, Bitmap.bmHeight, SRCCOPY);
-		//dc.BitBlt(0, 0, Bitmap.bmWidth, Bitmap.bmHeight, &mem_dc, 0, 0, SRCCOPY);
+		default:
+			break;
+		}
+		
 		//CDialogEx::OnPaint();							//This is for refreshing the background;
 	}
 }
@@ -191,6 +194,12 @@ HCURSOR CChineseChessDlg::OnQueryDragIcon()
 void CChineseChessDlg::OnBnClickedBstart()
 {
 	// TODO: Add your control notification handler code here
+	if (this->Model == 1) this->Model = 2;
+	else this->Model = 1;
+	CWnd::Invalidate();
+	CChineseChessDlg::OnInitDialog();
+	
+	//CDialogEx::OnOK();
 }
 
 
@@ -200,4 +209,78 @@ void CChineseChessDlg::OnBnClickedBquit()
 {
 	// TODO: Add your control notification handler code here
 	CDialogEx::OnCancel();
+}
+
+
+void CChineseChessDlg::OnBnClickedBvol()
+{
+	// TODO: Add your control notification handler code here
+	if (GetDlgItem(IDC_VOLBAR)->IsWindowVisible()) {
+		GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_HIDE);
+	}
+	else {
+		GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_SHOW);
+	}
+}
+
+afx_msg void CChineseChessDlg::Start_Button_ini(){
+	CBitmap Startbgp;
+	CBitmap Quitbgp;
+	CBitmap Volbgp;
+
+	Startbgp.LoadBitmap(IDB_BSTART);
+	Quitbgp.LoadBitmap(IDB_BQUIT);
+	Volbgp.LoadBitmap(IDB_BVOLUMN);
+	BStart.SetBitmap(Startbgp);
+	BQuit.SetBitmap(Quitbgp);
+	BVol.SetBitmap(Volbgp);
+
+	GetDlgItem(IDC_BQUIT)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_BVOL)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_SHOW);
+	//GetDlgItem(IDC_BQUIT)->ShowWindow(SW_HIDE);
+}
+
+afx_msg void CChineseChessDlg::Start_Page_ini() {
+	CBitmap bitmap; //bitmap object to hold your bitmap
+	bitmap.LoadBitmap(IDB_BGP); // IDB_BITMAPID is the id of bmp
+	CRect   rect;
+	GetClientRect(&rect);
+
+	CSize dim = bitmap.GetBitmapDimension();
+	CPaintDC dc(this); //device context of dialog box
+	CDC mem_dc; // memory device context
+
+	BITMAP Bitmap;
+	bitmap.GetBitmap(&Bitmap);
+	mem_dc.CreateCompatibleDC(&dc); // makes compatible with CPaintDC
+	mem_dc.SelectObject(bitmap); // Selects bitmap into CDC
+	dc.StretchBlt(0, 0, rect.Width(), rect.Height(), &mem_dc, 0, 0,
+		Bitmap.bmWidth, Bitmap.bmHeight, SRCCOPY);
+	//dc.BitBlt(0, 0, Bitmap.bmWidth, Bitmap.bmHeight, &mem_dc, 0, 0, SRCCOPY);
+}
+
+
+afx_msg void CChineseChessDlg::SGame_Button_ini() {
+	GetDlgItem(IDC_BQUIT)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_BVOL)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_HIDE);
+}
+
+afx_msg void CChineseChessDlg::SGame_Page_ini() {
+	CBitmap bitmap; //bitmap object to hold your bitmap
+	bitmap.LoadBitmap(IDB_CB1); // IDB_BITMAPID is the id of bmp
+	CRect   rect;
+	GetClientRect(&rect);
+
+	CSize dim = bitmap.GetBitmapDimension();
+	CPaintDC dc(this); //device context of dialog box
+	CDC mem_dc; // memory device context
+
+	BITMAP Bitmap;
+	bitmap.GetBitmap(&Bitmap);
+	mem_dc.CreateCompatibleDC(&dc); // makes compatible with CPaintDC
+	mem_dc.SelectObject(bitmap); // Selects bitmap into CDC
+	dc.StretchBlt(0, 0, rect.Width(), rect.Height(), &mem_dc, 0, 0,
+		Bitmap.bmWidth, Bitmap.bmHeight, SRCCOPY);
 }
