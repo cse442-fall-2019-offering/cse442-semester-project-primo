@@ -7,6 +7,8 @@
 #include "Chinese_Chess.h"
 #include "Chinese_ChessDlg.h"
 #include "afxdialogex.h"
+#include <iostream>
+#include "Game.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -53,7 +55,7 @@ END_MESSAGE_MAP()
 CChineseChessDlg::CChineseChessDlg(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_CHINESE_CHESS_DIALOG, pParent)
 {
-	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+	m_hIcon = AfxGetApp()->LoadIcon(IDI_GAME_ICON);
 }
 
 void CChineseChessDlg::DoDataExchange(CDataExchange* pDX)
@@ -106,11 +108,13 @@ BOOL CChineseChessDlg::OnInitDialog()
 	SetIcon(m_hIcon, FALSE);		// Set small icon
 	BStart.SetButtonStyle(BS_BITMAP);
 
+	CChineseChessDlg::Button_BackGround_ini();
+
 	switch (Model) {
-		case 1:
+		case Startup_Page:
 			CChineseChessDlg::Start_Button_ini();
 			break;
-		case 2:
+		case Single_Page:
 			CChineseChessDlg::SGame_Button_ini();
 			break;
 
@@ -166,10 +170,10 @@ void CChineseChessDlg::OnPaint()
 	else
 	{
 		switch (Model) {
-		case 1:
+		case Startup_Page:
 			CChineseChessDlg::Start_Page_ini();
 			break;
-		case 2:
+		case Single_Page:
 			CChineseChessDlg::SGame_Page_ini();
 			break;
 
@@ -177,7 +181,7 @@ void CChineseChessDlg::OnPaint()
 			break;
 		}
 		
-		//CDialogEx::OnPaint();							//This is for refreshing the background;
+		//CDialogEx::OnPaint();
 	}
 }
 
@@ -211,36 +215,66 @@ void CChineseChessDlg::OnBnClickedBquit()
 	CDialogEx::OnCancel();
 }
 
-
 void CChineseChessDlg::OnBnClickedBvol()
 {
 	// TODO: Add your control notification handler code here
-	if (GetDlgItem(IDC_VOLBAR)->IsWindowVisible()) {
-		GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_HIDE);
-	}
-	else {
-		GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_SHOW);
-	}
+	if (this->Mute) this->Mute = FALSE;
+	else this->Mute = TRUE;
+	CWnd::Invalidate();
+	CChineseChessDlg::OnInitDialog();
 }
+//---------------------------Page Buttons initialization-------------------------------------
 
-afx_msg void CChineseChessDlg::Start_Button_ini(){
+afx_msg void CChineseChessDlg::Button_BackGround_ini() {
+/*	Start up Page buttons' background Initialization */
 	CBitmap Startbgp;
 	CBitmap Quitbgp;
 	CBitmap Volbgp;
-
 	Startbgp.LoadBitmap(IDB_BSTART);
 	Quitbgp.LoadBitmap(IDB_BQUIT);
 	Volbgp.LoadBitmap(IDB_BVOLUMN);
 	BStart.SetBitmap(Startbgp);
 	BQuit.SetBitmap(Quitbgp);
-	BVol.SetBitmap(Volbgp);
+	if (this->Mute) BVol.SetBitmap(NULL);
+	else BVol.SetBitmap(Volbgp);
 
+/*	Single Game Page buttons' background Initialization*/
+
+}
+
+/*	Start up Page buttons initialization
+*/
+afx_msg void CChineseChessDlg::Start_Button_ini(){
+
+/*	Enable the Start up Page buttons*/
+	BStart.MoveWindow(200, 300, 180, 70, true);
+	BQuit.MoveWindow(500, 300, 180, 70, true);
 	GetDlgItem(IDC_BQUIT)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BVOL)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_SHOW);
+	if (this->Mute) GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_HIDE);
+	else GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_SHOW);
 	//GetDlgItem(IDC_BQUIT)->ShowWindow(SW_HIDE);
 }
 
+/*	Single Game Page buttons initialization
+*/
+afx_msg void CChineseChessDlg::SGame_Button_ini() {
+/*	Enable the Single Game Page buttons*/
+
+/*	Disable the Start up Page buttons*/
+	GetDlgItem(IDC_BQUIT)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_BVOL)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_HIDE);
+}
+
+
+//-------------------------------------------------------------------------------------------
+
+//---------------------------Page Display initialization-------------------------------------
+
+/*	Start up Page Initialization
+*/
 afx_msg void CChineseChessDlg::Start_Page_ini() {
 	CBitmap bitmap; //bitmap object to hold your bitmap
 	bitmap.LoadBitmap(IDB_BGP); // IDB_BITMAPID is the id of bmp
@@ -260,13 +294,8 @@ afx_msg void CChineseChessDlg::Start_Page_ini() {
 	//dc.BitBlt(0, 0, Bitmap.bmWidth, Bitmap.bmHeight, &mem_dc, 0, 0, SRCCOPY);
 }
 
-
-afx_msg void CChineseChessDlg::SGame_Button_ini() {
-	GetDlgItem(IDC_BQUIT)->ShowWindow(SW_HIDE);
-	GetDlgItem(IDC_BVOL)->ShowWindow(SW_HIDE);
-	GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_HIDE);
-}
-
+/*	Single Game Page initialization
+*/
 afx_msg void CChineseChessDlg::SGame_Page_ini() {
 	CBitmap bitmap; //bitmap object to hold your bitmap
 	bitmap.LoadBitmap(IDB_CB1); // IDB_BITMAPID is the id of bmp
@@ -284,3 +313,4 @@ afx_msg void CChineseChessDlg::SGame_Page_ini() {
 	dc.StretchBlt(0, 0, rect.Width(), rect.Height(), &mem_dc, 0, 0,
 		Bitmap.bmWidth, Bitmap.bmHeight, SRCCOPY);
 }
+//-------------------------------------------------------------------------------------------

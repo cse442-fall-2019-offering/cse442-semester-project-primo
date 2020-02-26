@@ -28,6 +28,10 @@ public:
 #define Multi_Page 3
 
 
+private:
+	int Model = 1;
+	BOOL Mute = FALSE;
+	int voulmn = 50;
 
 protected:
 	HICON m_hIcon;
@@ -37,6 +41,7 @@ protected:
 	afx_msg void OnSysCommand(UINT nID, LPARAM lParam);
 	afx_msg void OnPaint();
 	afx_msg HCURSOR OnQueryDragIcon();
+	afx_msg void Button_BackGround_ini();
 	afx_msg void Start_Button_ini();
 	afx_msg void Start_Page_ini();
 	afx_msg void SGame_Button_ini();
@@ -49,6 +54,5 @@ public:
 	afx_msg void OnBnClickedBquit();
 	CButton BVol;
 	afx_msg void OnBnClickedBvol();
-private:
-	int Model = 1;
+
 };

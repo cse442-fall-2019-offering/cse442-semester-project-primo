@@ -183,22 +183,28 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Board.h" />
     <ClInclude Include="Chinese_Chess.h" />
     <ClInclude Include="Chinese_ChessDlg.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="Game.h" />
     <ClInclude Include="pch.h" />
+    <ClInclude Include="Player.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Board.cpp" />
     <ClCompile Include="Chinese_Chess.cpp" />
     <ClCompile Include="Chinese_ChessDlg.cpp" />
+    <ClCompile Include="Game.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
+    <ClCompile Include="Player.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ChineseChess.rc" />
@@ -208,12 +214,17 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="C:\Users\10944\OneDrive\桌面\New folder\Chess_Board1.bmp" />
+    <Image Include="C:\Users\10944\OneDrive\桌面\New folder\Frame_icon.ico" />
+    <Image Include="C:\Users\10944\OneDrive\桌面\New folder\Vol1.bmp" />
+    <Image Include="C:\Users\10944\OneDrive\桌面\New folder\volumn.png" />
     <Image Include="res\bgp.bmp" />
     <Image Include="res\bquit.bmp" />
     <Image Include="res\bstart.bmp" />
+    <Image Include="res\bvol1.bmp" />
     <Image Include="res\bvolumn.bmp" />
     <Image Include="res\cb1.bmp" />
     <Image Include="res\Chinese_Chess.ico" />
+    <Image Include="res\game_ico.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
