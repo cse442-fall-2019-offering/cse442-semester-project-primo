@@ -143,11 +143,14 @@ void Game::print_Board() {
 	vector<pair<int, int>> aviliable;
 	int type = 0;
 	int id = 0;
-	board.at(1).at(3).set_type(King);
-	board.at(1).at(3).set_player(board.at(0).at(3).get_player());
-	board.at(3).at(4) = board.at(3).at(5);
-	board.at(6).at(4) = board.at(6).at(5);
-	aviliable = board.at(1).at(3).aviliable_move(board);
+	//board.at(1).at(3).set_type(King);
+	//board.at(1).at(3).set_player(board.at(0).at(3).get_player());
+	//board.at(3).at(4) = board.at(3).at(5);
+	//board.at(6).at(4) = board.at(6).at(5);
+	board.at(1).at(4) = board.at(0).at(3);
+	board.at(1).at(4).set_line(1);
+	board.at(1).at(4).set_row(4);
+	aviliable = board.at(1).at(4).aviliable_move(board);
 	for (int i = 0; i < 10; i++) {
 		for (int j = 0; j < 9; j++) {
 			Piece p = board.at(i).at(j);

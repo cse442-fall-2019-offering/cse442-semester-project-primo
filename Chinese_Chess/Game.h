@@ -13,7 +13,7 @@ public:
 	//Board initialization
 	void init_Board();
 
-	//debug function
+	//debug and test function
 	void Game::print_Board();
 private:
 	vector<vector<Piece>> Board;
