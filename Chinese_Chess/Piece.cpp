@@ -141,6 +141,74 @@ vector<pair<int, int>> Piece::Kings_move(vector<vector<Piece>> Board) {
 
 vector<pair<int, int>> Piece::Advisor_move(vector<vector<Piece>> Board) {
 	vector<pair<int, int>> aviliable;
+	int line = this->line;
+	int row = this->row;
+
+	//upper right conner case
+	if ((line == 0 && row == 3) || (line == 7 && row == 3)) {
+		int newline = line + 1;
+		int newrow = row + 1;
+		if (this->type != Board.at(newline).at(newrow).get_type()) {
+			pair<int, int> pair(newline, newrow);
+			aviliable.push_back(pair);
+		}
+	}
+	//upper left case
+	else if ((line == 0 && row == 5) || (line == 7 && row == 5)) {
+		int newline = line + 1;
+		int newrow = row - 1;
+		if (this->type != Board.at(newline).at(newrow).get_type()) {
+			pair<int, int> pair(newline, newrow);
+			aviliable.push_back(pair);
+		}
+	}
+	//middle case
+	else if ((line == 1 && row == 4) || (line == 8 && row == 4)) {
+		int newline = line - 1;
+		int newrow = row - 1;
+		if (this->type != Board.at(newline).at(newrow).get_type()) {
+			pair<int, int> pair(newline, newrow);
+			aviliable.push_back(pair);
+		}
+
+		newline = line - 1;
+		newrow = row + 1;
+		if (this->type != Board.at(newline).at(newrow).get_type()) {
+			pair<int, int> pair(newline, newrow);
+			aviliable.push_back(pair);
+		}
+
+		newline = line + 1;
+		newrow = row - 1;
+		if (this->type != Board.at(newline).at(newrow).get_type()) {
+			pair<int, int> pair(newline, newrow);
+			aviliable.push_back(pair);
+		}
+
+		newline = line + 1;
+		newrow = row + 1;
+		if (this->type != Board.at(newline).at(newrow).get_type()) {
+			pair<int, int> pair(newline, newrow);
+			aviliable.push_back(pair);
+		}
+	}
+	else if ((line == 2 && row == 3) || (line == 9 && row == 3)) {
+		int newline = line - 1;
+		int newrow = row + 1;
+		if (this->type != Board.at(newline).at(newrow).get_type()) {
+			pair<int, int> pair(newline, newrow);
+			aviliable.push_back(pair);
+		}
+	}
+	else if ((line == 2 && row == 5) || (line == 9 && row == 5)) {
+		int newline = line - 1;
+		int newrow = row - 1;
+		if (this->type != Board.at(newline).at(newrow).get_type()) {
+			pair<int, int> pair(newline, newrow);
+			aviliable.push_back(pair);
+		}
+	}
+	else;
 
 	return aviliable;
 }
