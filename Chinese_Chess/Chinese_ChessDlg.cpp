@@ -8,12 +8,14 @@
 #include "Chinese_ChessDlg.h"
 #include "afxdialogex.h"
 #include <iostream>
+#include <stdlib.h>
 #include "Game.h"
 #include <Windows.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
 #endif
+
 
 
 // CAboutDlg dialog used for App About
@@ -127,8 +129,6 @@ BOOL CChineseChessDlg::OnInitDialog()
 			break;
 	}
 	
-	
-	
 	//BStart.Create(_T("1111"), WS_VISIBLE | BS_BITMAP, CRect(10,10,100,30), this, 1);
 
 	// TODO: Add extra initialization here
@@ -206,6 +206,12 @@ void CChineseChessDlg::OnBnClickedBstart()
 	// TODO: Add your control notification handler code here
 	if (this->Model == 1) this->Model = 2;
 	else this->Model = 1;
+	Player player1 = Player();
+	Player player2 = Player();
+	Game newgame = Game(player1, player2);
+	std::string str = newgame.print_Board();
+	GetDlgItem(IDC_STATIC)->SetWindowText(_T("a"));
+	GetDlgItem(IDC_STATIC)->SetWindowText(_T("b"));
 	CWnd::Invalidate();
 	CChineseChessDlg::OnInitDialog();
 	

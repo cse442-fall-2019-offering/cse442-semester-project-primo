@@ -1,14 +1,22 @@
 #pragma once
-#include "Board.h"
-#include "Player.h"
+#include "Piece.h"
+#include <string>
+#include <corecrt_wstring.h>
+
 
 class Game
 {
 public:
-	Game(Board board, Player player1, Player player2);
+	Game(Player player1, Player player2);
 	~Game();
+
+	//Board initialization
+	void init_Board();
+
+	//debug function
+	void Game::print_Board();
 private:
-	Board Board;
+	vector<vector<Piece>> Board;
 	Player player1;
 	Player player2;
 	int turns;
