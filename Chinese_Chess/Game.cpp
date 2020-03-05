@@ -1,2 +1,160 @@
 #include "pch.h"
 #include "Game.h"
+#include <iostream>
+
+
+Game::Game(Player player1, Player player2) {
+	this->player1 = player1;
+	this->player2 = player2;
+	this->init_Board();
+}
+Game::~Game() {
+
+}
+
+void Game::init_Board() {
+
+	Player* player1 = &this->player1;
+	Player* player2 = &this->player2;
+	player1->set_ID(1);
+	player2->set_ID(2);
+
+	this->Board = vector<vector<Piece>>(10, vector<Piece>(9, Piece()));
+	int i = 0;
+	int j = 0;
+	for (i = 0; i < 10; i++) {
+		for (j = 0; j < 9; j++) {
+			this->Board.at(i).at(j).set_line(i);
+			this->Board.at(i).at(j).set_row(j);
+			this->Board.at(i).at(j).set_type(no_piece);
+			this->Board.at(i).at(j).set_player(NULL);
+		}
+	}
+
+	//set the initial position for all pieces
+	//line 0
+	this->Board.at(0).at(0).set_type(Chariots);
+	this->Board.at(0).at(0).set_player(player2);
+
+	this->Board.at(0).at(1).set_type(Horse);
+	this->Board.at(0).at(1).set_player(player2);
+
+	this->Board.at(0).at(2).set_type(Bishop);
+	this->Board.at(0).at(2).set_player(player2);
+
+	this->Board.at(0).at(3).set_type(Advisor);
+	this->Board.at(0).at(3).set_player(player2);
+
+	this->Board.at(0).at(4).set_type(Kings);
+	this->Board.at(0).at(4).set_player(player2);
+
+	this->Board.at(0).at(5).set_type(Advisor);
+	this->Board.at(0).at(5).set_player(player2);
+
+	this->Board.at(0).at(6).set_type(Bishop);
+	this->Board.at(0).at(6).set_player(player2);
+
+	this->Board.at(0).at(7).set_type(Horse);
+	this->Board.at(0).at(7).set_player(player2);
+
+	this->Board.at(0).at(8).set_type(Chariots);
+	this->Board.at(0).at(8).set_player(player2);
+
+	//line 2
+	this->Board.at(2).at(1).set_type(Cannon);
+	this->Board.at(2).at(1).set_player(player2);
+
+	this->Board.at(2).at(7).set_type(Cannon);
+	this->Board.at(2).at(7).set_player(player2);
+
+	//line 3
+	this->Board.at(3).at(0).set_type(Soldier);
+	this->Board.at(3).at(0).set_player(player2);
+
+	this->Board.at(3).at(2).set_type(Soldier);
+	this->Board.at(3).at(2).set_player(player2);
+
+	this->Board.at(3).at(4).set_type(Soldier);
+	this->Board.at(3).at(4).set_player(player2);
+
+	this->Board.at(3).at(6).set_type(Soldier);
+	this->Board.at(3).at(6).set_player(player2);
+
+	this->Board.at(3).at(8).set_type(Soldier);
+	this->Board.at(3).at(8).set_player(player2);
+
+	//line 6
+	this->Board.at(6).at(0).set_type(Soldier);
+	this->Board.at(6).at(0).set_player(player1);
+
+	this->Board.at(6).at(2).set_type(Soldier);
+	this->Board.at(6).at(2).set_player(player1);
+
+	this->Board.at(6).at(4).set_type(Soldier);
+	this->Board.at(6).at(4).set_player(player1);
+
+	this->Board.at(6).at(6).set_type(Soldier);
+	this->Board.at(6).at(6).set_player(player1);
+
+	this->Board.at(6).at(8).set_type(Soldier);
+	this->Board.at(6).at(8).set_player(player1);
+
+	//line 7
+	this->Board.at(7).at(1).set_type(Cannon);
+	this->Board.at(7).at(1).set_player(player1);
+
+	this->Board.at(7).at(7).set_type(Cannon);
+	this->Board.at(7).at(7).set_player(player1);
+
+	//line 9
+	this->Board.at(9).at(0).set_type(Chariots);
+	this->Board.at(9).at(0).set_player(player1);
+
+	this->Board.at(9).at(1).set_type(Horse);
+	this->Board.at(9).at(1).set_player(player1);
+
+	this->Board.at(9).at(2).set_type(Bishop);
+	this->Board.at(9).at(2).set_player(player1);
+
+	this->Board.at(9).at(3).set_type(Advisor);
+	this->Board.at(9).at(3).set_player(player1);
+
+	this->Board.at(9).at(4).set_type(Kings);
+	this->Board.at(9).at(4).set_player(player1);
+
+	this->Board.at(9).at(5).set_type(Advisor);
+	this->Board.at(9).at(5).set_player(player1);
+
+	this->Board.at(9).at(6).set_type(Bishop);
+	this->Board.at(9).at(6).set_player(player1);
+
+	this->Board.at(9).at(7).set_type(Horse);
+	this->Board.at(9).at(7).set_player(player1);
+
+	this->Board.at(9).at(8).set_type(Chariots);
+	this->Board.at(9).at(8).set_player(player1);
+
+}
+
+void Game::print_Board() {
+	vector<vector<Piece>> board = this->Board;
+	std::string out;
+	std::string pout;
+	int type = 0;
+	int id = 0;
+	for (int i = 0; i < 10; i++) {
+		for (int j = 0; j < 9; j++) {
+			Piece p = board.at(i).at(j);
+			type = p.get_type();
+			if (p.get_player() == NULL) pout.push_back('0');
+			else {
+				id = p.get_player()->get_ID();
+				pout.push_back(id + '0');
+			}
+			
+			out.push_back(type + '0');
+		}
+		pout.push_back('\n');
+		out.push_back('\n');
+	}
+}
