@@ -203,7 +203,7 @@ void CChineseChessDlg::OnBnClickedBstart()
 	Player player1 = Player();
 	Player player2 = Player();
 	Game newgame = Game(player1, player2);
-	std::string str = newgame.print_Board();
+	newgame.print_Board();
 	GetDlgItem(IDC_STATIC)->SetWindowText(_T("a"));
 	GetDlgItem(IDC_STATIC)->SetWindowText(_T("b"));
 	CWnd::Invalidate();

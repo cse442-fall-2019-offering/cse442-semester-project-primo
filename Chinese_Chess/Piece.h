@@ -4,7 +4,7 @@
 #include "Player.h"
 
 #define no_piece	0
-#define Kings		1
+#define King		1
 #define Advisor		2
 #define Bishop		3
 #define Horse		4
@@ -35,14 +35,16 @@ public:
 	Player* get_player();
 
 	//movement function
-	vector<pair<int, int>> aviliable_move(int type);
-	vector<pair<int, int>> Kings_move(int type);
-	vector<pair<int, int>> Advisor_move(int type);
-	vector<pair<int, int>> Bishop_move(int type);
-	vector<pair<int, int>> Horse_move(int type);
-	vector<pair<int, int>> Chariots_move(int type);
-	vector<pair<int, int>> Cannon_move(int type);
-	vector<pair<int, int>> Soldier_move(int type);
+	vector<pair<int, int>> aviliable_move(vector<vector<Piece>> Board);
+
+private:
+	vector<pair<int, int>> Kings_move(vector<vector<Piece>> Board);
+	vector<pair<int, int>> Advisor_move(vector<vector<Piece>> Board);
+	vector<pair<int, int>> Bishop_move(vector<vector<Piece>> Board);
+	vector<pair<int, int>> Horse_move(vector<vector<Piece>> Board);
+	vector<pair<int, int>> Chariots_move(vector<vector<Piece>> Board);
+	vector<pair<int, int>> Cannon_move(vector<vector<Piece>> Board);
+	vector<pair<int, int>> Soldier_move(vector<vector<Piece>> Board);
 };
 
 
