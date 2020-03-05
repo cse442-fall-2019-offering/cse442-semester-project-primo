@@ -45,7 +45,7 @@ void Game::init_Board() {
 	this->Board.at(0).at(3).set_type(Advisor);
 	this->Board.at(0).at(3).set_player(player2);
 
-	this->Board.at(0).at(4).set_type(Kings);
+	this->Board.at(0).at(4).set_type(King);
 	this->Board.at(0).at(4).set_player(player2);
 
 	this->Board.at(0).at(5).set_type(Advisor);
@@ -119,7 +119,7 @@ void Game::init_Board() {
 	this->Board.at(9).at(3).set_type(Advisor);
 	this->Board.at(9).at(3).set_player(player1);
 
-	this->Board.at(9).at(4).set_type(Kings);
+	this->Board.at(9).at(4).set_type(King);
 	this->Board.at(9).at(4).set_player(player1);
 
 	this->Board.at(9).at(5).set_type(Advisor);
@@ -140,8 +140,14 @@ void Game::print_Board() {
 	vector<vector<Piece>> board = this->Board;
 	std::string out;
 	std::string pout;
+	vector<pair<int, int>> aviliable;
 	int type = 0;
 	int id = 0;
+	board.at(1).at(3).set_type(King);
+	board.at(1).at(3).set_player(board.at(0).at(3).get_player());
+	board.at(3).at(4) = board.at(3).at(5);
+	board.at(6).at(4) = board.at(6).at(5);
+	aviliable = board.at(1).at(3).aviliable_move(board);
 	for (int i = 0; i < 10; i++) {
 		for (int j = 0; j < 9; j++) {
 			Piece p = board.at(i).at(j);
@@ -157,4 +163,6 @@ void Game::print_Board() {
 		pout.push_back('\n');
 		out.push_back('\n');
 	}
+
+	
 }
