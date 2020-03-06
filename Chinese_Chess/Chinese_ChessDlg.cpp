@@ -64,6 +64,7 @@ void CChineseChessDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BSTART, BStart);
 	DDX_Control(pDX, IDC_BQUIT, BQuit);
 	DDX_Control(pDX, IDC_BVOL, BVol);
+	DDX_Control(pDX, IDC_BRESTART, BRestart);
 }
 
 BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
@@ -73,6 +74,7 @@ BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BSTART, &CChineseChessDlg::OnBnClickedBstart)
 	ON_BN_CLICKED(IDC_BQUIT, &CChineseChessDlg::OnBnClickedBquit)
 	ON_BN_CLICKED(IDC_BVOL, &CChineseChessDlg::OnBnClickedBvol)
+	ON_BN_CLICKED(IDC_BRESTART, &CChineseChessDlg::OnBnClickedBrestart)
 END_MESSAGE_MAP()
 
 
@@ -206,9 +208,6 @@ void CChineseChessDlg::OnBnClickedBstart()
 	//CDialogEx::OnOK();
 }
 
-
-
-
 void CChineseChessDlg::OnBnClickedBquit()
 {
 	// TODO: Add your control notification handler code here
@@ -223,6 +222,16 @@ void CChineseChessDlg::OnBnClickedBvol()
 	CWnd::Invalidate();
 	CChineseChessDlg::OnInitDialog();
 }
+
+void CChineseChessDlg::OnBnClickedBrestart()
+{
+	// TODO: Add your control notification handler code here
+	if (this->Model == 2) this->Model = 1;
+	CWnd::Invalidate();
+	CChineseChessDlg::OnInitDialog();
+}
+
+
 //---------------------------Page Buttons initialization-------------------------------------
 
 afx_msg void CChineseChessDlg::Button_BackGround_ini() {
@@ -230,11 +239,14 @@ afx_msg void CChineseChessDlg::Button_BackGround_ini() {
 	CBitmap Startbgp;
 	CBitmap Quitbgp;
 	CBitmap Volbgp;
+	CBitmap Restartbgp;
 	Startbgp.LoadBitmap(IDB_BSTART);
 	Quitbgp.LoadBitmap(IDB_BQUIT);
 	Volbgp.LoadBitmap(IDB_BVOLUMN);
+	Restartbgp.LoadBitmap(IDB_BRESTART);
 	BStart.SetBitmap(Startbgp);
 	BQuit.SetBitmap(Quitbgp);
+	BRestart.SetBitmap(Restartbgp);
 	if (this->Mute) BVol.SetBitmap(NULL);
 	else BVol.SetBitmap(Volbgp);
 
@@ -249,9 +261,11 @@ afx_msg void CChineseChessDlg::Start_Button_ini(){
 /*	Enable the Start up Page buttons*/
 	BStart.MoveWindow(200, 300, 180, 70, true);
 	BQuit.MoveWindow(500, 300, 180, 70, true);
+	BRestart.MoveWindow(350, 200, 47, 47, true);
 	GetDlgItem(IDC_BQUIT)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BVOL)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_BRESTART)->ShowWindow(SW_HIDE);
 	if (this->Mute) GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_HIDE);
 	else GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_SHOW);
 	//GetDlgItem(IDC_BQUIT)->ShowWindow(SW_HIDE);
@@ -266,6 +280,7 @@ afx_msg void CChineseChessDlg::SGame_Button_ini() {
 	GetDlgItem(IDC_BQUIT)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BVOL)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_BRESTART)->ShowWindow(SW_SHOW);
 }
 
 
@@ -314,3 +329,9 @@ afx_msg void CChineseChessDlg::SGame_Page_ini() {
 		Bitmap.bmWidth, Bitmap.bmHeight, SRCCOPY);
 }
 //-------------------------------------------------------------------------------------------
+
+
+
+
+
+

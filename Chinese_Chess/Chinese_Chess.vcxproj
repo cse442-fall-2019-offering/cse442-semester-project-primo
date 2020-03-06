@@ -210,6 +210,7 @@
     <ResourceCompile Include="ChineseChess.rc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="cpp.hint" />
     <None Include="res\ChineseChess.rc2" />
   </ItemGroup>
   <ItemGroup>
@@ -218,6 +219,8 @@
     <Image Include="C:\Users\10944\OneDrive\桌面\New folder\Vol1.bmp" />
     <Image Include="C:\Users\10944\OneDrive\桌面\New folder\volumn.png" />
     <Image Include="res\bgp.bmp" />
+    <Image Include="res\bitmap1.bmp" />
+    <Image Include="res\brestart.bmp" />
     <Image Include="res\bquit.bmp" />
     <Image Include="res\bstart.bmp" />
     <Image Include="res\bvol1.bmp" />
