@@ -212,26 +212,168 @@ vector<pair<int, int>> Piece::Advisor_move(vector<vector<Piece>> Board) {
 
 	return aviliable;
 }
+
 vector<pair<int, int>> Piece::Bishop_move(vector<vector<Piece>> Board) {
 	vector<pair<int, int>> aviliable;
+	int l = this->line;
+	int r = this->row;
+	//upper case
+	if ((l == 0 && r == 2) || (l == 0 && r == 6) || (l == 5 && r == 2) || (l == 5 && r == 6)) {
+		//move to down right
+		int newline = line + 2;
+		int newrow = row + 2;
+		int pathline = line + 1;
+		int pathrow = row + 1;
+		if (this->type != Board.at(newline).at(newrow).get_type() && Board.at(pathline).at(pathrow).get_type() == no_piece) {
+			pair<int, int> pair(newline, newrow);
+			aviliable.push_back(pair);
+		}
+
+		//move to down left
+		newline = line + 2;
+		newrow = row -2;
+		pathline = line + 1;
+		pathrow = row - 1;
+		if (this->type != Board.at(newline).at(newrow).get_type() && Board.at(pathline).at(pathrow).get_type() == no_piece) {
+			pair<int, int> pair(newline, newrow);
+			aviliable.push_back(pair);
+		}
+	}
+
+	//lower case
+	else if ((l == 4 && r == 2) || (l == 4 && r == 6) || (l == 9 && r == 2) || (l == 9 && r == 6)) {
+		//move to up right
+		int newline = line - 2;
+		int newrow = row + 2;
+		int pathline = line - 1;
+		int pathrow = row + 1;
+		if (this->type != Board.at(newline).at(newrow).get_type() && Board.at(pathline).at(pathrow).get_type() == no_piece) {
+			pair<int, int> pair(newline, newrow);
+			aviliable.push_back(pair);
+		}
+
+		//move to up left
+		newline = line - 2;
+		newrow = row - 2;
+		pathline = line - 1;
+		pathrow = row - 1;
+		if (this->type != Board.at(newline).at(newrow).get_type() && Board.at(pathline).at(pathrow).get_type() == no_piece) {
+			pair<int, int> pair(newline, newrow);
+			aviliable.push_back(pair);
+		}
+	}
+
+	//left most case
+	else if ((l == 2 && r == 0) || (l == 7 && r == 0)) {
+		//move to up right
+		int newline = line - 2;
+		int newrow = row + 2;
+		int pathline = line - 1;
+		int pathrow = row + 1;
+		if (this->type != Board.at(newline).at(newrow).get_type() && Board.at(pathline).at(pathrow).get_type() == no_piece) {
+			pair<int, int> pair(newline, newrow);
+			aviliable.push_back(pair);
+		}
+
+		//move to down right
+		newline = line + 2;
+		newrow = row + 2;
+		pathline = line + 1;
+		pathrow = row + 1;
+		if (this->type != Board.at(newline).at(newrow).get_type() && Board.at(pathline).at(pathrow).get_type() == no_piece) {
+			pair<int, int> pair(newline, newrow);
+			aviliable.push_back(pair);
+		}
+	}
+
+	//right most case
+	else if ((l == 2 && r == 8) || (l == 7 && r == 8)) {
+		//move to up left
+		int newline = line - 2;
+		int newrow = row - 2;
+		int pathline = line - 1;
+		int pathrow = row - 1;
+		if (this->type != Board.at(newline).at(newrow).get_type() && Board.at(pathline).at(pathrow).get_type() == no_piece) {
+			pair<int, int> pair(newline, newrow);
+			aviliable.push_back(pair);
+		}
+
+		//move to down left
+		newline = line + 2;
+		newrow = row - 2;
+		pathline = line + 1;
+		pathrow = row - 1;
+		if (this->type != Board.at(newline).at(newrow).get_type() && Board.at(pathline).at(pathrow).get_type()
+			== no_piece) {
+			pair<int, int> pair(newline, newrow);
+			aviliable.push_back(pair);
+		}
+	}
+
+	//middle case
+	else if ((l == 2 && r == 4) || (l == 7 && r == 4)) {
+		//move to up left
+		int newline = line - 2;
+		int newrow = row - 2;
+		int pathline = line - 1;
+		int pathrow = row - 1;
+		if (this->type != Board.at(newline).at(newrow).get_type() && Board.at(pathline).at(pathrow).get_type() == no_piece) {
+			pair<int, int> pair(newline, newrow);
+			aviliable.push_back(pair);
+		}
+
+		//move to up right
+		newline = line - 2;
+		newrow = row + 2;
+		pathline = line - 1;
+		pathrow = row + 1;
+		if (this->type != Board.at(newline).at(newrow).get_type() && Board.at(pathline).at(pathrow).get_type() == no_piece) {
+			pair<int, int> pair(newline, newrow);
+			aviliable.push_back(pair);
+		}
+		//move to down left
+		newline = line + 2;
+		newrow = row - 2;
+		pathline = line + 1;
+		pathrow = row - 1;
+		if (this->type != Board.at(newline).at(newrow).get_type() && Board.at(pathline).at(pathrow).get_type() == no_piece) {
+			pair<int, int> pair(newline, newrow);
+			aviliable.push_back(pair);
+		}
+
+		//move to down right
+		newline = line + 2;
+		newrow = row + 2;
+		pathline = line + 1;
+		pathrow = row + 1;
+		if (this->type != Board.at(newline).at(newrow).get_type() && Board.at(pathline).at(pathrow).get_type() == no_piece) {
+			pair<int, int> pair(newline, newrow);
+			aviliable.push_back(pair);
+		}
+	}
+	else;
 
 	return aviliable;
 }
+
 vector<pair<int, int>> Piece::Horse_move(vector<vector<Piece>> Board) {
 	vector<pair<int, int>> aviliable;
 
 	return aviliable;
 }
+
 vector<pair<int, int>> Piece::Chariots_move(vector<vector<Piece>> Board) {
 	vector<pair<int, int>> aviliable;
 
 	return aviliable;
 }
+
 vector<pair<int, int>> Piece::Cannon_move(vector<vector<Piece>> Board) {
 	vector<pair<int, int>> aviliable;
 
 	return aviliable;
 }
+
 vector<pair<int, int>> Piece::Soldier_move(vector<vector<Piece>> Board) {
 	vector<pair<int, int>> aviliable;
 
