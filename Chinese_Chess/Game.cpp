@@ -154,7 +154,7 @@ void Game::print_Board() {
 	board.at(1).at(4).set_line(1);
 	board.at(1).at(4).set_row(4);*/
 
-	//bishoptest
+	//bishop test
 	//board.at(1).at(1) = board.at(0).at(0); //block test
 	/*board.at(2).at(0) = board.at(0).at(0); //take test
 	board.at(2).at(0).set_line(2);
@@ -162,8 +162,13 @@ void Game::print_Board() {
 	board.at(2).at(0).set_player(board.at(9).at(0).get_player());*/
 	//aviliable = board.at(0).at(2).aviliable_move(board);
 
+	//horse test
+	//aviliable = board.at(0).at(1).aviliable_move(board);
 
-	aviliable = board.at(0).at(2).aviliable_move(board);
+	//Chariots test
+	//aviliable = board.at(0).at(0).aviliable_move(board);
+
+	aviliable = board.at(0).at(0).aviliable_move(board);
 	for (int i = 0; i < 10; i++) {
 		for (int j = 0; j < 9; j++) {
 			Piece p = board.at(i).at(j);

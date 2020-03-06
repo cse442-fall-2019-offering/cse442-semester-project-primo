@@ -358,13 +358,139 @@ vector<pair<int, int>> Piece::Bishop_move(vector<vector<Piece>> Board) {
 
 vector<pair<int, int>> Piece::Horse_move(vector<vector<Piece>> Board) {
 	vector<pair<int, int>> aviliable;
+	int l = this->line;
+	int r = this->row;
+	int nl = 0;
+	int nr = 0;
 
+	//move up
+	if (l - 2 >= 0) {
+		if (Board.at(l - 1).at(r).get_type() == no_piece) {
+			
+			//move up left
+			nl = l - 2;
+			nr = r - 1;
+			if (Board.at(nl).at(nr).get_player() != this->get_player()) {
+				pair<int, int> pair(nl, nr);
+				aviliable.push_back(pair);
+			}
+			
+			//move up right
+			nl = l - 2;
+			nr = r + 1;
+			if (Board.at(nl).at(nr).get_player() != this->get_player()) {
+				pair<int, int> pair(nl, nr);
+				aviliable.push_back(pair);
+			}
+		}
+	}
+
+	//move down
+	if (l + 2 <= 9) {
+		if (Board.at(l + 1).at(r).get_type() == no_piece) {
+			//move down left
+			nl = l + 2;
+			nr = r - 1;
+			if (Board.at(nl).at(nr).get_player() != this->get_player()) {
+				pair<int, int> pair(nl, nr);
+				aviliable.push_back(pair);
+			}
+
+			//move down right
+			nl = l + 2;
+			nr = r + 1;
+			if (Board.at(nl).at(nr).get_player() != this->get_player()) {
+				pair<int, int> pair(nl, nr);
+				aviliable.push_back(pair);
+			}
+		}
+	}
+
+	//move left
+	if (r - 2 >= 0) {
+		if (Board.at(l).at(r - 1).get_type() == no_piece) {
+			//move upper left
+			nl = l - 1;
+			nr = r - 2;
+			if (Board.at(nl).at(nr).get_player() != this->get_player()) {
+				pair<int, int> pair(nl, nr);
+				aviliable.push_back(pair);
+			}
+
+			//move lower right
+			nl = l + 1;
+			nr = r - 2;
+			if (Board.at(nl).at(nr).get_player() != this->get_player()) {
+				pair<int, int> pair(nl, nr);
+				aviliable.push_back(pair);
+			}
+		}
+	}
+	//move right
+	if (r + 2 <= 8) {
+		if (Board.at(l).at(r + 1).get_type() == no_piece) {
+			//move upper right
+			nl = l - 1;
+			nr = r + 2;
+			if (Board.at(nl).at(nr).get_player() != this->get_player()) {
+				pair<int, int> pair(nl, nr);
+				aviliable.push_back(pair);
+			}
+
+			//move lower left
+			nl = l + 1;
+			nr = r + 2;
+			if (Board.at(nl).at(nr).get_player() != this->get_player()) {
+				pair<int, int> pair(nl, nr);
+				aviliable.push_back(pair);
+			}
+		}
+	}
 	return aviliable;
 }
 
 vector<pair<int, int>> Piece::Chariots_move(vector<vector<Piece>> Board) {
 	vector<pair<int, int>> aviliable;
+	int l = this->line;
+	int r = this->row;
+	int nl, nr = 0;
 
+	//move up
+	nl = l - 1;
+	nr = r;
+	while (nl >= 0) {
+		if (Board.at(nl).at(nr).get_type() != no_piece) break;
+		pair<int, int> pair(nl, nr);
+		aviliable.push_back(pair);
+		nl--;
+	}
+	//move down
+	nl = l + 1;
+	nr = r;
+	while (nl <= 9) {
+		if (Board.at(nl).at(nr).get_type() != no_piece) break;
+		pair<int, int> pair(nl, nr);
+		aviliable.push_back(pair);
+		nl++;
+	}
+	//move left
+	nl = l;
+	nr = r - 1;
+	while (nr >= 0) {
+		if (Board.at(nl).at(nr).get_type() != no_piece) break;
+		pair<int, int> pair(nl, nr);
+		aviliable.push_back(pair);
+		nl--;
+	}
+	//move right
+	nl = l;
+	nr = r + 1;
+	while (nr <= 8) {
+		if (Board.at(nl).at(nr).get_type() != no_piece) break;
+		pair<int, int> pair(nl, nr);
+		aviliable.push_back(pair);
+		nl++;
+	}
 	return aviliable;
 }
 
