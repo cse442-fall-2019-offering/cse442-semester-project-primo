@@ -54,5 +54,6 @@ public:
 	afx_msg void OnBnClickedBquit();
 	CButton BVol;
 	afx_msg void OnBnClickedBvol();
-
+	CButton BReturn;
+	afx_msg void OnBnClickedBreturn();
 };

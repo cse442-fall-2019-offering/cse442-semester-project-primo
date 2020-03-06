@@ -213,6 +213,7 @@
     <None Include="res\ChineseChess.rc2" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="breturn.bmp" />
     <Image Include="C:\Users\10944\OneDrive\桌面\New folder\Chess_Board1.bmp" />
     <Image Include="C:\Users\10944\OneDrive\桌面\New folder\Frame_icon.ico" />
     <Image Include="C:\Users\10944\OneDrive\桌面\New folder\Vol1.bmp" />
