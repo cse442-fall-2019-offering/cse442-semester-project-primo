@@ -26,6 +26,8 @@ void Game::init_Board() {
 		for (j = 0; j < 9; j++) {
 			this->Board.at(i).at(j).set_line(i);
 			this->Board.at(i).at(j).set_row(j);
+			this->Board.at(i).at(j).set_ini_line(i);
+			this->Board.at(i).at(j).set_ini_row(j);
 			this->Board.at(i).at(j).set_type(no_piece);
 			this->Board.at(i).at(j).set_player(NULL);
 		}
@@ -168,7 +170,22 @@ void Game::print_Board() {
 	//Chariots test
 	//aviliable = board.at(0).at(0).aviliable_move(board);
 
-	aviliable = board.at(0).at(0).aviliable_move(board);
+	//Cannon test
+	//aviliable = board.at(2).at(1).aviliable_move(board);
+	//board.at(2).at(0) = board.at(2).at(1);
+	//board.at(2).at(0).set_line(2);
+	//board.at(2).at(0).set_row(0);
+	//aviliable = board.at(2).at(0).aviliable_move(board);
+
+	//Soilder test
+	//aviliable = board.at(3).at(0).aviliable_move(board);	//start case for p2
+	//aviliable = board.at(6).at(0).aviliable_move(board);	//start case for p1
+	/*board.at(5).at(0) = board.at(3).at(0);				//passed the river case
+	board.at(5).at(0).set_line(5);
+	board.at(5).at(0).set_row(0);
+	board.at(6).at(0).set_player(&this->player2);*/
+
+	aviliable = board.at(5).at(0).aviliable_move(board);
 	for (int i = 0; i < 10; i++) {
 		for (int j = 0; j < 9; j++) {
 			Piece p = board.at(i).at(j);
@@ -186,4 +203,17 @@ void Game::print_Board() {
 	}
 
 	
+}
+
+Player* Game::getPlayer1() {
+	return &this->player1;
+}
+Player* Game::getPlayer2() {
+	return &this->player2;
+}
+int Game::getturns() {
+	return this->turns;
+}
+vector<vector<Piece>> Game::getBoard() {
+	return this->Board;
 }

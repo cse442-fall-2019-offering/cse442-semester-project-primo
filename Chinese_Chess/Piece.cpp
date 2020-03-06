@@ -1,5 +1,7 @@
 #include "pch.h"
 #include "Piece.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 
 vector<pair<int, int>> Piece::aviliable_move(vector<vector<Piece>> Board) {
@@ -459,7 +461,13 @@ vector<pair<int, int>> Piece::Chariots_move(vector<vector<Piece>> Board) {
 	nl = l - 1;
 	nr = r;
 	while (nl >= 0) {
-		if (Board.at(nl).at(nr).get_type() != no_piece) break;
+		if (Board.at(nl).at(nr).get_type() != no_piece) {
+			if (Board.at(nl).at(nr).get_player() != this->get_player()) {
+				pair<int, int> pair(nl, nr);
+				aviliable.push_back(pair);
+			}
+			break;
+		}
 		pair<int, int> pair(nl, nr);
 		aviliable.push_back(pair);
 		nl--;
@@ -468,7 +476,13 @@ vector<pair<int, int>> Piece::Chariots_move(vector<vector<Piece>> Board) {
 	nl = l + 1;
 	nr = r;
 	while (nl <= 9) {
-		if (Board.at(nl).at(nr).get_type() != no_piece) break;
+		if (Board.at(nl).at(nr).get_type() != no_piece) {
+			if (Board.at(nl).at(nr).get_player() != this->get_player()) {
+				pair<int, int> pair(nl, nr);
+				aviliable.push_back(pair);
+			}
+			break;
+		}
 		pair<int, int> pair(nl, nr);
 		aviliable.push_back(pair);
 		nl++;
@@ -477,7 +491,13 @@ vector<pair<int, int>> Piece::Chariots_move(vector<vector<Piece>> Board) {
 	nl = l;
 	nr = r - 1;
 	while (nr >= 0) {
-		if (Board.at(nl).at(nr).get_type() != no_piece) break;
+		if (Board.at(nl).at(nr).get_type() != no_piece) {
+			if (Board.at(nl).at(nr).get_player() != this->get_player()) {
+				pair<int, int> pair(nl, nr);
+				aviliable.push_back(pair);
+			}
+			break;
+		}
 		pair<int, int> pair(nl, nr);
 		aviliable.push_back(pair);
 		nl--;
@@ -486,7 +506,13 @@ vector<pair<int, int>> Piece::Chariots_move(vector<vector<Piece>> Board) {
 	nl = l;
 	nr = r + 1;
 	while (nr <= 8) {
-		if (Board.at(nl).at(nr).get_type() != no_piece) break;
+		if (Board.at(nl).at(nr).get_type() != no_piece) {
+			if (Board.at(nl).at(nr).get_player() != this->get_player()) {
+				pair<int, int> pair(nl, nr);
+				aviliable.push_back(pair);
+			}
+			break;
+		}
 		pair<int, int> pair(nl, nr);
 		aviliable.push_back(pair);
 		nl++;
@@ -496,38 +522,254 @@ vector<pair<int, int>> Piece::Chariots_move(vector<vector<Piece>> Board) {
 
 vector<pair<int, int>> Piece::Cannon_move(vector<vector<Piece>> Board) {
 	vector<pair<int, int>> aviliable;
+	int l = this->line;
+	int r = this->row;
+	int nl, nr = 0;
+	int jumpline, jumprow;
+
+	//move up
+	nl = l - 1;
+	jumpline = l - 1;
+	nr = r;
+	jumprow = r;
+	while (nl >= 0) {
+		if (Board.at(nl).at(nr).get_type() != no_piece) {
+			jumpline = nl - 1;
+			jumprow = nr;
+			while (jumpline >= 0)
+			{
+				if (Board.at(jumpline).at(jumprow).get_type() != no_piece && Board.at(jumpline).at(jumprow).get_player() != this->get_player()) {
+					pair<int, int> pair(jumpline, jumprow);
+					aviliable.push_back(pair);
+					break;
+				}
+				jumpline--;
+			}
+			break;
+		}
+		else {
+			pair<int, int> pair(nl, nr);
+			aviliable.push_back(pair);
+			nl--;
+		}
+	}
+
+	//move down
+	nl = l + 1;
+	nr = r;
+	while (nl <= 9) {
+		if (Board.at(nl).at(nr).get_type() != no_piece) {
+			jumpline = nl + 1;
+			jumprow = nr;
+			while (jumpline <= 9)
+			{
+				if (Board.at(jumpline).at(jumprow).get_type() != no_piece && Board.at(jumpline).at(jumprow).get_player() != this->get_player()) {
+					pair<int, int> pair(jumpline, jumprow);
+					aviliable.push_back(pair);
+					break;
+				}
+				jumpline++;
+			}
+			break;
+		}
+		else {
+			pair<int, int> pair(nl, nr);
+			aviliable.push_back(pair);
+			nl++;
+		}
+	}
+
+	//move left
+	nl = l;
+	nr = r - 1;
+	while (nr >= 0) {
+		if (Board.at(nl).at(nr).get_type() != no_piece) {
+			jumpline = nl;
+			jumprow = nr - 1;
+			while (jumprow >= 0)
+			{
+				if (Board.at(jumpline).at(jumprow).get_type() != no_piece && Board.at(jumpline).at(jumprow).get_player() != this->get_player()) {
+					pair<int, int> pair(jumpline, jumprow);
+					aviliable.push_back(pair);
+					break;
+				}
+				jumprow--;
+			}
+			break;
+		}
+		pair<int, int> pair(nl, nr);
+		aviliable.push_back(pair);
+		nl--;
+	}
+
+	//move right
+	nl = l;
+	nr = r + 1;
+	while (nr <= 8) {
+		if (Board.at(nl).at(nr).get_type() != no_piece) {
+			jumpline = nl;
+			jumprow = nr + 1;
+			while (jumprow <= 8)
+			{
+				if (Board.at(jumpline).at(jumprow).get_type() != no_piece && Board.at(jumpline).at(jumprow).get_player() != this->get_player()) {
+					pair<int, int> pair(jumpline, jumprow);
+					aviliable.push_back(pair);
+					break;
+				}
+				jumprow++;
+			}
+			break;
+		}
+		pair<int, int> pair(nl, nr);
+		aviliable.push_back(pair);
+		nl++;
+	}
 
 	return aviliable;
 }
 
 vector<pair<int, int>> Piece::Soldier_move(vector<vector<Piece>> Board) {
 	vector<pair<int, int>> aviliable;
+	int ini_l = this->ini_line;
+	int ini_r = this->ini_row;
+	int l = this->line;
+	int r = this->row;
+	int nl, nr;
+	if (ini_line == 3) {
+		//not pass the river
+		if (l <= 4) {
+			//only move down
+			nl = l + 1;
+			nr = r;
+			if (Board.at(nl).at(nr).get_player() != this->get_player()) {
+				pair<int, int> pair(nl, nr);
+				aviliable.push_back(pair);
+			}
+		}
+
+		//passed the river
+		else {
+			//move down
+			nl = l + 1;
+			nr = r;
+			if (nl <= 9) {
+				if (Board.at(nl).at(nr).get_player() != this->get_player()) {
+					pair<int, int> pair(nl, nr);
+					aviliable.push_back(pair);
+				}
+			}
+
+			//move left
+			nl = l;
+			nr = r - 1;
+			if (nr >= 0) {
+				if (Board.at(nl).at(nr).get_player() != this->get_player()) {
+					pair<int, int> pair(nl, nr);
+					aviliable.push_back(pair);
+				}
+			}
+
+			//move right
+			nl = l;
+			nr = r + 1;
+			if (nr <= 8) {
+				if (Board.at(nl).at(nr).get_player() != this->get_player()) {
+					pair<int, int> pair(nl, nr);
+					aviliable.push_back(pair);
+				}
+			}
+		}
+	}
+	else if (ini_line == 6) {
+		//not pass the river
+		if (l >= 5) {
+			//only move up
+			nl = l - 1;
+			nr = r;
+			if (Board.at(nl).at(nr).get_player() != this->get_player()) {
+				pair<int, int> pair(nl, nr);
+				aviliable.push_back(pair);
+			}
+		}
+
+		//passed the river
+		else {
+			//move up
+			nl = l - 1;
+			nr = r;
+			if (nl >= 0) {
+				if (Board.at(nl).at(nr).get_player() != this->get_player()) {
+					pair<int, int> pair(nl, nr);
+					aviliable.push_back(pair);
+				}
+			}
+
+			//move left
+			nl = l;
+			nr = r - 1;
+			if (nr >= 0) {
+				if (Board.at(nl).at(nr).get_player() != this->get_player()) {
+					pair<int, int> pair(nl, nr);
+					aviliable.push_back(pair);
+				}
+			}
+
+			//move right
+			nl = l;
+			nr = r + 1;
+			if (nr <= 8) {
+				if (Board.at(nl).at(nr).get_player() != this->get_player()) {
+					pair<int, int> pair(nl, nr);
+					aviliable.push_back(pair);
+				}
+			}
+		}
+	}
+
 
 	return aviliable;
 }
 
-void Piece::set_type(int type) {
-	this->type = type;
-}
+//setter function
 void Piece::set_line(int line) {
 	this->line = line;
 }
 void Piece::set_row(int row) {
 	this->row = row;
 }
+void Piece::set_ini_line(int line) {
+	this->ini_line = line;
+}
+void Piece::set_ini_row(int row) {
+	this->ini_row = row;
+}
+
+void Piece::set_type(int type) {
+	this->type = type;
+}
+
 void Piece::set_player(Player* player) {
 	this->player = player;
 }
 
-int Piece::get_type() {
-	return this->type;
-}
+//getter function
 int Piece::get_line() {
 	return this->line;
 }
 int Piece::get_row() {
 	return this->row;
 }
+int Piece::get_ini_line() {
+	return this->ini_line;
+}
+int Piece::get_ini_row() {
+	return this->ini_row;
+}
+
+int Piece::get_type() {
+	return this->type;
+}
+
 Player* Piece::get_player() {
 	return this->player;
 }

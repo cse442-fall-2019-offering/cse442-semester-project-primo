@@ -15,6 +15,14 @@ public:
 
 	//debug and test function
 	void Game::print_Board();
+
+	//getter function
+	Player* getPlayer1();
+	Player* getPlayer2();
+	int getturns();
+	vector<vector<Piece>> getBoard();
+
+	//setter function
 private:
 	vector<vector<Piece>> Board;
 	Player player1;
