@@ -210,8 +210,6 @@ void CChineseChessDlg::OnBnClickedBstart()
 	Player player2 = Player();
 	Game newgame = Game(player1, player2);
 	newgame.print_Board();
-	GetDlgItem(IDC_STATIC)->SetWindowText(_T("a"));
-	GetDlgItem(IDC_STATIC)->SetWindowText(_T("b"));
 	CWnd::Invalidate();
 	CChineseChessDlg::OnInitDialog();
 	
