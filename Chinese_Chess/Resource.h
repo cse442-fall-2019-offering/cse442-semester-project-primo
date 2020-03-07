@@ -22,7 +22,6 @@
 #define IDC_COMBO1                      1007
 #define IDC_LIST1                       1008
 #define IDC_BRESTART                    1009
-#define IDC_BUTTON1                     1011
 
 // Next default values for new objects
 // 
