@@ -138,6 +138,7 @@ void Game::init_Board() {
 
 }
 
+
 void Game::print_Board() {
 	vector<vector<Piece>> board = this->Board;
 	std::string out;
