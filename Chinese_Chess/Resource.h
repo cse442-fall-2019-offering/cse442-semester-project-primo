@@ -21,7 +21,7 @@
 #define IDC_VOLBAR                      1006
 #define IDC_COMBO1                      1007
 #define IDC_LIST1                       1008
-#define IDC_BRESTART                    1009
+#define IDC_BRESTART                    1010
 
 // Next default values for new objects
 // 
