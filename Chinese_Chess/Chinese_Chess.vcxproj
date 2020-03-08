@@ -210,15 +210,26 @@
     <ResourceCompile Include="ChineseChess.rc" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <None Include="res\ChineseChess.rc2" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="breturn.bmp" />
+=======
+    <None Include="cpp.hint" />
+    <None Include="res\ChineseChess.rc2" />
+  </ItemGroup>
+  <ItemGroup>
+>>>>>>> restart_button-17
     <Image Include="C:\Users\10944\OneDrive\桌面\New folder\Chess_Board1.bmp" />
     <Image Include="C:\Users\10944\OneDrive\桌面\New folder\Frame_icon.ico" />
     <Image Include="C:\Users\10944\OneDrive\桌面\New folder\Vol1.bmp" />
     <Image Include="C:\Users\10944\OneDrive\桌面\New folder\volumn.png" />
     <Image Include="res\bgp.bmp" />
+<<<<<<< HEAD
+=======
+    <Image Include="res\brestart.bmp" />
+>>>>>>> restart_button-17
     <Image Include="res\bquit.bmp" />
     <Image Include="res\bstart.bmp" />
     <Image Include="res\bvol1.bmp" />

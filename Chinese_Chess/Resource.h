@@ -5,8 +5,13 @@
 #define IDM_ABOUTBOX                    0x0010
 #define IDD_ABOUTBOX                    100
 #define IDS_ABOUTBOX                    101
+<<<<<<< HEAD
 #define IDB_BRETURN                     101
 #define IDD_CHINESE_CHESS_DIALOG        102
+=======
+#define IDD_CHINESE_CHESS_DIALOG        102
+#define IDB_BRESTART                    103
+>>>>>>> restart_button-17
 #define IDR_MAINFRAME                   128
 #define IDB_BGP                         129
 #define IDB_BQUIT                       130
@@ -21,15 +26,26 @@
 #define IDC_VOLBAR                      1006
 #define IDC_COMBO1                      1007
 #define IDC_LIST1                       1008
+<<<<<<< HEAD
 #define IDC_BRETURN                     1009
+=======
+#define IDC_BRESTART                    1010
+>>>>>>> restart_button-17
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
+<<<<<<< HEAD
 #define _APS_NEXT_RESOURCE_VALUE        102
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1010
 #define _APS_NEXT_SYMED_VALUE           101
+=======
+#define _APS_NEXT_RESOURCE_VALUE        105
+#define _APS_NEXT_COMMAND_VALUE         32771
+#define _APS_NEXT_CONTROL_VALUE         1012
+#define _APS_NEXT_SYMED_VALUE           102
+>>>>>>> restart_button-17
 #endif
 #endif

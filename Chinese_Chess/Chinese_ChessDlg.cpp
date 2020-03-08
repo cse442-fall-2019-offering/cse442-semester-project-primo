@@ -64,7 +64,11 @@ void CChineseChessDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BSTART, BStart);
 	DDX_Control(pDX, IDC_BQUIT, BQuit);
 	DDX_Control(pDX, IDC_BVOL, BVol);
+<<<<<<< HEAD
 	DDX_Control(pDX, IDC_BRETURN, BReturn);
+=======
+	DDX_Control(pDX, IDC_BRESTART, BRestart);
+>>>>>>> restart_button-17
 }
 
 BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
@@ -74,7 +78,11 @@ BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BSTART, &CChineseChessDlg::OnBnClickedBstart)
 	ON_BN_CLICKED(IDC_BQUIT, &CChineseChessDlg::OnBnClickedBquit)
 	ON_BN_CLICKED(IDC_BVOL, &CChineseChessDlg::OnBnClickedBvol)
+<<<<<<< HEAD
 	ON_BN_CLICKED(IDC_BRETURN, &CChineseChessDlg::OnBnClickedBreturn)
+=======
+	ON_BN_CLICKED(IDC_BRESTART, &CChineseChessDlg::OnBnClickedBrestart)
+>>>>>>> restart_button-17
 END_MESSAGE_MAP()
 
 
@@ -208,9 +216,12 @@ void CChineseChessDlg::OnBnClickedBstart()
 	//CDialogEx::OnOK();
 }
 
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> restart_button-17
 void CChineseChessDlg::OnBnClickedBquit()
 {
 	// TODO: Add your control notification handler code here
@@ -226,7 +237,11 @@ void CChineseChessDlg::OnBnClickedBvol()
 	CChineseChessDlg::OnInitDialog();
 }
 
+<<<<<<< HEAD
 void CChineseChessDlg::OnBnClickedBreturn()
+=======
+void CChineseChessDlg::OnBnClickedBrestart()
+>>>>>>> restart_button-17
 {
 	// TODO: Add your control notification handler code here
 	if (this->Model == 2) this->Model = 1;
@@ -234,6 +249,10 @@ void CChineseChessDlg::OnBnClickedBreturn()
 	CChineseChessDlg::OnInitDialog();
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> restart_button-17
 //---------------------------Page Buttons initialization-------------------------------------
 
 afx_msg void CChineseChessDlg::Button_BackGround_ini() {
@@ -241,6 +260,7 @@ afx_msg void CChineseChessDlg::Button_BackGround_ini() {
 	CBitmap Startbgp;
 	CBitmap Quitbgp;
 	CBitmap Volbgp;
+<<<<<<< HEAD
 	CBitmap Returnbgp;
 	Startbgp.LoadBitmap(IDB_BSTART);
 	Quitbgp.LoadBitmap(IDB_BQUIT);
@@ -249,6 +269,16 @@ afx_msg void CChineseChessDlg::Button_BackGround_ini() {
 	BStart.SetBitmap(Startbgp);
 	BQuit.SetBitmap(Quitbgp);
 	BReturn.SetBitmap(Returnbgp);
+=======
+	CBitmap Restartbgp;
+	Startbgp.LoadBitmap(IDB_BSTART);
+	Quitbgp.LoadBitmap(IDB_BQUIT);
+	Volbgp.LoadBitmap(IDB_BVOLUMN);
+	Restartbgp.LoadBitmap(IDB_BRESTART);
+	BStart.SetBitmap(Startbgp);
+	BQuit.SetBitmap(Quitbgp);
+	BRestart.SetBitmap(Restartbgp);
+>>>>>>> restart_button-17
 	if (this->Mute) BVol.SetBitmap(NULL);
 	else BVol.SetBitmap(Volbgp);
 
@@ -263,11 +293,19 @@ afx_msg void CChineseChessDlg::Start_Button_ini(){
 /*	Enable the Start up Page buttons*/
 	BStart.MoveWindow(200, 300, 180, 70, true);
 	BQuit.MoveWindow(500, 300, 180, 70, true);
+<<<<<<< HEAD
 	BReturn.MoveWindow(0, 0, 47, 47, true);
 	GetDlgItem(IDC_BQUIT)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BVOL)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BRETURN)->ShowWindow(SW_HIDE);
+=======
+	BRestart.MoveWindow(350, 200, 47, 47, true);
+	GetDlgItem(IDC_BQUIT)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_BVOL)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_BRESTART)->ShowWindow(SW_HIDE);
+>>>>>>> restart_button-17
 	if (this->Mute) GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_HIDE);
 	else GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_SHOW);
 	//GetDlgItem(IDC_BQUIT)->ShowWindow(SW_HIDE);
@@ -282,7 +320,11 @@ afx_msg void CChineseChessDlg::SGame_Button_ini() {
 	GetDlgItem(IDC_BQUIT)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BVOL)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_HIDE);
+<<<<<<< HEAD
 	GetDlgItem(IDC_BRETURN)->ShowWindow(SW_SHOW);
+=======
+	GetDlgItem(IDC_BRESTART)->ShowWindow(SW_SHOW);
+>>>>>>> restart_button-17
 }
 
 
@@ -333,3 +375,10 @@ afx_msg void CChineseChessDlg::SGame_Page_ini() {
 //-------------------------------------------------------------------------------------------
 
 
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> restart_button-17
