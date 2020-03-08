@@ -289,28 +289,39 @@ afx_msg void CChineseChessDlg::Start_Page_ini() {
 	bitmap.GetBitmap(&Bitmap);
 	mem_dc.CreateCompatibleDC(&dc); // makes compatible with CPaintDC
 	mem_dc.SelectObject(bitmap); // Selects bitmap into CDC
-	dc.StretchBlt(0, 0, rect.Width(), rect.Height(), &mem_dc, 0, 0,
-		Bitmap.bmWidth, Bitmap.bmHeight, SRCCOPY);
-	//dc.BitBlt(0, 0, Bitmap.bmWidth, Bitmap.bmHeight, &mem_dc, 0, 0, SRCCOPY);
+
+	/*dc.StretchBlt(0, 0, rect.Width(), rect.Height(), &mem_dc, 0, 0,
+		Bitmap.bmWidth, Bitmap.bmHeight, SRCCOPY);*/
+	dc.BitBlt(0, 0, Bitmap.bmWidth, Bitmap.bmHeight, &mem_dc, 0, 0, SRCCOPY);
 }
 
 /*	Single Game Page initialization
 */
 afx_msg void CChineseChessDlg::SGame_Page_ini() {
-	CBitmap bitmap; //bitmap object to hold your bitmap
-	bitmap.LoadBitmap(IDB_CB1); // IDB_BITMAPID is the id of bmp
+	CBitmap board; //bitmap object to hold your bitmap
+	board.LoadBitmap(IDB_BOARD); // IDB_BITMAPID is the id of bmp
+	BITMAP Board;
+	board.GetBitmap(&Board);
+
+	CBitmap cannon1; //bitmap object to hold your bitmap
+	cannon1.LoadBitmap(IDB_PCAN1); // IDB_BITMAPID is the id of bmp
+	BITMAP Cannon1;
+	cannon1.GetBitmap(&Cannon1);
+
 	CRect   rect;
 	GetClientRect(&rect);
 
-	CSize dim = bitmap.GetBitmapDimension();
+	CSize dim = board.GetBitmapDimension();
 	CPaintDC dc(this); //device context of dialog box
 	CDC mem_dc; // memory device context
-
-	BITMAP Bitmap;
-	bitmap.GetBitmap(&Bitmap);
 	mem_dc.CreateCompatibleDC(&dc); // makes compatible with CPaintDC
-	mem_dc.SelectObject(bitmap); // Selects bitmap into CDC
-	dc.StretchBlt(0, 0, rect.Width(), rect.Height(), &mem_dc, 0, 0,
-		Bitmap.bmWidth, Bitmap.bmHeight, SRCCOPY);
+
+	mem_dc.SelectObject(board); // Selects bitmap into CDC
+	dc.StretchBlt(100, 100, 600, 600, &mem_dc, 0, 0,
+		Board.bmWidth, Board.bmHeight, SRCCOPY);
+
+	mem_dc.SelectObject(cannon1); // Selects bitmap into CDC
+	dc.StretchBlt(80, 80, 60, 60, &mem_dc, 0, 0,
+		Cannon1.bmWidth, Cannon1.bmHeight, SRCCOPY);
 }
 //-------------------------------------------------------------------------------------------
