@@ -110,5 +110,14 @@
     <Image Include="res\game_ico.ico">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\bitmap1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="..\..\..\backgroundpage.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bgp2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>
