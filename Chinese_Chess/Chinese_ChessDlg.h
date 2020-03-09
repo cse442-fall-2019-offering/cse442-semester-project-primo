@@ -46,6 +46,7 @@ protected:
 	afx_msg void Start_Page_ini();
 	afx_msg void SGame_Button_ini();
 	afx_msg void SGame_Page_ini();
+	BOOL CChineseChessDlg::TransBit(CDC* dcSnow, CDC* dcDest, int pos_x, int pos_y);
 	DECLARE_MESSAGE_MAP()
 public:
 	CButton BStart;

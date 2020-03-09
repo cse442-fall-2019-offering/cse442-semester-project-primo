@@ -158,5 +158,26 @@
     <Image Include="res\Pieces\red-soldier.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="C:\Users\10944\OneDrive\桌面\board2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="C:\Users\10944\Downloads\board3.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="C:\Users\10944\OneDrive\桌面\Board4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\pieces\bitmap2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="C:\Users\10944\OneDrive\桌面\Board5.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="C:\Users\10944\OneDrive\桌面\Board6.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="C:\Users\10944\OneDrive\桌面\Board7.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

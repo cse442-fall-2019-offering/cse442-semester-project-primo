@@ -1,4 +1,4 @@
-
+﻿
 // Chinese_ChessDlg.cpp : implementation file
 //
 
@@ -9,6 +9,7 @@
 #include "afxdialogex.h"
 #include <iostream>
 #include "Game.h"
+#include <Windows.h>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -169,6 +170,7 @@ void CChineseChessDlg::OnPaint()
 	}
 	else
 	{
+
 		switch (Model) {
 		case Startup_Page:
 			CChineseChessDlg::Start_Page_ini();
@@ -266,6 +268,7 @@ afx_msg void CChineseChessDlg::SGame_Button_ini() {
 	GetDlgItem(IDC_BQUIT)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BVOL)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_BSTART)->ShowWindow(SW_HIDE);
 }
 
 
@@ -298,30 +301,248 @@ afx_msg void CChineseChessDlg::Start_Page_ini() {
 /*	Single Game Page initialization
 */
 afx_msg void CChineseChessDlg::SGame_Page_ini() {
+	CRect rect;
+	GetClientRect(&rect);
+
 	CBitmap board; //bitmap object to hold your bitmap
 	board.LoadBitmap(IDB_BOARD); // IDB_BITMAPID is the id of bmp
 	BITMAP Board;
 	board.GetBitmap(&Board);
-
-	CBitmap cannon1; //bitmap object to hold your bitmap
-	cannon1.LoadBitmap(IDB_PCAN1); // IDB_BITMAPID is the id of bmp
-	BITMAP Cannon1;
-	cannon1.GetBitmap(&Cannon1);
-
-	CRect   rect;
-	GetClientRect(&rect);
 
 	CSize dim = board.GetBitmapDimension();
 	CPaintDC dc(this); //device context of dialog box
 	CDC mem_dc; // memory device context
 	mem_dc.CreateCompatibleDC(&dc); // makes compatible with CPaintDC
 
-	mem_dc.SelectObject(board); // Selects bitmap into CDC
-	dc.StretchBlt(100, 100, 600, 600, &mem_dc, 0, 0,
-		Board.bmWidth, Board.bmHeight, SRCCOPY);
+	//charoit
+	CBitmap charoit1;
+	charoit1.LoadBitmap(IDB_PCHAR1);
+	BITMAP	Charoit1;
+	charoit1.GetBitmap(&Charoit1);
 
-	mem_dc.SelectObject(cannon1); // Selects bitmap into CDC
-	dc.StretchBlt(80, 80, 60, 60, &mem_dc, 0, 0,
-		Cannon1.bmWidth, Cannon1.bmHeight, SRCCOPY);
+	CBitmap charoit2;
+	charoit2.LoadBitmap(IDB_PCHAR2);
+	BITMAP	Charoit2;
+	charoit2.GetBitmap(&Charoit2);
+
+	//horse
+	CBitmap horse1;
+	horse1.LoadBitmap(IDB_PHORSE1);
+	BITMAP	Horse1;
+	horse1.GetBitmap(&Horse1);
+
+	CBitmap horse2;
+	horse2.LoadBitmap(IDB_PHORSE2);
+	BITMAP	Horse2;
+	horse2.GetBitmap(&Horse2);
+
+	//cannon
+	CBitmap cannon1;
+	cannon1.LoadBitmap(IDB_PCAN1);
+	BITMAP	Cannon1;
+	cannon1.GetBitmap(&Cannon1);
+
+	CBitmap cannon2;
+	cannon2.LoadBitmap(IDB_PCAN2);
+	BITMAP	Cannon2;
+	cannon2.GetBitmap(&Cannon2);
+
+	//bishop
+	CBitmap bishop1;
+	bishop1.LoadBitmap(IDB_PBISHOP1);
+	BITMAP	Bishop1;
+	bishop1.GetBitmap(&Bishop1);
+
+	CBitmap bishop2;
+	bishop2.LoadBitmap(IDB_PBISHOP2);
+	BITMAP	Bishop2;
+	bishop2.GetBitmap(&Bishop2);
+
+	//advisor
+	CBitmap advisor1;
+	advisor1.LoadBitmap(IDB_PADVISOR1);
+	BITMAP	Advisor1;
+	advisor1.GetBitmap(&Advisor1);
+
+	CBitmap advisor2;
+	advisor2.LoadBitmap(IDB_PADVISOR2);
+	BITMAP	Advisor2;
+	advisor2.GetBitmap(&Advisor2);
+
+	//king
+	CBitmap king1;
+	king1.LoadBitmap(IDB_PKING1);
+	BITMAP	King1;
+	king1.GetBitmap(&King1);
+
+	CBitmap king2;
+	king2.LoadBitmap(IDB_PKING2);
+	BITMAP	King2;
+	king2.GetBitmap(&King2);
+
+	//soldier
+	CBitmap soldier1;
+	soldier1.LoadBitmap(IDB_PSOLDIER1);
+	BITMAP	Soldier1;
+	soldier1.GetBitmap(&Soldier1);
+
+	CBitmap soldier2;
+	soldier2.LoadBitmap(IDB_PSOLDIER2);
+	BITMAP	Soldier2;
+	soldier2.GetBitmap(&Soldier2);
+	
+	std::vector<std::vector<int>> B(10, std::vector<int>(9, 0));
+	std::vector<std::vector<int>> P(10, std::vector<int>(9, 0));
+
+	B.at(0).at(0) = 5;
+	B.at(0).at(1) = 4;
+	B.at(0).at(2) = 3;
+	B.at(0).at(3) = 2;
+	B.at(0).at(4) = 1;
+	B.at(0).at(5) = 2;
+	B.at(0).at(6) = 3;
+	B.at(0).at(7) = 4;
+	B.at(0).at(8) = 5;
+
+	B.at(2).at(1) = 6;
+	B.at(2).at(7) = 6;
+
+	B.at(3).at(0) = 7;
+	B.at(3).at(2) = 7;
+	B.at(3).at(4) = 7;
+	B.at(3).at(6) = 7;
+	B.at(3).at(8) = 7;
+
+	B.at(6).at(0) = 7;
+	B.at(6).at(2) = 7;
+	B.at(6).at(4) = 7;
+	B.at(6).at(6) = 7;
+	B.at(6).at(8) = 7;
+
+	B.at(7).at(1) = 6;
+	B.at(7).at(7) = 6;
+
+	B.at(9).at(0) = 5;
+	B.at(9).at(1) = 4;
+	B.at(9).at(2) = 3;
+	B.at(9).at(3) = 2;
+	B.at(9).at(4) = 1;
+	B.at(9).at(5) = 2;
+	B.at(9).at(6) = 3;
+	B.at(9).at(7) = 4;
+	B.at(9).at(8) = 5;
+
+	P.at(0).at(0) = 2;
+	P.at(0).at(1) = 2;
+	P.at(0).at(2) = 2;
+	P.at(0).at(3) = 2;
+	P.at(0).at(4) = 2;
+	P.at(0).at(5) = 2;
+	P.at(0).at(6) = 2;
+	P.at(0).at(7) = 2;
+	P.at(0).at(8) = 2;
+
+	P.at(2).at(1) = 2;
+	P.at(2).at(7) = 2;
+
+	P.at(3).at(0) = 2;
+	P.at(3).at(2) = 2;
+	P.at(3).at(4) = 2;
+	P.at(3).at(6) = 2;
+	P.at(3).at(8) = 2;
+
+	P.at(6).at(0) = 1;
+	P.at(6).at(2) = 1;
+	P.at(6).at(4) = 1;
+	P.at(6).at(6) = 1;
+	P.at(6).at(8) = 1;
+
+	P.at(7).at(1) = 1;
+	P.at(7).at(7) = 1;
+
+	P.at(9).at(0) = 1;
+	P.at(9).at(1) = 1;
+	P.at(9).at(2) = 1;
+	P.at(9).at(3) = 1;
+	P.at(9).at(4) = 1;
+	P.at(9).at(5) = 1;
+	P.at(9).at(6) = 1;
+	P.at(9).at(7) = 1;
+	P.at(9).at(8) = 1;
+	
+
+	mem_dc.SelectObject(board);
+	dc.BitBlt(100, 100, Board.bmWidth, Board.bmHeight, &mem_dc, 0, 0, SRCCOPY);
+	//dc.StretchBlt(100, 100, 600, 600, &mem_dc, 0, 0,
+	//	Board.bmWidth, Board.bmHeight, SRCCOPY);
+	int ini_x, ini_y;
+	int increase_x, increase_y;
+	ini_x = 120;
+	ini_y = 120;
+	increase_x = 63;
+	increase_y = 63;
+
+	for (int i = 0; i < 10; i++) {
+		for (int j = 0; j < 9; j++) {
+			int current_x = ini_x + j * increase_x;
+			int current_y = ini_y + i * increase_y;
+			if (B.at(i).at(j) == 1 && P.at(i).at(j) == 1) {
+				mem_dc.SelectObject(king1);
+				dc.TransparentBlt(current_x, current_y, 60, 60, &mem_dc, 0, 0, King1.bmWidth, King1.bmHeight, RGB(255, 255, 255));
+			}
+			else if (B.at(i).at(j) == 1 && P.at(i).at(j) == 2) {
+				mem_dc.SelectObject(king2);
+				dc.TransparentBlt(current_x, current_y, 60, 60, &mem_dc, 0, 0, King2.bmWidth, King2.bmHeight, RGB(255, 255, 255));
+			}
+			else if (B.at(i).at(j) == 2 && P.at(i).at(j) == 1) {
+				mem_dc.SelectObject(advisor1);
+				dc.TransparentBlt(current_x, current_y, 60, 60, &mem_dc, 0, 0, King2.bmWidth, King2.bmHeight, RGB(255, 255, 255));
+			}
+			else if (B.at(i).at(j) == 2 && P.at(i).at(j) == 2) {
+				mem_dc.SelectObject(advisor2);
+				dc.TransparentBlt(current_x, current_y, 60, 60, &mem_dc, 0, 0, King2.bmWidth, King2.bmHeight, RGB(255, 255, 255));
+			}
+			else if (B.at(i).at(j) == 3 && P.at(i).at(j) == 1) {
+				mem_dc.SelectObject(bishop1);
+				dc.TransparentBlt(current_x, current_y, 60, 60, &mem_dc, 0, 0, King2.bmWidth, King2.bmHeight, RGB(255, 255, 255));
+			}
+			else if (B.at(i).at(j) == 3 && P.at(i).at(j) == 2) {
+				mem_dc.SelectObject(bishop2);
+				dc.TransparentBlt(current_x, current_y, 60, 60, &mem_dc, 0, 0, King2.bmWidth, King2.bmHeight, RGB(255, 255, 255));
+			}
+			else if (B.at(i).at(j) == 4 && P.at(i).at(j) == 1) {
+				mem_dc.SelectObject(horse1);
+				dc.TransparentBlt(current_x, current_y, 60, 60, &mem_dc, 0, 0, King2.bmWidth, King2.bmHeight, RGB(255, 255, 255));
+			}
+			else if (B.at(i).at(j) == 4 && P.at(i).at(j) == 2) {
+				mem_dc.SelectObject(horse2);
+				dc.TransparentBlt(current_x, current_y, 60, 60, &mem_dc, 0, 0, King2.bmWidth, King2.bmHeight, RGB(255, 255, 255));
+			}
+			else if (B.at(i).at(j) == 5 && P.at(i).at(j) == 1) {
+				mem_dc.SelectObject(charoit1);
+				dc.TransparentBlt(current_x, current_y, 60, 60, &mem_dc, 0, 0, King2.bmWidth, King2.bmHeight, RGB(255, 255, 255));
+			}
+			else if (B.at(i).at(j) == 5 && P.at(i).at(j) == 2) {
+				mem_dc.SelectObject(charoit2);
+				dc.TransparentBlt(current_x, current_y, 60, 60, &mem_dc, 0, 0, King2.bmWidth, King2.bmHeight, RGB(255, 255, 255));
+			}
+			else if (B.at(i).at(j) == 6 && P.at(i).at(j) == 1) {
+				mem_dc.SelectObject(cannon1);
+				dc.TransparentBlt(current_x, current_y, 60, 60, &mem_dc, 0, 0, King2.bmWidth, King2.bmHeight, RGB(255, 255, 255));
+			}
+			else if (B.at(i).at(j) == 6 && P.at(i).at(j) == 2) {
+				mem_dc.SelectObject(cannon2);
+				dc.TransparentBlt(current_x, current_y, 60, 60, &mem_dc, 0, 0, King2.bmWidth, King2.bmHeight, RGB(255, 255, 255));
+			}
+			else if (B.at(i).at(j) == 7 && P.at(i).at(j) == 1) {
+				mem_dc.SelectObject(soldier1);
+				dc.TransparentBlt(current_x, current_y, 60, 60, &mem_dc, 0, 0, King2.bmWidth, King2.bmHeight, RGB(255, 255, 255));
+			}
+			else if (B.at(i).at(j) == 7 && P.at(i).at(j) == 2) {
+				mem_dc.SelectObject(soldier2);
+				dc.TransparentBlt(current_x, current_y, 60, 60, &mem_dc, 0, 0, King2.bmWidth, King2.bmHeight, RGB(255, 255, 255));
+			}
+		}
+	}
 }
 //-------------------------------------------------------------------------------------------
