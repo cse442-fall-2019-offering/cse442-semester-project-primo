@@ -185,7 +185,7 @@ void Game::print_Board() {
 	board.at(5).at(0).set_row(0);
 	board.at(6).at(0).set_player(&this->player2);*/
 
-	aviliable = board.at(5).at(0).aviliable_move(board);
+	aviliable = board.at(6).at(0).aviliable_move(board);
 	for (int i = 0; i < 10; i++) {
 		for (int j = 0; j < 9; j++) {
 			Piece p = board.at(i).at(j);
