@@ -43,11 +43,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-<<<<<<< HEAD
-#define _APS_NEXT_RESOURCE_VALUE        106
-=======
 #define _APS_NEXT_RESOURCE_VALUE        124
->>>>>>> Piece_display-37
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1014
 #define _APS_NEXT_SYMED_VALUE           104
