@@ -427,6 +427,12 @@ afx_msg void CChineseChessDlg::SGame_Page_ini() {
 	soldier2.LoadBitmap(IDB_PSOLDIER2);
 	BITMAP	Soldier2;
 	soldier2.GetBitmap(&Soldier2);
+
+
+	CBitmap selected;
+	selected.LoadBitmap(IDB_SELECTED);
+	BITMAP	Selected;
+	selected.GetBitmap(&Selected);
 	
 	vector<vector<Piece>> B = this->game.getBoard();
 	Player* player1 = this->game.getPlayer1();
@@ -506,6 +512,17 @@ afx_msg void CChineseChessDlg::SGame_Page_ini() {
 			}
 		}
 	}
+
+	if (this->game.aviliable_flag == 1) {
+		for (int i = 0; i < this->aviliable.size(); i++) {
+			int x = this->aviliable.at(i).second;
+			int y = this->aviliable.at(i).first;
+			int c_x = ini_x + x * increase_x + 3 * (x - 1);
+			int c_y = ini_y + y * increase_y + 3 * (y - 1);
+			mem_dc.SelectObject(selected);
+			dc.TransparentBlt(c_x, c_y, 60, 60, &mem_dc, 0, 0, Selected.bmWidth, Selected.bmHeight, RGB(255, 255, 255));
+		}
+	}
 }
 
 
@@ -543,6 +560,13 @@ pair<int, int> CChineseChessDlg::getIndex(CPoint point) {
 	return pair;
 }
 
+bool CChineseChessDlg::contain(pair<int, int> Pair) {
+	for (int i = 0; i < this->aviliable.size(); i++) {
+		pair<int, int> p = aviliable.at(i);
+		if (p.second == Pair.second && p.first == Pair.first) return true;
+	}
+	return false;
+}
 
 void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 {
@@ -556,6 +580,15 @@ void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 	stry.Format(_T("%d"), pair.second);
 	CString co_point = strx + "," + stry;
 	CChineseChessDlg::SetDlgItemText(IDC_STATIC2, co_point);
+	if (this->game.aviliable_flag == 0) {
+
+		Piece s_piece = this->game.getBoard().at(pair.second).at(pair.first);
+		this->aviliable = s_piece.aviliable_move(this->game.getBoard());
+		this->game.aviliable_flag = 1;
+		CWnd::Invalidate();
+	}
+	else {
+	}
 
 	CDialogEx::OnLButtonDown(nFlags, point);
 }

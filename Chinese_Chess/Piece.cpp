@@ -599,7 +599,7 @@ vector<pair<int, int>> Piece::Cannon_move(vector<vector<Piece>> Board) {
 		}
 		pair<int, int> pair(nl, nr);
 		aviliable.push_back(pair);
-		nl--;
+		nr--;
 	}
 
 	//move right
@@ -622,7 +622,7 @@ vector<pair<int, int>> Piece::Cannon_move(vector<vector<Piece>> Board) {
 		}
 		pair<int, int> pair(nl, nr);
 		aviliable.push_back(pair);
-		nl++;
+		nr++;
 	}
 
 	return aviliable;

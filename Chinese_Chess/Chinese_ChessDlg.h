@@ -70,6 +70,8 @@ public:
 	CButton BRestart;
 	afx_msg void OnBnClickedBrestart();
 
+	bool contain(pair<int, int>);
+
 		afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 		afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 };

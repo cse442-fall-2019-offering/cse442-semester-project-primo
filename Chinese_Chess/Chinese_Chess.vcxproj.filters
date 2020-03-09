@@ -89,9 +89,6 @@
     <Image Include="res\bvolumn.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\cb1.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\bvol1.bmp">
       <Filter>Resource Files</Filter>
     </Image>
@@ -144,6 +141,15 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\Pieces\red-soldier.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\breturn.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\pieces\bitmap2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="C:\Users\10944\OneDrive\桌面\selected.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
