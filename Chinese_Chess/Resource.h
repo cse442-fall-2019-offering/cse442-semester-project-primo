@@ -23,6 +23,9 @@
 #define IDB_PHORSE1                     117
 #define IDB_PSOLDIER1                   118
 #define IDB_BOARD                       119
+#define IDB_BITMAP1                     120
+#define IDB_BGP2                        121
+#define IDB_BITMAP2                     124
 #define IDR_MAINFRAME                   128
 #define IDB_BGP                         129
 #define IDB_BQUIT                       130
@@ -38,14 +41,15 @@
 #define IDC_LIST1                       1008
 #define IDC_BRETURN                     1009
 #define IDC_BRESTART                    1010
+#define IDC_UI_BUTTON1                  1011
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        124
+#define _APS_NEXT_RESOURCE_VALUE        125
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1014
-#define _APS_NEXT_SYMED_VALUE           104
+#define _APS_NEXT_CONTROL_VALUE         1015
+#define _APS_NEXT_SYMED_VALUE           122
 #endif
 #endif

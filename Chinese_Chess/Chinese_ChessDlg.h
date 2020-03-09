@@ -25,7 +25,7 @@ public:
 
 #define Startup_Page 1
 #define Single_Page 2
-#define Multi_Page 3
+#define UI2_Page 3
 
 
 private:
@@ -59,4 +59,6 @@ public:
 	afx_msg void OnBnClickedBreturn();
 	CButton BRestart;
 	afx_msg void OnBnClickedBrestart();
+	afx_msg void OnBnClickedUiButton();
+	afx_msg void UIChange_Button_ini();
 };
