@@ -54,11 +54,8 @@ public:
 	afx_msg void OnBnClickedBquit();
 	CButton BVol;
 	afx_msg void OnBnClickedBvol();
-<<<<<<< HEAD
 	CButton BReturn;
 	afx_msg void OnBnClickedBreturn();
-=======
 	CButton BRestart;
 	afx_msg void OnBnClickedBrestart();
->>>>>>> restart_button-17
 };
