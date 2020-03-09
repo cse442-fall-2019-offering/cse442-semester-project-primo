@@ -7,14 +7,27 @@
 #define IDS_ABOUTBOX                    101
 #define IDD_CHINESE_CHESS_DIALOG        102
 #define IDB_BRESTART                    103
-#define IDB_BITMAP1                     105
-#define IDB_BRETURN                     106
+#define IDB_BRETURN                     104
+#define IDB_PCAN2                       105
+#define IDB_PCHAR2                      106
+#define IDB_PBISHOP2                    107
+#define IDB_PKING2                      108
+#define IDB_PADVISOR2                   109
+#define IDB_PHORSE2                     110
+#define IDB_PSOLDIER2                   111
+#define IDB_PCAN1                       112
+#define IDB_PCHAR1                      113
+#define IDB_PBISHOP1                    114
+#define IDB_PKING1                      115
+#define IDB_PADVISOR1                   116
+#define IDB_PHORSE1                     117
+#define IDB_PSOLDIER1                   118
+#define IDB_BOARD                       119
 #define IDR_MAINFRAME                   128
 #define IDB_BGP                         129
 #define IDB_BQUIT                       130
 #define IDB_BSTART                      131
 #define IDB_BVOLUMN                     132
-#define IDB_CB1                         134
 #define IDB_BVOL1                       135
 #define IDI_GAME_ICON                   137
 #define IDC_BSTART                      1001
@@ -30,7 +43,11 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
+<<<<<<< HEAD
 #define _APS_NEXT_RESOURCE_VALUE        106
+=======
+#define _APS_NEXT_RESOURCE_VALUE        124
+>>>>>>> Piece_display-37
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1014
 #define _APS_NEXT_SYMED_VALUE           104

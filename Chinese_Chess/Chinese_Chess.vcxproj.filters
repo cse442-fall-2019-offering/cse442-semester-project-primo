@@ -72,10 +72,6 @@
     <None Include="res\ChineseChess.rc2">
       <Filter>Resource Files</Filter>
     </None>
-<<<<<<< HEAD
-=======
-    <None Include="cpp.hint" />
->>>>>>> restart_button-17
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\Chinese_Chess.ico">
@@ -93,32 +89,61 @@
     <Image Include="res\bvolumn.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="C:\Users\10944\OneDrive\桌面\New folder\Chess_Board1.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\cb1.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="C:\Users\10944\OneDrive\桌面\New folder\Vol1.bmp">
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\bvol1.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="C:\Users\10944\OneDrive\桌面\New folder\volumn.png">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="C:\Users\10944\OneDrive\桌面\New folder\Frame_icon.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\game_ico.ico">
       <Filter>Resource Files</Filter>
     </Image>
-<<<<<<< HEAD
-    <Image Include="breturn.bmp">
-=======
     <Image Include="res\brestart.bmp">
->>>>>>> restart_button-17
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\board.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Pieces\black-cannon.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Pieces\black-chariot.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Pieces\black-chief.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Pieces\black-general.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Pieces\black-guard.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Pieces\black-knight.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Pieces\black-soldier.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Pieces\red-cannon.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Pieces\red-chariot.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Pieces\red-chief.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Pieces\red-general.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Pieces\red-guard.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Pieces\red-knight.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\Pieces\red-soldier.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

@@ -213,20 +213,31 @@
     <None Include="res\ChineseChess.rc2" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\breturn.bmp" />
-    <Image Include="C:\Users\10944\OneDrive\桌面\New folder\Chess_Board1.bmp" />
-    <Image Include="C:\Users\10944\OneDrive\桌面\New folder\Frame_icon.ico" />
-    <Image Include="C:\Users\10944\OneDrive\桌面\New folder\Vol1.bmp" />
-    <Image Include="C:\Users\10944\OneDrive\桌面\New folder\volumn.png" />
     <Image Include="res\bgp.bmp" />
-    <Image Include="res\brestart.bmp" />
+    <Image Include="res\board.bmp" />
     <Image Include="res\bquit.bmp" />
+    <Image Include="res\brestart.bmp" />
+    <Image Include="res\breturn.bmp" />
     <Image Include="res\bstart.bmp" />
     <Image Include="res\bvol1.bmp" />
     <Image Include="res\bvolumn.bmp" />
-    <Image Include="res\cb1.bmp" />
     <Image Include="res\Chinese_Chess.ico" />
     <Image Include="res\game_ico.ico" />
+    <Image Include="res\pieces\bitmap2.bmp" />
+    <Image Include="res\Pieces\black-cannon.bmp" />
+    <Image Include="res\Pieces\black-chariot.bmp" />
+    <Image Include="res\Pieces\black-chief.bmp" />
+    <Image Include="res\Pieces\black-general.bmp" />
+    <Image Include="res\Pieces\black-guard.bmp" />
+    <Image Include="res\Pieces\black-knight.bmp" />
+    <Image Include="res\Pieces\black-soldier.bmp" />
+    <Image Include="res\Pieces\red-cannon.bmp" />
+    <Image Include="res\Pieces\red-chariot.bmp" />
+    <Image Include="res\Pieces\red-chief.bmp" />
+    <Image Include="res\Pieces\red-general.bmp" />
+    <Image Include="res\Pieces\red-guard.bmp" />
+    <Image Include="res\Pieces\red-knight.bmp" />
+    <Image Include="res\Pieces\red-soldier.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
