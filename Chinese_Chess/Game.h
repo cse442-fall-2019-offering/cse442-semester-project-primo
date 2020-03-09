@@ -7,7 +7,8 @@
 class Game
 {
 public:
-	Game(Player player1, Player player2);
+	Game();
+	Game(Player* player1, Player* player2);
 	~Game();
 
 	//Board initialization
@@ -22,11 +23,15 @@ public:
 	int getturns();
 	vector<vector<Piece>> getBoard();
 
+
+	int aviliable_flag;
+	int move_flag;
+
 	//setter function
 private:
 	vector<vector<Piece>> Board;
-	Player player1;
-	Player player2;
+	Player* player1;
+	Player* player2;
 	int turns;
 };
 

@@ -25,12 +25,9 @@ private:
 	int type;
 	
 	Player* player;
-	
-
 
 public:
 	
-
 	//movement function
 	vector<pair<int, int>> aviliable_move(vector<vector<Piece>> Board);
 

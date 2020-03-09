@@ -9,7 +9,6 @@
 #include "afxdialogex.h"
 #include <iostream>
 #include <stdlib.h>
-#include "Game.h"
 #include <Windows.h>
 
 #ifdef _DEBUG
@@ -80,6 +79,8 @@ BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BVOL, &CChineseChessDlg::OnBnClickedBvol)
 	ON_BN_CLICKED(IDC_BRETURN, &CChineseChessDlg::OnBnClickedBreturn)
 	ON_BN_CLICKED(IDC_BRESTART, &CChineseChessDlg::OnBnClickedBrestart)
+	ON_WM_LBUTTONDOWN()
+	ON_WM_MOUSEMOVE()
 END_MESSAGE_MAP()
 
 
@@ -206,10 +207,10 @@ void CChineseChessDlg::OnBnClickedBstart()
 	// TODO: Add your control notification handler code here
 	if (this->Model == 1) this->Model = 2;
 	else this->Model = 1;
-	Player player1 = Player();
-	Player player2 = Player();
-	Game newgame = Game(player1, player2);
-	newgame.print_Board();
+	Player player1 = Player(1, human);
+	Player player2 = Player(2, human);
+	this->game = Game(&player1, &player2);
+	//newgame.print_Board();
 	CWnd::Invalidate();
 	CChineseChessDlg::OnInitDialog();
 	
@@ -427,85 +428,9 @@ afx_msg void CChineseChessDlg::SGame_Page_ini() {
 	BITMAP	Soldier2;
 	soldier2.GetBitmap(&Soldier2);
 	
-	std::vector<std::vector<int>> B(10, std::vector<int>(9, 0));
-	std::vector<std::vector<int>> P(10, std::vector<int>(9, 0));
-
-	B.at(0).at(0) = 5;
-	B.at(0).at(1) = 4;
-	B.at(0).at(2) = 3;
-	B.at(0).at(3) = 2;
-	B.at(0).at(4) = 1;
-	B.at(0).at(5) = 2;
-	B.at(0).at(6) = 3;
-	B.at(0).at(7) = 4;
-	B.at(0).at(8) = 5;
-
-	B.at(2).at(1) = 6;
-	B.at(2).at(7) = 6;
-
-	B.at(3).at(0) = 7;
-	B.at(3).at(2) = 7;
-	B.at(3).at(4) = 7;
-	B.at(3).at(6) = 7;
-	B.at(3).at(8) = 7;
-
-	B.at(6).at(0) = 7;
-	B.at(6).at(2) = 7;
-	B.at(6).at(4) = 7;
-	B.at(6).at(6) = 7;
-	B.at(6).at(8) = 7;
-
-	B.at(7).at(1) = 6;
-	B.at(7).at(7) = 6;
-
-	B.at(9).at(0) = 5;
-	B.at(9).at(1) = 4;
-	B.at(9).at(2) = 3;
-	B.at(9).at(3) = 2;
-	B.at(9).at(4) = 1;
-	B.at(9).at(5) = 2;
-	B.at(9).at(6) = 3;
-	B.at(9).at(7) = 4;
-	B.at(9).at(8) = 5;
-
-	P.at(0).at(0) = 2;
-	P.at(0).at(1) = 2;
-	P.at(0).at(2) = 2;
-	P.at(0).at(3) = 2;
-	P.at(0).at(4) = 2;
-	P.at(0).at(5) = 2;
-	P.at(0).at(6) = 2;
-	P.at(0).at(7) = 2;
-	P.at(0).at(8) = 2;
-
-	P.at(2).at(1) = 2;
-	P.at(2).at(7) = 2;
-
-	P.at(3).at(0) = 2;
-	P.at(3).at(2) = 2;
-	P.at(3).at(4) = 2;
-	P.at(3).at(6) = 2;
-	P.at(3).at(8) = 2;
-
-	P.at(6).at(0) = 1;
-	P.at(6).at(2) = 1;
-	P.at(6).at(4) = 1;
-	P.at(6).at(6) = 1;
-	P.at(6).at(8) = 1;
-
-	P.at(7).at(1) = 1;
-	P.at(7).at(7) = 1;
-
-	P.at(9).at(0) = 1;
-	P.at(9).at(1) = 1;
-	P.at(9).at(2) = 1;
-	P.at(9).at(3) = 1;
-	P.at(9).at(4) = 1;
-	P.at(9).at(5) = 1;
-	P.at(9).at(6) = 1;
-	P.at(9).at(7) = 1;
-	P.at(9).at(8) = 1;
-	
+	vector<vector<Piece>> B = this->game.getBoard();
+	Player* player1 = this->game.getPlayer1();
+	Player* player2 = this->game.getPlayer2();
 
 	mem_dc.SelectObject(board);
 	dc.BitBlt(100, 100, Board.bmWidth, Board.bmHeight, &mem_dc, 0, 0, SRCCOPY);
@@ -515,70 +440,123 @@ afx_msg void CChineseChessDlg::SGame_Page_ini() {
 	int increase_x, increase_y;
 	ini_x = 120;
 	ini_y = 120;
-	increase_x = 63;
-	increase_y = 63;
+	increase_x = 60;
+	increase_y = 60;
+	this->game.print_Board();
 
 	for (int i = 0; i < 10; i++) {
 		for (int j = 0; j < 9; j++) {
-			int current_x = ini_x + j * increase_x;
-			int current_y = ini_y + i * increase_y;
-			if (B.at(i).at(j) == 1 && P.at(i).at(j) == 1) {
+			int current_x = ini_x + j * increase_x + 3 * (j - 1);
+			int current_y = ini_y + i * increase_y + 3 * (i - 1);
+			if (B.at(i).at(j).get_type() == King && B.at(i).at(j).get_player() == player1) {
 				mem_dc.SelectObject(king1);
 				dc.TransparentBlt(current_x, current_y, 60, 60, &mem_dc, 0, 0, King1.bmWidth, King1.bmHeight, RGB(255, 255, 255));
 			}
-			else if (B.at(i).at(j) == 1 && P.at(i).at(j) == 2) {
+			else if (B.at(i).at(j).get_type() == King && B.at(i).at(j).get_player() == player2) {
 				mem_dc.SelectObject(king2);
 				dc.TransparentBlt(current_x, current_y, 60, 60, &mem_dc, 0, 0, King2.bmWidth, King2.bmHeight, RGB(255, 255, 255));
 			}
-			else if (B.at(i).at(j) == 2 && P.at(i).at(j) == 1) {
+			else if (B.at(i).at(j).get_type() == Advisor && B.at(i).at(j).get_player() == player1) {
 				mem_dc.SelectObject(advisor1);
 				dc.TransparentBlt(current_x, current_y, 60, 60, &mem_dc, 0, 0, King2.bmWidth, King2.bmHeight, RGB(255, 255, 255));
 			}
-			else if (B.at(i).at(j) == 2 && P.at(i).at(j) == 2) {
+			else if (B.at(i).at(j).get_type() == Advisor && B.at(i).at(j).get_player() == player2) {
 				mem_dc.SelectObject(advisor2);
 				dc.TransparentBlt(current_x, current_y, 60, 60, &mem_dc, 0, 0, King2.bmWidth, King2.bmHeight, RGB(255, 255, 255));
 			}
-			else if (B.at(i).at(j) == 3 && P.at(i).at(j) == 1) {
+			else if (B.at(i).at(j).get_type() == Bishop && B.at(i).at(j).get_player() == player1) {
 				mem_dc.SelectObject(bishop1);
 				dc.TransparentBlt(current_x, current_y, 60, 60, &mem_dc, 0, 0, King2.bmWidth, King2.bmHeight, RGB(255, 255, 255));
 			}
-			else if (B.at(i).at(j) == 3 && P.at(i).at(j) == 2) {
+			else if (B.at(i).at(j).get_type() == Bishop && B.at(i).at(j).get_player() == player2) {
 				mem_dc.SelectObject(bishop2);
 				dc.TransparentBlt(current_x, current_y, 60, 60, &mem_dc, 0, 0, King2.bmWidth, King2.bmHeight, RGB(255, 255, 255));
 			}
-			else if (B.at(i).at(j) == 4 && P.at(i).at(j) == 1) {
+			else if (B.at(i).at(j).get_type() == Horse && B.at(i).at(j).get_player() == player1) {
 				mem_dc.SelectObject(horse1);
 				dc.TransparentBlt(current_x, current_y, 60, 60, &mem_dc, 0, 0, King2.bmWidth, King2.bmHeight, RGB(255, 255, 255));
 			}
-			else if (B.at(i).at(j) == 4 && P.at(i).at(j) == 2) {
+			else if (B.at(i).at(j).get_type() == Horse && B.at(i).at(j).get_player() == player2) {
 				mem_dc.SelectObject(horse2);
 				dc.TransparentBlt(current_x, current_y, 60, 60, &mem_dc, 0, 0, King2.bmWidth, King2.bmHeight, RGB(255, 255, 255));
 			}
-			else if (B.at(i).at(j) == 5 && P.at(i).at(j) == 1) {
+			else if (B.at(i).at(j).get_type() == Chariots && B.at(i).at(j).get_player() == player1) {
 				mem_dc.SelectObject(charoit1);
 				dc.TransparentBlt(current_x, current_y, 60, 60, &mem_dc, 0, 0, King2.bmWidth, King2.bmHeight, RGB(255, 255, 255));
 			}
-			else if (B.at(i).at(j) == 5 && P.at(i).at(j) == 2) {
+			else if (B.at(i).at(j).get_type() == Chariots && B.at(i).at(j).get_player() == player2) {
 				mem_dc.SelectObject(charoit2);
 				dc.TransparentBlt(current_x, current_y, 60, 60, &mem_dc, 0, 0, King2.bmWidth, King2.bmHeight, RGB(255, 255, 255));
 			}
-			else if (B.at(i).at(j) == 6 && P.at(i).at(j) == 1) {
+			else if (B.at(i).at(j).get_type() == Cannon && B.at(i).at(j).get_player() == player1) {
 				mem_dc.SelectObject(cannon1);
 				dc.TransparentBlt(current_x, current_y, 60, 60, &mem_dc, 0, 0, King2.bmWidth, King2.bmHeight, RGB(255, 255, 255));
 			}
-			else if (B.at(i).at(j) == 6 && P.at(i).at(j) == 2) {
+			else if (B.at(i).at(j).get_type() == Cannon && B.at(i).at(j).get_player() == player2) {
 				mem_dc.SelectObject(cannon2);
 				dc.TransparentBlt(current_x, current_y, 60, 60, &mem_dc, 0, 0, King2.bmWidth, King2.bmHeight, RGB(255, 255, 255));
 			}
-			else if (B.at(i).at(j) == 7 && P.at(i).at(j) == 1) {
+			else if (B.at(i).at(j).get_type() == Soldier && B.at(i).at(j).get_player() == player1) {
 				mem_dc.SelectObject(soldier1);
 				dc.TransparentBlt(current_x, current_y, 60, 60, &mem_dc, 0, 0, King2.bmWidth, King2.bmHeight, RGB(255, 255, 255));
 			}
-			else if (B.at(i).at(j) == 7 && P.at(i).at(j) == 2) {
+			else if (B.at(i).at(j).get_type() == Soldier && B.at(i).at(j).get_player() == player2) {
 				mem_dc.SelectObject(soldier2);
 				dc.TransparentBlt(current_x, current_y, 60, 60, &mem_dc, 0, 0, King2.bmWidth, King2.bmHeight, RGB(255, 255, 255));
 			}
 		}
 	}
 }
+
+
 //-------------------------------------------------------------------------------------------
+
+
+void CChineseChessDlg::OnMouseMove(UINT nFlags, CPoint point)
+{
+	// TODO: Add your message handler code here and/or call default
+	CPoint point1;
+	CRect Rect;
+	GetClientRect(Rect);
+	GetCursorPos(&point1);
+
+	ScreenToClient(&point1);
+	this->cur_point = point1;
+	int x = point.x;
+	int y = point.y;
+	CString strx;
+	strx.Format(_T("%d"), x);
+	CString stry;
+	stry.Format(_T("%d"), y);
+	CString co_point = strx + "," + stry;
+	CChineseChessDlg::SetDlgItemText(IDC_STATIC1, co_point);
+	CDialogEx::OnMouseMove(nFlags, point);
+}
+
+pair<int, int> CChineseChessDlg::getIndex(CPoint point) {
+	int x = point.x;
+	int y = point.y;
+	int ix = (x - 120) / 63;
+	int iy = (y - 120) / 63;
+	pair<int, int> pair(ix, iy);
+
+	return pair;
+}
+
+
+void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
+{
+	// TODO: Add your message handler code here and/or call default
+
+	pair<int, int> pair = getIndex(this->cur_point);
+
+	CString strx;
+	strx.Format(_T("%d"), pair.first);
+	CString stry;
+	stry.Format(_T("%d"), pair.second);
+	CString co_point = strx + "," + stry;
+	CChineseChessDlg::SetDlgItemText(IDC_STATIC2, co_point);
+
+	CDialogEx::OnLButtonDown(nFlags, point);
+}
+

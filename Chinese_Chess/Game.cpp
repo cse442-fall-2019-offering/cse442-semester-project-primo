@@ -2,11 +2,17 @@
 #include "Game.h"
 #include <iostream>
 
+Game::Game() {
+}
 
-Game::Game(Player player1, Player player2) {
+
+Game::Game(Player* player1, Player* player2) {
 	this->player1 = player1;
 	this->player2 = player2;
 	this->init_Board();
+	int turn = 0;
+	this->move_flag = 0;
+	this->aviliable_flag = 0;
 }
 Game::~Game() {
 
@@ -14,8 +20,8 @@ Game::~Game() {
 
 void Game::init_Board() {
 
-	Player* player1 = &this->player1;
-	Player* player2 = &this->player2;
+	Player* player1 = this->player1;
+	Player* player2 = this->player2;
 	player1->set_ID(1);
 	player2->set_ID(2);
 
@@ -206,10 +212,10 @@ void Game::print_Board() {
 }
 
 Player* Game::getPlayer1() {
-	return &this->player1;
+	return this->player1;
 }
 Player* Game::getPlayer2() {
-	return &this->player2;
+	return this->player2;
 }
 int Game::getturns() {
 	return this->turns;

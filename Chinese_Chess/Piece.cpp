@@ -4,30 +4,6 @@
 #include <stdlib.h>
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-piece::piece(char clan, char type, char x, char y) {
-	this->clan = clan;
-	this->type = type;
-	this->dead = false;
-	this->xposition = x;
-	this->yposition = y;
-}
-
-piece::~piece()
-{
-
-}
-=======
-vector<pair<int, int>> aviliable_move(int type);
-vector<pair<int, int>> Kings_move(int type);
-vector<pair<int, int>> Advisor_move(int type);
-vector<pair<int, int>> Bishop_move(int type);
-vector<pair<int, int>> Horse_move(int type);
-vector<pair<int, int>> Chariots_move(int type);
-vector<pair<int, int>> Cannon_move(int type);
-vector<pair<int, int>> Soldier_move(int type);
-=======
 vector<pair<int, int>> Piece::aviliable_move(vector<vector<Piece>> Board) {
 	vector<pair<int, int>> aviliable;
 	switch (this->type) {
@@ -753,7 +729,6 @@ vector<pair<int, int>> Piece::Soldier_move(vector<vector<Piece>> Board) {
 
 	return aviliable;
 }
->>>>>>> King movement set up
 
 //setter function
 void Piece::set_line(int line) {
@@ -798,4 +773,3 @@ int Piece::get_type() {
 Player* Piece::get_player() {
 	return this->player;
 }
->>>>>>> task 45 without a new branch
