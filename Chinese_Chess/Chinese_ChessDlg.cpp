@@ -280,6 +280,7 @@ afx_msg void CChineseChessDlg::Start_Button_ini(){
 	GetDlgItem(IDC_BQUIT)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BVOL)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_BSTART)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BRETURN)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BRESTART)->ShowWindow(SW_HIDE);
 	if (this->Mute) GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_HIDE);
