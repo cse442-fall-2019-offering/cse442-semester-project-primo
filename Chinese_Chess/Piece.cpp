@@ -599,11 +599,7 @@ vector<pair<int, int>> Piece::Cannon_move(vector<vector<Piece>> Board) {
 		}
 		pair<int, int> pair(nl, nr);
 		aviliable.push_back(pair);
-<<<<<<< HEAD
 		nr--;
-=======
-		nl--;
->>>>>>> a43947ea0c72131331a351d229485aeffbf42ff3
 	}
 
 	//move right
@@ -626,11 +622,7 @@ vector<pair<int, int>> Piece::Cannon_move(vector<vector<Piece>> Board) {
 		}
 		pair<int, int> pair(nl, nr);
 		aviliable.push_back(pair);
-<<<<<<< HEAD
 		nr++;
-=======
-		nl++;
->>>>>>> a43947ea0c72131331a351d229485aeffbf42ff3
 	}
 
 	return aviliable;
@@ -780,8 +772,4 @@ int Piece::get_type() {
 
 Player* Piece::get_player() {
 	return this->player;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> a43947ea0c72131331a351d229485aeffbf42ff3
