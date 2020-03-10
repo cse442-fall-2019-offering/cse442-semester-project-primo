@@ -23,7 +23,6 @@ public:
 	int getturns();
 	vector<vector<Piece>> getBoard();
 
-
 	int aviliable_flag;
 	int move_flag;
 

@@ -5,7 +5,6 @@
 Game::Game() {
 }
 
-
 Game::Game(Player* player1, Player* player2) {
 	this->player1 = player1;
 	this->player2 = player2;
@@ -19,7 +18,6 @@ Game::~Game() {
 }
 
 void Game::init_Board() {
-
 	Player* player1 = this->player1;
 	Player* player2 = this->player2;
 	player1->set_ID(1);

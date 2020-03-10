@@ -10,6 +10,7 @@
 #include <iostream>
 #include <stdlib.h>
 #include <Windows.h>
+#include "Game.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
