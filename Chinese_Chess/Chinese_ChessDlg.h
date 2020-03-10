@@ -39,7 +39,7 @@ private:
 
 	vector<pair<int, int>> aviliable;
 
-	pair<int, int> selected_piece;
+	Piece selected_piece;
 
 protected:
 	HICON m_hIcon;

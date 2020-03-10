@@ -583,11 +583,31 @@ void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 	if (this->game.aviliable_flag == 0) {
 
 		Piece s_piece = this->game.getBoard().at(pair.second).at(pair.first);
+		this->selected_piece = s_piece;
 		this->aviliable = s_piece.aviliable_move(this->game.getBoard());
 		this->game.aviliable_flag = 1;
 		CWnd::Invalidate();
 	}
 	else {
+		if (this->contain(pair)) {
+			int x = pair.first;
+			int y = pair.second;
+			int mx = this->selected_piece.get_line();
+			int my = this->selected_piece.get_row();
+			Piece null_p = Piece();
+			null_p.set_line(x);
+			null_p.set_row(y);
+			null_p.set_ini_line(x);
+			null_p.set_ini_row(y);
+			null_p.set_player(NULL);
+			null_p.set_type(no_piece);
+			this->game.getBoard().at(x).at(y) = this->selected_piece;
+			this->selected_piece.set_line(x);
+			this->selected_piece.set_row(y);
+			this->game.getBoard().at(mx).at(my) = null_p;
+			this->game.aviliable_flag = 0;
+			CWnd::Invalidate();
+		}
 	}
 
 	CDialogEx::OnLButtonDown(nFlags, point);
