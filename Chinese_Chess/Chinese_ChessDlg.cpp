@@ -4,6 +4,7 @@
 
 #include "pch.h"
 #include "framework.h"
+#include "resource.h"
 #include "Chinese_Chess.h"
 #include "Chinese_ChessDlg.h"
 #include "afxdialogex.h"
@@ -78,6 +79,7 @@ BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BVOL, &CChineseChessDlg::OnBnClickedBvol)
 	ON_BN_CLICKED(IDC_BRETURN, &CChineseChessDlg::OnBnClickedBreturn)
 	ON_BN_CLICKED(IDC_BRESTART, &CChineseChessDlg::OnBnClickedBrestart)
+	ON_BN_CLICKED(IDC_UI_BUTTON1, &CChineseChessDlg::OnBnClickedUiButton)
 END_MESSAGE_MAP()
 
 
@@ -182,7 +184,9 @@ void CChineseChessDlg::OnPaint()
 		case Single_Page:
 			CChineseChessDlg::SGame_Page_ini();
 			break;
-
+		case UI2_Page:
+			CChineseChessDlg::UIChange_Button_ini();
+			break;
 		default:
 			break;
 		}
@@ -204,7 +208,7 @@ HCURSOR CChineseChessDlg::OnQueryDragIcon()
 void CChineseChessDlg::OnBnClickedBstart()
 {
 	// TODO: Add your control notification handler code here
-	if (this->Model == 1) this->Model = 2;
+	if (this->Model == 1|| this->Model == 3) this->Model = 2;
 	else this->Model = 1;
 	CWnd::Invalidate();
 	CChineseChessDlg::OnInitDialog();
@@ -578,3 +582,33 @@ afx_msg void CChineseChessDlg::SGame_Page_ini() {
 	}
 }
 //-------------------------------------------------------------------------------------------
+
+void CChineseChessDlg::OnBnClickedUiButton()
+{
+	// TODO: �ڴ���ӿؼ�֪ͨ����������
+	if (this->Model == 1 || this->Model == 2) this->Model = 3;
+	else this->Model = 1;
+	CWnd::Invalidate();
+	CChineseChessDlg::OnInitDialog();
+}
+
+
+void CChineseChessDlg::UIChange_Button_ini()
+{
+	// TODO: �ڴ˴����ʵ�ִ���.
+	CBitmap bitmap; //bitmap object to hold your bitmap
+	bitmap.LoadBitmap(IDB_BGP2); // IDB_BITMAPID is the id of bmp
+	CRect   rect;
+	GetClientRect(&rect); 
+
+	CSize dim = bitmap.GetBitmapDimension();
+	CPaintDC dc(this); //device context of dialog box
+	CDC mem_dc; // memory device context
+
+	BITMAP Bitmap;
+	bitmap.GetBitmap(&Bitmap);
+	mem_dc.CreateCompatibleDC(&dc); // makes compatible with CPaintDC
+	mem_dc.SelectObject(bitmap); // Selects bitmap into CDC
+	dc.StretchBlt(0, 0, rect.Width(), rect.Height(), &mem_dc, 0, 0,
+		Bitmap.bmWidth, Bitmap.bmHeight, SRCCOPY);
+}
