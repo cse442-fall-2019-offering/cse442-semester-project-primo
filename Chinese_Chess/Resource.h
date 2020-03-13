@@ -29,6 +29,7 @@
 #define IDC_BRESTART                    1006
 #define IDC_UI_BUTTON1                  1007
 
+
 //pieces picture 1100-1113
 #define IDB_PCAN2                       1100
 #define IDB_PCHAR2                      1101
