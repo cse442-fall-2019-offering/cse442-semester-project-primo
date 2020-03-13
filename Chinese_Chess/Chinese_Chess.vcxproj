@@ -214,14 +214,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\bgp.bmp" />
-    <Image Include="..\..\..\backgroundpage.bmp" />
     <Image Include="res\bgp2.bmp" />
-    <Image Include="res\Chess_Board1.bmp" />
-    <Image Include="res\Frame_icon.ico" />
-    <Image Include="res\Vol1.bmp" />
-    <Image Include="res\volumn.png" />
-    <Image Include="res\bgp.bmp" />
-    <Image Include="res\bitmap1.bmp" />
     <Image Include="res\bquit.bmp" />
     <Image Include="res\brestart.bmp" />
     <Image Include="res\breturn.bmp" />
@@ -230,7 +223,6 @@
     <Image Include="res\bvolumn.bmp" />
     <Image Include="res\Chinese_Chess.ico" />
     <Image Include="res\game_ico.ico" />
-    <Image Include="res\pieces\bitmap2.bmp" />
     <Image Include="res\Pieces\black-cannon.bmp" />
     <Image Include="res\Pieces\black-chariot.bmp" />
     <Image Include="res\Pieces\black-chief.bmp" />
