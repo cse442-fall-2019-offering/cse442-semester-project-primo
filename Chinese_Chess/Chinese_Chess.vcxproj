@@ -213,9 +213,9 @@
     <None Include="res\ChineseChess.rc2" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="C:\Users\10944\OneDrive\桌面\selected.bmp" />
+    <Image Include="res\selected.bmp" />
     <Image Include="res\bgp.bmp" />
-    <Image Include="res\board.bmp" />
+    <Image Include="res\bgp2.bmp" />
     <Image Include="res\bquit.bmp" />
     <Image Include="res\brestart.bmp" />
     <Image Include="res\breturn.bmp" />
@@ -224,7 +224,6 @@
     <Image Include="res\bvolumn.bmp" />
     <Image Include="res\Chinese_Chess.ico" />
     <Image Include="res\game_ico.ico" />
-    <Image Include="res\pieces\bitmap2.bmp" />
     <Image Include="res\Pieces\black-cannon.bmp" />
     <Image Include="res\Pieces\black-chariot.bmp" />
     <Image Include="res\Pieces\black-chief.bmp" />
