@@ -98,9 +98,6 @@
     <Image Include="res\brestart.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-    <Image Include="res\board.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\Pieces\black-cannon.bmp">
       <Filter>Resource Files</Filter>
     </Image>
@@ -143,23 +140,10 @@
     <Image Include="res\Pieces\red-soldier.bmp">
       <Filter>Resource Files</Filter>
     </Image>
-<<<<<<< HEAD
-    <Image Include="res\breturn.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="res\pieces\bitmap2.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="C:\Users\10944\OneDrive\桌面\selected.bmp">
-=======
-    <Image Include="res\bitmap1.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
-    <Image Include="..\..\..\backgroundpage.bmp">
-      <Filter>Resource Files</Filter>
-    </Image>
     <Image Include="res\bgp2.bmp">
->>>>>>> dev
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\breturn.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

@@ -3,7 +3,6 @@
 #include <string>
 #include <corecrt_wstring.h>
 
-
 class Game
 {
 public:

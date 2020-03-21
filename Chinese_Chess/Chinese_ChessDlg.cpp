@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include <Windows.h>
 #include "Game.h"
+#include <vector>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -629,7 +630,6 @@ void CChineseChessDlg::OnBnClickedUiButton()
 	CWnd::Invalidate();
 	CChineseChessDlg::OnInitDialog();
 }
-
 
 void CChineseChessDlg::UIChange_Button_ini()
 {
