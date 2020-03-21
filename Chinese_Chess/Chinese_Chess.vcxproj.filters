@@ -39,6 +39,9 @@
     <ClInclude Include="Game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Piece.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Chinese_Chess.cpp">
@@ -54,6 +57,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Game.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Piece.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -138,6 +144,12 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\breturn.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\selected.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\board.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>

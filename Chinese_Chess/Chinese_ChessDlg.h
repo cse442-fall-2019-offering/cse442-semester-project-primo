@@ -1,5 +1,6 @@
 
 // Chinese_ChessDlg.h : header file
+#include "Game.h"
 //
 
 #pragma once
@@ -32,6 +33,13 @@ private:
 	int Model = 1;
 	BOOL Mute = FALSE;
 	int voulmn = 50;
+	Game game;
+
+	CPoint cur_point;
+
+	vector<pair<int, int>> aviliable;
+
+	Piece selected_piece;
 
 protected:
 	HICON m_hIcon;
@@ -46,7 +54,9 @@ protected:
 	afx_msg void Start_Page_ini();
 	afx_msg void SGame_Button_ini();
 	afx_msg void SGame_Page_ini();
-	BOOL CChineseChessDlg::TransBit(CDC* dcSnow, CDC* dcDest, int pos_x, int pos_y);
+
+	pair<int, int> getIndex(CPoint point);
+
 	DECLARE_MESSAGE_MAP()
 public:
 	CButton BStart;
@@ -59,6 +69,11 @@ public:
 	afx_msg void OnBnClickedBreturn();
 	CButton BRestart;
 	afx_msg void OnBnClickedBrestart();
+
+	bool contain(pair<int, int>);
+
+		afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+		afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg void OnBnClickedUiButton();
 	void UIChange_Button_ini();
 };
