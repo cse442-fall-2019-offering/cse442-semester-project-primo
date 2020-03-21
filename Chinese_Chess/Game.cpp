@@ -221,3 +221,7 @@ int Game::getturns() {
 vector<vector<Piece>> Game::getBoard() {
 	return this->Board;
 }
+
+void Game::setboard(int x, int y, Piece piece) {
+	this->Board.at(x).at(y) = piece;
+}

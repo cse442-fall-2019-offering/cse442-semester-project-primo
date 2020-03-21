@@ -26,6 +26,7 @@ public:
 	int move_flag;
 
 	//setter function
+	void setboard(int x, int y, Piece piece);
 private:
 	vector<vector<Piece>> Board;
 	Player* player1;

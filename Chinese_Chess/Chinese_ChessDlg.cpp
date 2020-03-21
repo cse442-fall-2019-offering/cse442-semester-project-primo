@@ -555,23 +555,7 @@ void CChineseChessDlg::OnMouseMove(UINT nFlags, CPoint point)
 	CDialogEx::OnMouseMove(nFlags, point);
 }
 
-pair<int, int> CChineseChessDlg::getIndex(CPoint point) {
-	int x = point.x;
-	int y = point.y;
-	int ix = (x - 120) / 63;
-	int iy = (y - 120) / 63;
-	pair<int, int> pair(ix, iy);
 
-	return pair;
-}
-
-bool CChineseChessDlg::contain(pair<int, int> Pair) {
-	for (int i = 0; i < this->aviliable.size(); i++) {
-		pair<int, int> p = aviliable.at(i);
-		if (p.second == Pair.second && p.first == Pair.first) return true;
-	}
-	return false;
-}
 
 void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 {
@@ -586,12 +570,13 @@ void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 		stry.Format(_T("%d"), pair.second);
 		CString co_point = strx + "," + stry;
 		CChineseChessDlg::SetDlgItemText(IDC_STATIC2, co_point);
-		if (this->game.aviliable_flag == 0 && this->Model == 2) {
+		
+		if (this->game.aviliable_flag == 0) {
 
-			Piece s_piece = this->game.getBoard().at(pair.second).at(pair.first);
+			Piece s_piece = this->game.getBoard().at(pair.first).at(pair.second);
 			this->selected_piece = s_piece;
 			this->aviliable = s_piece.aviliable_move(this->game.getBoard());
-			this->game.aviliable_flag = 1;
+			if(this->aviliable.size() > 0) this->game.aviliable_flag = 1;
 			CWnd::Invalidate();
 		}
 		else {
@@ -607,10 +592,10 @@ void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 				null_p.set_ini_row(y);
 				null_p.set_player(NULL);
 				null_p.set_type(no_piece);
-				this->game.getBoard().at(x).at(y) = this->selected_piece;
 				this->selected_piece.set_line(x);
 				this->selected_piece.set_row(y);
-				this->game.getBoard().at(mx).at(my) = null_p;
+				this->game.setboard(x, y, this->selected_piece);
+				this->game.setboard(mx, my, null_p);
 				this->game.aviliable_flag = 0;
 				this->game.print_Board();
 				CWnd::Invalidate();
@@ -624,7 +609,6 @@ void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 
 void CChineseChessDlg::OnBnClickedUiButton()
 {
-	// TODO: �ڴ���ӿؼ�֪ͨ����������
 	if (this->Model == 1 || this->Model == 2) this->Model = 3;
 	else this->Model = 1;
 	CWnd::Invalidate();
@@ -633,7 +617,6 @@ void CChineseChessDlg::OnBnClickedUiButton()
 
 void CChineseChessDlg::UIChange_Button_ini()
 {
-	// TODO: �ڴ˴����ʵ�ִ���.
 	CBitmap bitmap; //bitmap object to hold your bitmap
 	bitmap.LoadBitmap(IDB_BGP2); // IDB_BITMAPID is the id of bmp
 	CRect   rect;
@@ -649,4 +632,22 @@ void CChineseChessDlg::UIChange_Button_ini()
 	mem_dc.SelectObject(bitmap); // Selects bitmap into CDC
 	dc.StretchBlt(0, 0, rect.Width(), rect.Height(), &mem_dc, 0, 0,
 		Bitmap.bmWidth, Bitmap.bmHeight, SRCCOPY);
+}
+
+pair<int, int> CChineseChessDlg::getIndex(CPoint point) {
+	int x = point.x;
+	int y = point.y;
+	int line = (y - 120) / 63;
+	int row = (x - 120) / 63;
+	pair<int, int> pair(line, row);
+
+	return pair;
+}
+
+bool CChineseChessDlg::contain(pair<int, int> Pair) {
+	for (int i = 0; i < this->aviliable.size(); i++) {
+		pair<int, int> p = aviliable.at(i);
+		if (p.second == Pair.second && p.first == Pair.first) return true;
+	}
+	return false;
 }
