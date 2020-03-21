@@ -253,7 +253,9 @@ void CChineseChessDlg::OnBnClickedBreturn()
 void CChineseChessDlg::OnBnClickedBrestart()
 {
 	// TODO: Add your control notification handler code here
-	if (this->Model == 2) this->Model = 2;
+	Player player1 = Player(1, human);
+	Player player2 = Player(2, human);
+	this->game = Game(&player1, &player2);
 	CWnd::Invalidate();
 	CChineseChessDlg::OnInitDialog();
 }
@@ -513,7 +515,7 @@ void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 				this->selected_piece.set_row(y);
 				this->game.setboard(x, y, this->selected_piece);
 				this->game.setboard(mx, my, null_p);
-				if (this->game.check_win() != 0) this->Model = 1;
+				if (this->game.check_win() != 0) this->Model = 1; CChineseChessDlg::OnInitDialog();
 				this->game.aviliable_flag = 0;
 				this->game.switch_turn();
 				CWnd::Invalidate();
