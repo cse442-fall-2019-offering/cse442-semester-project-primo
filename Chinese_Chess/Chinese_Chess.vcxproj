@@ -183,7 +183,6 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Board.h" />
     <ClInclude Include="Chinese_Chess.h" />
     <ClInclude Include="Chinese_ChessDlg.h" />
     <ClInclude Include="framework.h" />
@@ -194,7 +193,6 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Board.cpp" />
     <ClCompile Include="Chinese_Chess.cpp" />
     <ClCompile Include="Chinese_ChessDlg.cpp" />
     <ClCompile Include="Game.cpp" />

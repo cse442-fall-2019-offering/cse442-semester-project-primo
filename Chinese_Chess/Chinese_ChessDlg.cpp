@@ -11,6 +11,7 @@
 #include <iostream>
 #include "Game.h"
 #include <Windows.h>
+#include <vector>
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
