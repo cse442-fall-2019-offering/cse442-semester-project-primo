@@ -41,6 +41,50 @@ private:
 
 	Piece selected_piece;
 
+	void Bitmap_ini();
+
+	CBitmap board;
+	BITMAP Board;
+
+	CBitmap charoit1;
+	BITMAP	Charoit1;
+	CBitmap charoit2;
+	BITMAP	Charoit2;
+
+	CBitmap horse1;
+	BITMAP	Horse1;
+	CBitmap horse2;
+	BITMAP	Horse2;
+
+	CBitmap cannon1;
+	BITMAP	Cannon1;
+	CBitmap cannon2;
+	BITMAP	Cannon2;
+
+	CBitmap bishop1;
+	BITMAP	Bishop1;
+	CBitmap bishop2;
+	BITMAP	Bishop2;
+
+	CBitmap advisor1;
+	BITMAP	Advisor1;
+	CBitmap advisor2;
+	BITMAP	Advisor2;
+
+	CBitmap king1;
+	BITMAP	King1;
+	CBitmap king2;
+	BITMAP	King2;
+
+	CBitmap soldier1;
+	BITMAP	Soldier1;
+	CBitmap soldier2;
+	BITMAP	Soldier2;
+
+	CBitmap selected;
+	BITMAP	Selected;
+
+
 protected:
 	HICON m_hIcon;
 

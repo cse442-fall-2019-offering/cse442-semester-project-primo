@@ -61,6 +61,7 @@ CChineseChessDlg::CChineseChessDlg(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_CHINESE_CHESS_DIALOG, pParent)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDI_GAME_ICON);
+	Bitmap_ini();
 }
 
 void CChineseChessDlg::DoDataExchange(CDataExchange* pDX)
@@ -349,99 +350,12 @@ afx_msg void CChineseChessDlg::Start_Page_ini() {
 afx_msg void CChineseChessDlg::SGame_Page_ini() {
 	CRect rect;
 	GetClientRect(&rect);
-
-	CBitmap board; //bitmap object to hold your bitmap
-	board.LoadBitmap(IDB_BOARD); // IDB_BITMAPID is the id of bmp
-	BITMAP Board;
-	board.GetBitmap(&Board);
+	
+	CPaintDC dc(this);
+	CDC mem_dc; 
+	mem_dc.CreateCompatibleDC(&dc); 
 
 	CSize dim = board.GetBitmapDimension();
-	CPaintDC dc(this); //device context of dialog box
-	CDC mem_dc; // memory device context
-	mem_dc.CreateCompatibleDC(&dc); // makes compatible with CPaintDC
-
-	//charoit
-	CBitmap charoit1;
-	charoit1.LoadBitmap(IDB_PCHAR1);
-	BITMAP	Charoit1;
-	charoit1.GetBitmap(&Charoit1);
-
-	CBitmap charoit2;
-	charoit2.LoadBitmap(IDB_PCHAR2);
-	BITMAP	Charoit2;
-	charoit2.GetBitmap(&Charoit2);
-
-	//horse
-	CBitmap horse1;
-	horse1.LoadBitmap(IDB_PHORSE1);
-	BITMAP	Horse1;
-	horse1.GetBitmap(&Horse1);
-
-	CBitmap horse2;
-	horse2.LoadBitmap(IDB_PHORSE2);
-	BITMAP	Horse2;
-	horse2.GetBitmap(&Horse2);
-
-	//cannon
-	CBitmap cannon1;
-	cannon1.LoadBitmap(IDB_PCAN1);
-	BITMAP	Cannon1;
-	cannon1.GetBitmap(&Cannon1);
-
-	CBitmap cannon2;
-	cannon2.LoadBitmap(IDB_PCAN2);
-	BITMAP	Cannon2;
-	cannon2.GetBitmap(&Cannon2);
-
-	//bishop
-	CBitmap bishop1;
-	bishop1.LoadBitmap(IDB_PBISHOP1);
-	BITMAP	Bishop1;
-	bishop1.GetBitmap(&Bishop1);
-
-	CBitmap bishop2;
-	bishop2.LoadBitmap(IDB_PBISHOP2);
-	BITMAP	Bishop2;
-	bishop2.GetBitmap(&Bishop2);
-
-	//advisor
-	CBitmap advisor1;
-	advisor1.LoadBitmap(IDB_PADVISOR1);
-	BITMAP	Advisor1;
-	advisor1.GetBitmap(&Advisor1);
-
-	CBitmap advisor2;
-	advisor2.LoadBitmap(IDB_PADVISOR2);
-	BITMAP	Advisor2;
-	advisor2.GetBitmap(&Advisor2);
-
-	//king
-	CBitmap king1;
-	king1.LoadBitmap(IDB_PKING1);
-	BITMAP	King1;
-	king1.GetBitmap(&King1);
-
-	CBitmap king2;
-	king2.LoadBitmap(IDB_PKING2);
-	BITMAP	King2;
-	king2.GetBitmap(&King2);
-
-	//soldier
-	CBitmap soldier1;
-	soldier1.LoadBitmap(IDB_PSOLDIER1);
-	BITMAP	Soldier1;
-	soldier1.GetBitmap(&Soldier1);
-
-	CBitmap soldier2;
-	soldier2.LoadBitmap(IDB_PSOLDIER2);
-	BITMAP	Soldier2;
-	soldier2.GetBitmap(&Soldier2);
-
-
-	CBitmap selected;
-	selected.LoadBitmap(IDB_SELECTED);
-	BITMAP	Selected;
-	selected.GetBitmap(&Selected);
 	
 	vector<vector<Piece>> B = this->game.getBoard();
 	Player* player1 = this->game.getPlayer1();
@@ -654,4 +568,63 @@ bool CChineseChessDlg::contain(pair<int, int> Pair) {
 		if (p.second == Pair.second && p.first == Pair.first) return true;
 	}
 	return false;
+}
+
+void CChineseChessDlg::Bitmap_ini() {
+	
+	board.LoadBitmap(IDB_BOARD); 
+	board.GetBitmap(&Board);
+
+	//charoit
+	charoit1.LoadBitmap(IDB_PCHAR1);
+	charoit1.GetBitmap(&Charoit1);
+
+	charoit2.LoadBitmap(IDB_PCHAR2);
+	charoit2.GetBitmap(&Charoit2);
+
+	//horse
+	horse1.LoadBitmap(IDB_PHORSE1);
+	horse1.GetBitmap(&Horse1);
+
+	horse2.LoadBitmap(IDB_PHORSE2);
+	horse2.GetBitmap(&Horse2);
+
+	//cannon
+	cannon1.LoadBitmap(IDB_PCAN1);
+	cannon1.GetBitmap(&Cannon1);
+
+	cannon2.LoadBitmap(IDB_PCAN2);
+	cannon2.GetBitmap(&Cannon2);
+
+	//bishop
+	bishop1.LoadBitmap(IDB_PBISHOP1);
+	bishop1.GetBitmap(&Bishop1);
+
+	bishop2.LoadBitmap(IDB_PBISHOP2);
+	bishop2.GetBitmap(&Bishop2);
+
+	//advisor
+	advisor1.LoadBitmap(IDB_PADVISOR1);
+	advisor1.GetBitmap(&Advisor1);
+
+	advisor2.LoadBitmap(IDB_PADVISOR2);
+	advisor2.GetBitmap(&Advisor2);
+
+	//king
+	king1.LoadBitmap(IDB_PKING1);
+	king1.GetBitmap(&King1);
+
+	king2.LoadBitmap(IDB_PKING2);
+	king2.GetBitmap(&King2);
+
+	//soldier
+	soldier1.LoadBitmap(IDB_PSOLDIER1);
+	soldier1.GetBitmap(&Soldier1);
+
+	soldier2.LoadBitmap(IDB_PSOLDIER2);
+	soldier2.GetBitmap(&Soldier2);
+
+
+	selected.LoadBitmap(IDB_SELECTED);
+	selected.GetBitmap(&Selected);
 }
