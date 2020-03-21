@@ -30,7 +30,7 @@ private:
 
 public:
 	//movement function
-	vector<pair<int, int>> aviliable_move(vector<vector<Piece>> Board);
+	vector<pair<int, int>> aviliable_move(vector<vector<Piece>> Board, int turns, Player* p1, Player* p2);
 
 	//setter function
 	void set_line(int line);

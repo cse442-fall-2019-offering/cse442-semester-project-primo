@@ -146,5 +146,11 @@
     <Image Include="res\breturn.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\selected.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\board.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

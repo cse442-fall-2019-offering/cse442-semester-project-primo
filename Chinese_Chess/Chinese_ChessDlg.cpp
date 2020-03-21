@@ -186,6 +186,9 @@ void CChineseChessDlg::OnPaint()
 			break;
 		case Single_Page:
 			CChineseChessDlg::SGame_Page_ini();
+
+			if (this->game.getturns() == 0) CChineseChessDlg::SetDlgItemText(IDC_STATIC3, _T("Player 1"));
+			else CChineseChessDlg::SetDlgItemText(IDC_STATIC3, _T("Player 2"));
 			break;
 		case UI2_Page:
 			CChineseChessDlg::UIChange_Button_ini();
@@ -575,7 +578,7 @@ void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 
 			Piece s_piece = this->game.getBoard().at(pair.first).at(pair.second);
 			this->selected_piece = s_piece;
-			this->aviliable = s_piece.aviliable_move(this->game.getBoard());
+			this->aviliable = s_piece.aviliable_move(this->game.getBoard(), this->game.getturns(), this->game.getPlayer1(), this->game.getPlayer2());
 			if(this->aviliable.size() > 0) this->game.aviliable_flag = 1;
 			CWnd::Invalidate();
 		}
@@ -596,8 +599,9 @@ void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 				this->selected_piece.set_row(y);
 				this->game.setboard(x, y, this->selected_piece);
 				this->game.setboard(mx, my, null_p);
+				if (this->game.check_win() != 0) this->Model = 1;
 				this->game.aviliable_flag = 0;
-				this->game.print_Board();
+				this->game.switch_turn();
 				CWnd::Invalidate();
 			}
 		}

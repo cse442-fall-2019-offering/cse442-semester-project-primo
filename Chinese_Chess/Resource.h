@@ -17,7 +17,6 @@
 #define IDB_BOARD                       200
 #define IDB_BGP                         201
 #define IDB_BGP2                        202
-
 #define IDC_BSTART                      1001
 #define IDC_BQUIT                       1002
 #define IDC_BVOL                        1003
@@ -28,9 +27,6 @@
 #define IDC_STATIC1                     1008
 #define IDC_STATIC2                     1009
 #define IDC_STATIC3                     1010
-
-
-//pieces picture 1100-1113
 #define IDB_PCAN2                       1100
 #define IDB_PCHAR2                      1101
 #define IDB_PBISHOP2                    1102

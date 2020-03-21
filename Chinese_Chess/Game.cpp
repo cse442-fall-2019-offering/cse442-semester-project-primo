@@ -1,6 +1,5 @@
 #include "pch.h"
 #include "Game.h"
-#include <iostream>
 
 Game::Game() {
 }
@@ -9,8 +8,7 @@ Game::Game(Player* player1, Player* player2) {
 	this->player1 = player1;
 	this->player2 = player2;
 	this->init_Board();
-	int turn = 0;
-	this->move_flag = 0;
+	int turn = rand() % 2;
 	this->aviliable_flag = 0;
 }
 Game::~Game() {
@@ -188,8 +186,6 @@ void Game::print_Board() {
 	board.at(5).at(0).set_line(5);
 	board.at(5).at(0).set_row(0);
 	board.at(6).at(0).set_player(&this->player2);*/
-
-	aviliable = board.at(6).at(0).aviliable_move(board);
 	for (int i = 0; i < 10; i++) {
 		for (int j = 0; j < 9; j++) {
 			Piece p = board.at(i).at(j);
@@ -224,4 +220,26 @@ vector<vector<Piece>> Game::getBoard() {
 
 void Game::setboard(int x, int y, Piece piece) {
 	this->Board.at(x).at(y) = piece;
+}
+
+void Game::switch_turn() {
+	if (this->turns == 0) this->turns = 1;
+	else this->turns = 0;
+}
+
+int Game::check_win() {
+	int k1 = 0;
+	int k2 = 0;
+	for (int i = 0; i < 10; i++) {
+		for (int j = 0; j < 9; j++) {
+			Piece piece = this->Board.at(i).at(j);
+			if (piece.get_type() == King) {
+				if (piece.get_player() == this->player1) k1 = 1;
+				else k2 = 1;
+			}
+		}
+	}
+	if (k1 == 0 && k2 == 1) return 2;
+	if (k2 == 0 && k1 == 1) return 1;
+	else return 0;
 }
