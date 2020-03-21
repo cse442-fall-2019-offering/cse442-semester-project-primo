@@ -13,6 +13,8 @@
 #include <Windows.h>
 #include "Game.h"
 #include <vector>
+#include<mmsystem.h>
+#pragma comment(lib,"winmm.lib")
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -518,7 +520,9 @@ void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 				if (this->game.check_win() != 0) this->Model = 1; CChineseChessDlg::OnInitDialog();
 				this->game.aviliable_flag = 0;
 				this->game.switch_turn();
+				PlaySound(MAKEINTRESOURCE(IDR_PIECE), NULL, SND_RESOURCE | SND_ASYNC);
 				CWnd::Invalidate();
+				
 			}
 		}
 	}
