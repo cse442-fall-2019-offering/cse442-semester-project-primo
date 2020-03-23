@@ -191,6 +191,7 @@
     <ClInclude Include="Piece.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Resource.h" />
+    <ClInclude Include="RuleDLG.h" />
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
@@ -205,6 +206,7 @@
     </ClCompile>
     <ClCompile Include="Piece.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="RuleDLG.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ChineseChess.rc" />
@@ -213,7 +215,10 @@
     <None Include="res\ChineseChess.rc2" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\..\..\Web Application\rule.bmp" />
     <Image Include="res\board.bmp" />
+    <Image Include="res\pieces\bitmap1.bmp" />
+    <Image Include="res\rule.bmp" />
     <Image Include="res\selected.bmp" />
     <Image Include="res\bgp.bmp" />
     <Image Include="res\bgp2.bmp" />

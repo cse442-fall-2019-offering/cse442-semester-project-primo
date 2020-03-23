@@ -12,6 +12,7 @@
 #include <stdlib.h>
 #include <Windows.h>
 #include "Game.h"
+#include "RuleDLG.h"
 #include <vector>
 #include<mmsystem.h>
 #pragma comment(lib,"winmm.lib")
@@ -75,7 +76,9 @@ void CChineseChessDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BVOL, BVol);
 	DDX_Control(pDX, IDC_BRETURN, BReturn);
 	DDX_Control(pDX, IDC_BRESTART, BRestart);
+	DDX_Control(pDX, IDC_RULE_BUTTON, RULE_btn);
 	DDX_Control(pDX, IDC_BUNDO, BUndo);
+
 }
 
 BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
@@ -91,7 +94,8 @@ BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
 	ON_WM_LBUTTONDOWN()
 	ON_WM_MOUSEMOVE()
 	ON_BN_CLICKED(IDC_UI_BUTTON1, &CChineseChessDlg::OnBnClickedUiButton)
-	
+	ON_BN_CLICKED(IDC_RULE_BUTTON, &CChineseChessDlg::OnBnClickedRuleButton)
+
 END_MESSAGE_MAP()
 
 
@@ -100,7 +104,9 @@ END_MESSAGE_MAP()
 BOOL CChineseChessDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
-
+	//ruledlg.Create(IDD_RULE, this);
+	//ruledlg.SetWindowPos(NULL, -1, -20, 200, 300, SWP_NOZORDER | SWP_NOACTIVATE);
+	//ruledlg.ShowWindow(SW_HIDE);
 	// Add "About..." menu item to system menu.
 
 	// IDM_ABOUTBOX must be in the system command range.
@@ -130,21 +136,21 @@ BOOL CChineseChessDlg::OnInitDialog()
 	CChineseChessDlg::Button_BackGround_ini();
 
 	switch (Model) {
-		case Startup_Page:
-			CChineseChessDlg::Start_Button_ini();
-			break;
-		case Single_Page:
-			CChineseChessDlg::SGame_Button_ini();
-			break;
+	case Startup_Page:
+		CChineseChessDlg::Start_Button_ini();
+		break;
+	case Single_Page:
+		CChineseChessDlg::SGame_Button_ini();
+		break;
 
-		default :
-			break;
+	default:
+		break;
 	}
-	
+
 	//BStart.Create(_T("1111"), WS_VISIBLE | BS_BITMAP, CRect(10,10,100,30), this, 1);
 
 	// TODO: Add extra initialization here
-
+	
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
 
@@ -671,6 +677,11 @@ void CChineseChessDlg::Bitmap_ini() {
 	selected.GetBitmap(&Selected);
 }
 
+
+void CChineseChessDlg::OnBnClickedRuleButton()
+{
+	ruledlg.DoModal();
+}
 void CChineseChessDlg::OnBnClickedBundo()
 {
 	size_t len = this->history.size();
@@ -689,4 +700,5 @@ void CChineseChessDlg::OnBnClickedBundo()
 		CWnd::Invalidate();
 	}
 	// TODO: Add your control notification handler code here
+
 }
