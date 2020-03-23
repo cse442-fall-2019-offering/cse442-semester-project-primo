@@ -251,7 +251,12 @@ void CChineseChessDlg::OnBnClickedBvol()
 void CChineseChessDlg::OnBnClickedBreturn()
 {
 	// TODO: Add your control notification handler code here
-	if (this->Model == 2) this->Model = 1;
+	if (this->Model == 2) {
+		this->Model = 1;
+		this->history.clear();
+		this->history = vector<pair<Piece, Piece>>();
+	}
+
 	CWnd::Invalidate();
 	CChineseChessDlg::OnInitDialog();
 }
@@ -262,6 +267,8 @@ void CChineseChessDlg::OnBnClickedBrestart()
 	Player player1 = Player(1, human);
 	Player player2 = Player(2, human);
 	this->game = Game(&player1, &player2);
+	this->history.clear();
+	this->history = vector<pair<Piece, Piece>>();
 	CWnd::Invalidate();
 	CChineseChessDlg::OnInitDialog();
 }
@@ -534,7 +541,8 @@ void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 				this->selected_piece.set_row(row);
 				this->game.setboard(line, row, this->selected_piece);
 				this->game.setboard(s_line, s_row, null_p);
-				if (this->game.check_win() != 0) this->Model = 1; CChineseChessDlg::OnInitDialog();
+				
+
 				this->game.aviliable_flag = 0;
 				this->game.switch_turn();
 
@@ -543,6 +551,12 @@ void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 				pair<Piece, Piece> step(old_m, old_d);
 
 				this->history.push_back(step);
+				if (this->game.check_win() != 0) {
+					this->Model = 1;
+					this->history.clear();
+					this->history = vector<pair<Piece, Piece>>();
+					CChineseChessDlg::OnInitDialog();
+				}
 				CWnd::Invalidate();
 				
 			}
