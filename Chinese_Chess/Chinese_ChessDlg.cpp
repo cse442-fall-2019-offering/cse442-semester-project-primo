@@ -64,6 +64,7 @@ CChineseChessDlg::CChineseChessDlg(CWnd* pParent /*=nullptr*/)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDI_GAME_ICON);
 	Bitmap_ini();
+	this->history = vector<pair<Piece, Piece>>();
 }
 
 void CChineseChessDlg::DoDataExchange(CDataExchange* pDX)
@@ -74,6 +75,7 @@ void CChineseChessDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BVOL, BVol);
 	DDX_Control(pDX, IDC_BRETURN, BReturn);
 	DDX_Control(pDX, IDC_BRESTART, BRestart);
+	DDX_Control(pDX, IDC_BUNDO, BUndo);
 }
 
 BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
@@ -85,9 +87,11 @@ BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BVOL, &CChineseChessDlg::OnBnClickedBvol)
 	ON_BN_CLICKED(IDC_BRETURN, &CChineseChessDlg::OnBnClickedBreturn)
 	ON_BN_CLICKED(IDC_BRESTART, &CChineseChessDlg::OnBnClickedBrestart)
+	ON_BN_CLICKED(IDC_BUNDO, &CChineseChessDlg::OnBnClickedBundo)
 	ON_WM_LBUTTONDOWN()
 	ON_WM_MOUSEMOVE()
 	ON_BN_CLICKED(IDC_UI_BUTTON1, &CChineseChessDlg::OnBnClickedUiButton)
+	
 END_MESSAGE_MAP()
 
 
@@ -296,6 +300,7 @@ afx_msg void CChineseChessDlg::Start_Button_ini(){
 	BQuit.MoveWindow(500, 300, 180, 70, true);
 	BReturn.MoveWindow(0, 0, 47, 47, true);
 	BRestart.MoveWindow(720, 0, 47, 47, true);
+	BUndo.MoveWindow(750, 200, 100, 50, true);
 	GetDlgItem(IDC_BQUIT)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BVOL)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_SHOW);
@@ -330,19 +335,19 @@ afx_msg void CChineseChessDlg::SGame_Button_ini() {
 /*	Start up Page Initialization
 */
 afx_msg void CChineseChessDlg::Start_Page_ini() {
-	CBitmap bitmap; //bitmap object to hold your bitmap
-	bitmap.LoadBitmap(IDB_BGP); // IDB_BITMAPID is the id of bmp
+	CBitmap bitmap;
+	bitmap.LoadBitmap(IDB_BGP);
 	CRect   rect;
 	GetClientRect(&rect);
 
 	CSize dim = bitmap.GetBitmapDimension();
-	CPaintDC dc(this); //device context of dialog box
-	CDC mem_dc; // memory device context
+	CPaintDC dc(this);
+	CDC mem_dc;
 
 	BITMAP Bitmap;
 	bitmap.GetBitmap(&Bitmap);
-	mem_dc.CreateCompatibleDC(&dc); // makes compatible with CPaintDC
-	mem_dc.SelectObject(bitmap); // Selects bitmap into CDC
+	mem_dc.CreateCompatibleDC(&dc);
+	mem_dc.SelectObject(bitmap); 
 
 	/*dc.StretchBlt(0, 0, rect.Width(), rect.Height(), &mem_dc, 0, 0,
 		Bitmap.bmWidth, Bitmap.bmHeight, SRCCOPY);*/
@@ -483,18 +488,18 @@ void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 	// TODO: Add your message handler code here and/or call default
 
 	if (this->Model == 2) {
-		pair<int, int> pair = getIndex(this->cur_point);
+		pair<int, int> location = getIndex(this->cur_point);
 
 		CString strx;
-		strx.Format(_T("%d"), pair.first);
+		strx.Format(_T("%d"), location.first);
 		CString stry;
-		stry.Format(_T("%d"), pair.second);
+		stry.Format(_T("%d"), location.second);
 		CString co_point = strx + "," + stry;
 		CChineseChessDlg::SetDlgItemText(IDC_STATIC2, co_point);
 		
 		if (this->game.aviliable_flag == 0) {
 
-			Piece s_piece = this->game.getBoard().at(pair.first).at(pair.second);
+			Piece s_piece = this->game.getBoard().at(location.first).at(location.second);
 			this->selected_piece = s_piece;
 			this->aviliable = s_piece.aviliable_move(this->game.getBoard(), this->game.getturns(), this->game.getPlayer1(), this->game.getPlayer2());
 			if (this->aviliable.size() > 0) {
@@ -503,26 +508,39 @@ void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 			}
 		}
 		else {
-			if (this->contain(pair)) {
-				int x = pair.first;
-				int y = pair.second;
-				int mx = this->selected_piece.get_line();
-				int my = this->selected_piece.get_row();
+			if (this->contain(location)) {
+				int line = location.first;
+				int row= location.second;
+				int s_line = this->selected_piece.get_line();
+				int s_row = this->selected_piece.get_row();
+
+				Piece old_m = Piece();
+				old_m.copy(this->selected_piece);
+
+				Piece old_d = Piece();
+				old_d.copy(this->game.getBoard().at(line).at(row));
+
 				Piece null_p = Piece();
-				null_p.set_line(x);
-				null_p.set_row(y);
-				null_p.set_ini_line(x);
-				null_p.set_ini_row(y);
+				null_p.set_line(s_line);
+				null_p.set_row(s_row);
+				null_p.set_ini_line(s_line);
+				null_p.set_ini_row(s_row);
 				null_p.set_player(NULL);
 				null_p.set_type(no_piece);
-				this->selected_piece.set_line(x);
-				this->selected_piece.set_row(y);
-				this->game.setboard(x, y, this->selected_piece);
-				this->game.setboard(mx, my, null_p);
-				if (this->game.check_win() != 0) this->Model = 1;// CChineseChessDlg::OnInitDialog();
+
+				this->selected_piece.set_line(line);
+				this->selected_piece.set_row(row);
+				this->game.setboard(line, row, this->selected_piece);
+				this->game.setboard(s_line, s_row, null_p);
+				if (this->game.check_win() != 0) this->Model = 1;
 				this->game.aviliable_flag = 0;
 				this->game.switch_turn();
+
 				PlaySound(MAKEINTRESOURCE(IDR_PIECE), NULL, SND_RESOURCE | SND_ASYNC);
+				
+				pair<Piece, Piece> step(old_m, old_d);
+
+				this->history.push_back(step);
 				CWnd::Invalidate();
 				
 			}
@@ -635,4 +653,24 @@ void CChineseChessDlg::Bitmap_ini() {
 
 	selected.LoadBitmap(IDB_SELECTED);
 	selected.GetBitmap(&Selected);
+}
+
+void CChineseChessDlg::OnBnClickedBundo()
+{
+	size_t len = this->history.size();
+	if (len != 0) {
+		pair<Piece, Piece> pre = history.at(len - 1);
+		Piece old_m = pre.first;
+		int old_m_line = old_m.get_line();
+		int old_m_row = old_m.get_row();
+		this->game.setboard(old_m_line, old_m_row, old_m);
+		Piece old_d = pre.second;
+		int old_d_line = old_d.get_line();
+		int old_d_row = old_d.get_row();
+		this->game.setboard(old_d_line, old_d_row, old_d);
+		history.erase(history.begin() + len - 1);
+		this->game.switch_turn();
+		CWnd::Invalidate();
+	}
+	// TODO: Add your control notification handler code here
 }

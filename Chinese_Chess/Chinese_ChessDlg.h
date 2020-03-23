@@ -35,6 +35,8 @@ private:
 	int voulmn = 50;
 	Game game;
 
+	vector< pair<Piece, Piece> > history;
+
 	CPoint cur_point;
 
 	vector<pair<int, int>> aviliable;
@@ -113,6 +115,8 @@ public:
 	afx_msg void OnBnClickedBreturn();
 	CButton BRestart;
 	afx_msg void OnBnClickedBrestart();
+	CButton BUndo;
+	afx_msg void OnBnClickedBundo();
 
 	bool contain(pair<int, int>);
 
@@ -120,4 +124,7 @@ public:
 		afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg void OnBnClickedUiButton();
 	void UIChange_Button_ini();
+
+	
+	
 };
