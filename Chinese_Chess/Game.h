@@ -4,6 +4,7 @@
 #include <corecrt_wstring.h>
 #include <stdlib.h>
 #include <iostream>
+#include <time.h>
 
 class Game
 {

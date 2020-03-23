@@ -168,4 +168,9 @@
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
+  <ItemGroup>
+    <Media Include="res\sound of piece.WAV">
+      <Filter>Resource Files</Filter>
+    </Media>
+  </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Visual C++ Éú³ÉµÄ°üº¬ÎÄ¼þ¡£
-// ¹© ChineseChess.rc Ê¹ÓÃ
+// Microsoft Visual C++ ï¿½ï¿½ÉµÄ°ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½
+// ï¿½ï¿½ ChineseChess.rc Ê¹ï¿½ï¿½
 //
 #define IDM_ABOUTBOX                    0x0010
 #define IDD_ABOUTBOX                    100
@@ -8,18 +8,23 @@
 #define IDD_CHINESE_CHESS_DIALOG        102
 #define IDR_MAINFRAME                   103
 #define IDI_GAME_ICON                   104
-#define IDD_RULE                        105
-#define IDB_BITMAP1                     109
-#define IDB_RULE                        109
+
+#define IDR_PIECE                       105
+
+//Button picture 110 - 199
 #define IDB_BRESTART                    110
 #define IDB_BRETURN                     111
 #define IDB_BQUIT                       112
 #define IDB_BSTART                      113
 #define IDB_BVOLUMN                     114
 #define IDB_BVOL1                       115
+
+//Backgroud picture
 #define IDB_BOARD                       200
 #define IDB_BGP                         201
 #define IDB_BGP2                        202
+
+//Button object 1000 - 1099
 #define IDC_BSTART                      1001
 #define IDC_BQUIT                       1002
 #define IDC_BVOL                        1003
@@ -27,10 +32,14 @@
 #define IDC_BRETURN                     1005
 #define IDC_BRESTART                    1006
 #define IDC_UI_BUTTON1                  1007
+
+
+//pieces picture 1100-1113
 #define IDC_STATIC1                     1008
 #define IDC_STATIC2                     1009
 #define IDC_STATIC3                     1010
 #define IDC_RULE_BUTTON                 1011
+#define IDC_BUNDO                       1012
 #define IDB_PCAN2                       1100
 #define IDB_PCHAR2                      1101
 #define IDB_PBISHOP2                    1102
@@ -46,7 +55,9 @@
 #define IDB_PHORSE1                     1112
 #define IDB_PSOLDIER1                   1113
 #define IDB_SELECTED                    1114
-
+#define IDB_RULE                        1115
+//dialog
+#define IDD_RULE                        1200
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
