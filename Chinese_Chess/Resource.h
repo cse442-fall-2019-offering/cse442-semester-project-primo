@@ -29,7 +29,6 @@
 #define IDC_STATIC1                     1008
 #define IDC_STATIC2                     1009
 #define IDC_STATIC3                     1010
-#define IDC_BUTTON1                     1011
 #define IDC_BUNDO                       1011
 #define IDB_PCAN2                       1100
 #define IDB_PCHAR2                      1101
