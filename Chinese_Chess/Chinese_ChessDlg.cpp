@@ -307,6 +307,7 @@ afx_msg void CChineseChessDlg::Start_Button_ini(){
 	GetDlgItem(IDC_BSTART)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BRETURN)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BRESTART)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_BUNDO)->ShowWindow(SW_HIDE);
 	if (this->Mute) GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_HIDE);
 	else GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_SHOW);
 	//GetDlgItem(IDC_BQUIT)->ShowWindow(SW_HIDE);
@@ -318,13 +319,14 @@ afx_msg void CChineseChessDlg::SGame_Button_ini() {
 /*	Enable the Single Game Page buttons*/
 
 /*	Disable the Start up Page buttons*/
+	
 	GetDlgItem(IDC_BQUIT)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BVOL)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BSTART)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BRETURN)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BRESTART)->ShowWindow(SW_SHOW);
-	
+	GetDlgItem(IDC_BUNDO)->ShowWindow(SW_SHOW);
 }
 
 
