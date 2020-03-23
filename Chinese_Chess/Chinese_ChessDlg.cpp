@@ -534,7 +534,7 @@ void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 				this->selected_piece.set_row(row);
 				this->game.setboard(line, row, this->selected_piece);
 				this->game.setboard(s_line, s_row, null_p);
-				if (this->game.check_win() != 0) this->Model = 1;
+				if (this->game.check_win() != 0) this->Model = 1; CChineseChessDlg::OnInitDialog();
 				this->game.aviliable_flag = 0;
 				this->game.switch_turn();
 
