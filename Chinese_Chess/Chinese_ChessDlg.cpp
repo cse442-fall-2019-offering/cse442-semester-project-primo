@@ -360,15 +360,18 @@ afx_msg void CChineseChessDlg::SGame_Page_ini() {
 	mem_dc.CreateCompatibleDC(&dc); 
 
 	CSize dim = board.GetBitmapDimension();
+
+	int lonr = GetSystemMetrics(SM_CXSCREEN);
+	int hign = GetSystemMetrics(SM_CYSCREEN);
 	
 	vector<vector<Piece>> B = this->game.getBoard();
 	Player* player1 = this->game.getPlayer1();
 	Player* player2 = this->game.getPlayer2();
 
 	mem_dc.SelectObject(board);
-	dc.BitBlt(100, 100, Board.bmWidth, Board.bmHeight, &mem_dc, 0, 0, SRCCOPY);
-	//dc.StretchBlt(100, 100, 600, 600, &mem_dc, 0, 0,
-	//	Board.bmWidth, Board.bmHeight, SRCCOPY);
+	//dc.BitBlt(100, 100, Board.bmWidth/2, Board.bmHeight/2, &mem_dc, 0, 0, SRCCOPY);
+	dc.StretchBlt(100, 100, 600, 675, &mem_dc, 0, 0,
+		Board.bmWidth, Board.bmHeight, SRCCOPY);
 	int ini_x, ini_y;
 	int increase_x, increase_y;
 	ini_x = 120;
@@ -485,6 +488,7 @@ void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 	if (this->Model == 2) {
 		pair<int, int> pair = getIndex(this->cur_point);
 
+		//dispLay the coordinates on the board, if its out of range, print -1,-1
 		CString strx;
 		strx.Format(_T("%d"), pair.first);
 		CString stry;

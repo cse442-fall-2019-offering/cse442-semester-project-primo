@@ -3,6 +3,24 @@
 #include "Game.h"
 //
 
+#define Dev_window_size_x	1920
+#define Dev_window_size_y	1080
+#define Dev_piece_size		60
+#define Dev_board_Width		600
+#define Dev_board_Height	675
+#define Dev_SQ_Width		180
+#define Dev_SQ_Height		70
+#define Dev_RR_size			47
+#define Dev_BStart_x		200
+#define Dev_BStart_y		300
+#define Dev_BQuit_x			500
+#define Dev_BQuit_y			300
+#define Dev_BReturn_x		0
+#define Dev_BReturn_y		0
+#define Dev_BRestart_x		720
+#define Dev_BRestart_y		0
+
+
 #pragma once
 
 
@@ -34,6 +52,8 @@ private:
 	BOOL Mute = FALSE;
 	int voulmn = 50;
 	Game game;
+
+	
 
 	CPoint cur_point;
 
