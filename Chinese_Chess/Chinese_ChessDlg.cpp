@@ -11,6 +11,7 @@
 #include <iostream>
 #include "Game.h"
 #include <Windows.h>
+#include "settingDialog.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -68,6 +69,7 @@ void CChineseChessDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BVOL, BVol);
 	DDX_Control(pDX, IDC_BRETURN, BReturn);
 	DDX_Control(pDX, IDC_BRESTART, BRestart);
+	DDX_Control(pDX, IDC_UI_BUTTON1, settings);
 }
 
 BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
@@ -80,6 +82,7 @@ BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BRETURN, &CChineseChessDlg::OnBnClickedBreturn)
 	ON_BN_CLICKED(IDC_BRESTART, &CChineseChessDlg::OnBnClickedBrestart)
 	ON_BN_CLICKED(IDC_UI_BUTTON1, &CChineseChessDlg::OnBnClickedUiButton)
+	ON_BN_CLICKED(IDC_BUTTON2, &CChineseChessDlg::OnBnClickedSettings)
 END_MESSAGE_MAP()
 
 
@@ -611,4 +614,16 @@ void CChineseChessDlg::UIChange_Button_ini()
 	mem_dc.SelectObject(bitmap); // Selects bitmap into CDC
 	dc.StretchBlt(0, 0, rect.Width(), rect.Height(), &mem_dc, 0, 0,
 		Bitmap.bmWidth, Bitmap.bmHeight, SRCCOPY);
+}
+
+
+
+
+
+void CChineseChessDlg::OnBnClickedSettings()
+{
+	settingDialog settings;
+	settings.DoModal();
+
+	// TODO: 在此添加控件通知处理程序代码
 }

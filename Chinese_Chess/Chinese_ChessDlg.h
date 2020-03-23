@@ -61,4 +61,7 @@ public:
 	afx_msg void OnBnClickedBrestart();
 	afx_msg void OnBnClickedUiButton();
 	afx_msg void UIChange_Button_ini();
+	// Open setting menu
+	CButton settings;
+	afx_msg void OnBnClickedSettings();
 };
