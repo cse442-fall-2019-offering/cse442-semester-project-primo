@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Visual C++ generated include file.
-// Used by ChineseChess.rc
+// Microsoft Visual C++ 生成的包含文件。
+// 供 ChineseChess.rc 使用
 //
 #define IDM_ABOUTBOX                    0x0010
 #define IDD_ABOUTBOX                    100
@@ -8,6 +8,9 @@
 #define IDD_CHINESE_CHESS_DIALOG        102
 #define IDR_MAINFRAME                   103
 #define IDI_GAME_ICON                   104
+#define IDD_RULE                        105
+#define IDB_BITMAP1                     109
+#define IDB_RULE                        109
 #define IDB_BRESTART                    110
 #define IDB_BRETURN                     111
 #define IDB_BQUIT                       112
@@ -27,6 +30,7 @@
 #define IDC_STATIC1                     1008
 #define IDC_STATIC2                     1009
 #define IDC_STATIC3                     1010
+#define IDC_RULE_BUTTON                 1011
 #define IDB_PCAN2                       1100
 #define IDB_PCHAR2                      1101
 #define IDB_PBISHOP2                    1102
@@ -47,9 +51,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        105
+#define _APS_NEXT_RESOURCE_VALUE        110
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1011
+#define _APS_NEXT_CONTROL_VALUE         1013
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

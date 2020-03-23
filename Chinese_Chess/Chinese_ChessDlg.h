@@ -1,6 +1,7 @@
 
 // Chinese_ChessDlg.h : header file
 #include "Game.h"
+#include "RuleDLG.h"
 //
 
 #pragma once
@@ -113,11 +114,14 @@ public:
 	afx_msg void OnBnClickedBreturn();
 	CButton BRestart;
 	afx_msg void OnBnClickedBrestart();
-
+	CButton RULE_btn;
+	afx_msg void OnBnClickedRuleButton();
+	RuleDLG ruledlg;
 	bool contain(pair<int, int>);
 
 		afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 		afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg void OnBnClickedUiButton();
 	void UIChange_Button_ini();
+	
 };
