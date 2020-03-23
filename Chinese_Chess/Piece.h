@@ -29,10 +29,16 @@ private:
 
 
 public:
+
+
 	//movement function
 	vector<pair<int, int>> aviliable_move(vector<vector<Piece>> Board, int turns, Player* p1, Player* p2);
 
+	
+
 	//setter function
+	void copy(Piece p);
+
 	void set_line(int line);
 	void set_row(int row);
 	void set_ini_line(int line);
