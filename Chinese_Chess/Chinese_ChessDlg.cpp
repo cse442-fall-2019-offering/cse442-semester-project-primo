@@ -82,7 +82,7 @@ BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BRETURN, &CChineseChessDlg::OnBnClickedBreturn)
 	ON_BN_CLICKED(IDC_BRESTART, &CChineseChessDlg::OnBnClickedBrestart)
 	ON_BN_CLICKED(IDC_UI_BUTTON1, &CChineseChessDlg::OnBnClickedUiButton)
-	ON_BN_CLICKED(IDC_BUTTON2, &CChineseChessDlg::OnBnClickedSettings)
+	ON_BN_CLICKED(IDC_Settings, &CChineseChessDlg::OnBnClickedSettings)
 END_MESSAGE_MAP()
 
 
