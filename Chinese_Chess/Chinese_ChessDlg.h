@@ -118,6 +118,8 @@ public:
 	CButton BUndo;
 	afx_msg void OnBnClickedBundo();
 
+	void BGM_Play();
+
 	bool contain(pair<int, int>);
 
 		afx_msg void OnLButtonDown(UINT nFlags, CPoint point);

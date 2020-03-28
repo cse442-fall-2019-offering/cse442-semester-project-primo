@@ -15,6 +15,9 @@
 #include <vector>
 #include<mmsystem.h>
 #pragma comment(lib,"winmm.lib")
+#include <Vfw.H>
+
+int PlayBGM = 0;
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -144,7 +147,7 @@ BOOL CChineseChessDlg::OnInitDialog()
 	//BStart.Create(_T("1111"), WS_VISIBLE | BS_BITMAP, CRect(10,10,100,30), this, 1);
 
 	// TODO: Add extra initialization here
-
+	
 	return TRUE;  // return TRUE  unless you set the focus to a control
 }
 
@@ -203,8 +206,13 @@ void CChineseChessDlg::OnPaint()
 		default:
 			break;
 		}
+
 		
 		//CDialogEx::OnPaint();
+	}
+	if (PlayBGM == 0) {
+		CChineseChessDlg::BGM_Play();
+		PlayBGM = 1;
 	}
 }
 
@@ -344,6 +352,7 @@ afx_msg void CChineseChessDlg::SGame_Button_ini() {
 /*	Start up Page Initialization
 */
 afx_msg void CChineseChessDlg::Start_Page_ini() {
+
 	CBitmap bitmap;
 	bitmap.LoadBitmap(IDB_BGP);
 	CRect   rect;
@@ -689,4 +698,10 @@ void CChineseChessDlg::OnBnClickedBundo()
 		CWnd::Invalidate();
 	}
 	// TODO: Add your control notification handler code here
+}
+
+void CChineseChessDlg::BGM_Play()
+{
+	mciSendString(_T("open res\\BGM.mp3 alias backMusic"), NULL, 0, NULL);
+	mciSendString(_T("play backMusic repeat"), NULL, 0, NULL);
 }
