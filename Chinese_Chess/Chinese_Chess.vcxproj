@@ -217,6 +217,7 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\board.bmp" />
+    <Image Include="res\pieces\bitmap1.bmp" />
     <Image Include="res\selected.bmp" />
     <Image Include="res\bgp.bmp" />
     <Image Include="res\bgp2.bmp" />

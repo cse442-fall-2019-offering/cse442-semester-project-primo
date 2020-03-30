@@ -128,5 +128,6 @@ public:
 	void UIChange_Button_ini();
 
 	
-	
+	CButton BTurnoff;
+	afx_msg void OnBnClickedBturnoff();
 };
