@@ -18,6 +18,7 @@
 #include <Vfw.H>
 
 int PlayBGM = 0;
+int StopBGM = 0;
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -79,6 +80,7 @@ void CChineseChessDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BRETURN, BReturn);
 	DDX_Control(pDX, IDC_BRESTART, BRestart);
 	DDX_Control(pDX, IDC_BUNDO, BUndo);
+	DDX_Control(pDX, IDC_BTURNOFF, BTurnoff);
 }
 
 BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
@@ -94,7 +96,7 @@ BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
 	ON_WM_LBUTTONDOWN()
 	ON_WM_MOUSEMOVE()
 	ON_BN_CLICKED(IDC_UI_BUTTON1, &CChineseChessDlg::OnBnClickedUiButton)
-	
+	ON_BN_CLICKED(IDC_BTURNOFF, &CChineseChessDlg::OnBnClickedBturnoff)
 END_MESSAGE_MAP()
 
 
@@ -281,6 +283,19 @@ void CChineseChessDlg::OnBnClickedBrestart()
 	CChineseChessDlg::OnInitDialog();
 }
 
+void CChineseChessDlg::OnBnClickedBturnoff()
+{
+	// TODO: Add your control notification handler code here
+	if (StopBGM == 0) {
+		mciSendString(_T("pause backMusic"), NULL, 0, NULL);
+		StopBGM = 1;
+	}
+	else {
+		mciSendString(_T("resume backMusic"), NULL, 0, NULL);
+		StopBGM = 0;
+	}
+}
+
 //---------------------------Page Buttons initialization-------------------------------------
 
 afx_msg void CChineseChessDlg::Button_BackGround_ini() {
@@ -290,15 +305,18 @@ afx_msg void CChineseChessDlg::Button_BackGround_ini() {
 	CBitmap Volbgp;
 	CBitmap Returnbgp;
 	CBitmap Restartbgp;
+	CBitmap TurnoffBgp;
 	Startbgp.LoadBitmap(IDB_BSTART);
 	Quitbgp.LoadBitmap(IDB_BQUIT);
 	Volbgp.LoadBitmap(IDB_BVOLUMN);
 	Returnbgp.LoadBitmap(IDB_BRETURN);
 	Restartbgp.LoadBitmap(IDB_BRESTART);
+	TurnoffBgp.LoadBitmap(IDB_BTURNOFF);
 	BStart.SetBitmap(Startbgp);
 	BQuit.SetBitmap(Quitbgp);
 	BReturn.SetBitmap(Returnbgp);
 	BRestart.SetBitmap(Restartbgp);
+	BTurnoff.SetBitmap(TurnoffBgp);
 	if (this->Mute) BVol.SetBitmap(NULL);
 	else BVol.SetBitmap(Volbgp);
 
@@ -316,6 +334,7 @@ afx_msg void CChineseChessDlg::Start_Button_ini(){
 	BReturn.MoveWindow(0, 0, 47, 47, true);
 	BRestart.MoveWindow(720, 0, 47, 47, true);
 	BUndo.MoveWindow(750, 200, 100, 50, true);
+	BTurnoff.MoveWindow(720, 720, 47, 47, true);
 	GetDlgItem(IDC_BQUIT)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BVOL)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_SHOW);
@@ -323,6 +342,7 @@ afx_msg void CChineseChessDlg::Start_Button_ini(){
 	GetDlgItem(IDC_BRETURN)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BRESTART)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BUNDO)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_BTURNOFF)->ShowWindow(SW_SHOW);
 	if (this->Mute) GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_HIDE);
 	else GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_SHOW);
 	//GetDlgItem(IDC_BQUIT)->ShowWindow(SW_HIDE);
@@ -342,6 +362,7 @@ afx_msg void CChineseChessDlg::SGame_Button_ini() {
 	GetDlgItem(IDC_BRETURN)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BRESTART)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BUNDO)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_BTURNOFF)->ShowWindow(SW_SHOW);
 }
 
 
@@ -705,3 +726,6 @@ void CChineseChessDlg::BGM_Play()
 	mciSendString(_T("open res\\BGM.mp3 alias backMusic"), NULL, 0, NULL);
 	mciSendString(_T("play backMusic repeat"), NULL, 0, NULL);
 }
+
+
+
