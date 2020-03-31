@@ -14,6 +14,7 @@
 #include "Game.h"
 #include <vector>
 #include<mmsystem.h>
+#include "InternetDlg.h"
 #pragma comment(lib,"winmm.lib")
 #include <Vfw.H>
 
@@ -97,6 +98,7 @@ BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
 	ON_WM_MOUSEMOVE()
 	ON_BN_CLICKED(IDC_UI_BUTTON1, &CChineseChessDlg::OnBnClickedUiButton)
 	ON_BN_CLICKED(IDC_BTURNOFF, &CChineseChessDlg::OnBnClickedBturnoff)
+	ON_BN_CLICKED(IDC_MULTIPLAYER, &CChineseChessDlg::OnBnClickedMultiplayer)
 END_MESSAGE_MAP()
 
 
@@ -729,3 +731,73 @@ void CChineseChessDlg::BGM_Play()
 
 
 
+
+
+void CChineseChessDlg::OnBnClickedMultiplayer()
+{
+	InternetDlg intDlg;
+	intDlg.isHost = isHost;
+	intDlg.isBlack = isFirst;
+	intDlg.isLink = isLink;
+	if (intDlg.DoModal() == IDOK) {
+		if (intDlg.isHost) {
+			if (!isLink) {
+				sckHost.Create(intDlg.netPort);
+				sckHost.Listen();
+				isLink = true;
+
+			}
+			isFirst = intDlg.isBlack;
+		}
+		if (!intDlg.isHost && !isLink) {
+			sckClient.Create();
+			sckClient.Connect(intDlg.ipAddress, intDlg.netPort);
+			isLink = true;
+			isFirst = false;
+		}
+		isHost = intDlg.isHost;
+		gameMode = 2;
+	}
+}
+
+LRESULT CChineseChessDlg::OnMySocket(WPARAM wParam, LPARAM lParam)
+{
+	switch (wParam)
+	{
+	case MS_ACCEPT: 
+	{
+		int send[3] = { 2,0,0 };
+		sckHost.Accept(sckClient); 
+		sckHost.Close(); 
+		sckClient.Send((LPVOID)send, sizeof(send));
+		MessageBox(LPTSTR("Client in/n You can move now!"),LPCTSTR("Notice"), MB_ICONINFORMATION);
+		//restart the game
+	} break;
+	case MS_RECEIVE: 
+	{
+		int recv[3] = { 0 }; 
+		sckClient.Receive((LPVOID)recv, sizeof(recv)); //用连接的SOCKET接收
+		if (recv[0] < 2) //小于2表示落子信息
+		{
+			PutDown(recv[1], recv[2]);
+			isTurn = true;
+		}
+		if (recv[0] == 2) //2表示连接成功
+		{
+			MessageBox(LPTSTR("Connect with server/n You can move now!"), LPCTSTR("Notice"), MB_ICONINFORMATION);
+			RestartGame(false);
+		}
+		if (recv[0] == 3) //3表示初始先手信息
+		{
+			isFirst = recv[1];
+		}
+		
+	} break;
+	case MS_CLOSE: 
+	{
+		sckClient.Close();
+		MessageBox(LPTSTR("Your opponent left\n"), LPCTSTR("Notice"), MB_ICONINFORMATION);
+	} break;
+	}
+	return 0;
+}

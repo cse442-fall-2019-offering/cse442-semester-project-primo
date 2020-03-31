@@ -186,10 +186,13 @@
     </ResourceCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="afxsock.h" />
     <ClInclude Include="Chinese_Chess.h" />
     <ClInclude Include="Chinese_ChessDlg.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Game.h" />
+    <ClInclude Include="InternetDlg.h" />
+    <ClInclude Include="MySocket.h" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Piece.h" />
     <ClInclude Include="Player.h" />
@@ -200,6 +203,8 @@
     <ClCompile Include="Chinese_Chess.cpp" />
     <ClCompile Include="Chinese_ChessDlg.cpp" />
     <ClCompile Include="Game.cpp" />
+    <ClCompile Include="InternetDlg.cpp" />
+    <ClCompile Include="MySocket.cpp" />
     <ClCompile Include="pch.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -213,6 +218,7 @@
     <ResourceCompile Include="ChineseChess.rc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="afxsock.inl" />
     <None Include="res\ChineseChess.rc2" />
   </ItemGroup>
   <ItemGroup>

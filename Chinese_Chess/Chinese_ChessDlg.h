@@ -1,6 +1,7 @@
 
 // Chinese_ChessDlg.h : header file
 #include "Game.h"
+#include "MySocket.h"
 //
 
 #pragma once
@@ -27,14 +28,21 @@ public:
 #define Startup_Page 1
 #define Single_Page 2
 #define UI2_Page 3
-
+protected:
+	CMySocket sckHost;
+	CMySocket sckClient;
 
 private:
 	int Model = 1;
 	BOOL Mute = FALSE;
 	int voulmn = 50;
 	Game game;
-
+	int gameMode;
+	bool isBlack;
+	bool isTurn; 
+	bool isLink;
+	bool isHost;
+	bool isFirst;
 	vector< pair<Piece, Piece> > history;
 
 	CPoint cur_point;
@@ -130,4 +138,6 @@ public:
 	
 	CButton BTurnoff;
 	afx_msg void OnBnClickedBturnoff();
+	afx_msg void OnBnClickedMultiplayer();
+	afx_msg LRESULT OnMySocket(WPARAM wParam, LPARAM lParam);
 };
