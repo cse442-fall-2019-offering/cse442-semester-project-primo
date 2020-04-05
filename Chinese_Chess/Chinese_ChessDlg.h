@@ -130,4 +130,6 @@ public:
 	
 	CButton BTurnoff;
 	afx_msg void OnBnClickedBturnoff();
+	CButton BLoadgame;
+	afx_msg void OnBnClickedBloadgame();
 };
