@@ -31,6 +31,7 @@ public:
 
 private:
 	int Model = 1;
+	int Count=60;
 	BOOL Mute = FALSE;
 	int voulmn = 50;
 	Game game;
@@ -132,4 +133,8 @@ public:
 	afx_msg void OnBnClickedBturnoff();
 	CButton BLoadgame;
 	afx_msg void OnBnClickedBloadgame();
+	CEdit TimeCount;
+	CString sec;
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
+
 };

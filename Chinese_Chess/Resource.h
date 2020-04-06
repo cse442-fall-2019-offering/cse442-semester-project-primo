@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Visual C++ Éú³ÉµÄ°üº¬ÎÄ¼ş¡£
-// ¹© ChineseChess.rc Ê¹ÓÃ
+// Microsoft Visual C++ ç”Ÿæˆçš„åŒ…å«æ–‡ä»¶ã€‚
+// ä¾› ChineseChess.rc ä½¿ç”¨
 //
 #define IDM_ABOUTBOX                    0x0010
 #define IDD_ABOUTBOX                    100
@@ -33,6 +33,7 @@
 #define IDC_BUNDO                       1011
 #define IDC_BTURNOFF                    1012
 #define IDC_BLOADGAME                   1014
+#define IDC_EDIT_TIME                   1015
 #define IDB_PCAN2                       1100
 #define IDB_PCHAR2                      1101
 #define IDB_PBISHOP2                    1102
@@ -56,6 +57,7 @@
 #define _APS_NEXT_RESOURCE_VALUE        110
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1015
+#define _APS_NEXT_CONTROL_VALUE         1016
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif
