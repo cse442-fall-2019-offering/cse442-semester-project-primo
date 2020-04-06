@@ -14,6 +14,7 @@
 #include "Game.h"
 #include <vector>
 #include<mmsystem.h>
+#include "stdafx.h"
 #include "InternetDlg.h"
 #pragma comment(lib,"winmm.lib")
 #include <Vfw.H>
@@ -99,6 +100,7 @@ BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_UI_BUTTON1, &CChineseChessDlg::OnBnClickedUiButton)
 	ON_BN_CLICKED(IDC_BTURNOFF, &CChineseChessDlg::OnBnClickedBturnoff)
 	ON_BN_CLICKED(IDC_MULTIPLAYER, &CChineseChessDlg::OnBnClickedMultiplayer)
+	ON_MESSAGE(WM_MYSOCKET, &CChineseChessDlg::OnMySocket)
 END_MESSAGE_MAP()
 
 
@@ -779,13 +781,13 @@ LRESULT CChineseChessDlg::OnMySocket(WPARAM wParam, LPARAM lParam)
 		sckClient.Receive((LPVOID)recv, sizeof(recv)); //用连接的SOCKET接收
 		if (recv[0] < 2) //小于2表示落子信息
 		{
-			PutDown(recv[1], recv[2]);
-			isTurn = true;
+			CWnd::Invalidate();
+			this->game.switch_turn;
 		}
 		if (recv[0] == 2) //2表示连接成功
 		{
 			MessageBox(LPTSTR("Connect with server/n You can move now!"), LPCTSTR("Notice"), MB_ICONINFORMATION);
-			RestartGame(false);
+			//RestartGame();
 		}
 		if (recv[0] == 3) //3表示初始先手信息
 		{

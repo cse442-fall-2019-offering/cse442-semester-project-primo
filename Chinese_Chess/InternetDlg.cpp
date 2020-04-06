@@ -2,6 +2,7 @@
 //
 
 #include "pch.h"
+#include "stdafx.h"
 #include "Chinese_Chess.h"
 #include "InternetDlg.h"
 #include "afxdialogex.h"

@@ -4,7 +4,8 @@
 
 #include "Chinese_Chess.h"
 #include "MySocket.h"
-
+#include "stdafx.h"
+#include "pch.h"
 
 
 
