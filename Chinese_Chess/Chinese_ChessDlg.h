@@ -27,6 +27,7 @@ public:
 #define Startup_Page 1
 #define Single_Page 2
 #define UI2_Page 3
+#define Multi_Local_Page 4
 
 
 private:
@@ -100,6 +101,8 @@ protected:
 	afx_msg void Start_Page_ini();
 	afx_msg void SGame_Button_ini();
 	afx_msg void SGame_Page_ini();
+	afx_msg void Mlocal_Page_ini();
+	afx_msg void Mlocal_Button_ini();
 
 	pair<int, int> getIndex(CPoint point);
 
@@ -130,4 +133,7 @@ public:
 	
 	CButton BTurnoff;
 	afx_msg void OnBnClickedBturnoff();
+	CButton BMul_Local;
+	afx_msg void OnBnClickedMulLocal();
+	CStatic Show_Player;
 };
