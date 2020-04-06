@@ -33,6 +33,7 @@ void Settings::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(Settings, CDialog)
 
 	ON_BN_CLICKED(IDC_ChangeUI, &Settings::OnBnClickedChangeui)
+	ON_BN_CLICKED(IDCANCEL, &Settings::OnBnClickedCancel)
 END_MESSAGE_MAP()
 
 
@@ -41,4 +42,11 @@ END_MESSAGE_MAP()
 void Settings::OnBnClickedChangeui()
 {
 	_mainDlg->UIChange_Button_ini();
+}
+
+
+void Settings::OnBnClickedCancel()
+{
+	DestroyWindow();
+	CDialog::OnCancel();
 }
