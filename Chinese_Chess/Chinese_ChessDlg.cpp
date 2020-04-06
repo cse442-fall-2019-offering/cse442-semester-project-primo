@@ -66,6 +66,7 @@ END_MESSAGE_MAP()
 
 CChineseChessDlg::CChineseChessDlg(CWnd* pParent /*=nullptr*/)
 	: CDialogEx(IDD_CHINESE_CHESS_DIALOG, pParent)
+	, sec(_T(""))
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDI_GAME_ICON);
 	Bitmap_ini();
@@ -83,6 +84,9 @@ void CChineseChessDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BUNDO, BUndo);
 	DDX_Control(pDX, IDC_BTURNOFF, BTurnoff);
 	DDX_Control(pDX, IDC_BLOADGAME, BLoadgame);
+	DDX_Control(pDX, IDC_EDIT_TIME, TimeCount);
+	DDX_Text(pDX, IDC_EDIT_TIME, sec);
+
 }
 
 BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
@@ -100,6 +104,7 @@ BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_UI_BUTTON1, &CChineseChessDlg::OnBnClickedUiButton)
 	ON_BN_CLICKED(IDC_BTURNOFF, &CChineseChessDlg::OnBnClickedBturnoff)
 	ON_BN_CLICKED(IDC_BLOADGAME, &CChineseChessDlg::OnBnClickedBloadgame)
+	ON_WM_TIMER()
 END_MESSAGE_MAP()
 
 
@@ -267,8 +272,16 @@ void CChineseChessDlg::OnBnClickedBreturn()
 	// TODO: Add your control notification handler code here
 	if (this->Model == 2) {
 		this->Model = 1;
+
 		//this->history.clear();
 		//this->history = vector<pair<Piece, Piece>>();
+		this->history.clear();
+		
+		KillTimer(1);
+		this->Count = 60;
+		sec.Format(_T("%d"), Count);
+		SetDlgItemText(IDC_EDIT_TIME, sec);
+		this->history = vector<pair<Piece, Piece>>();
 	}
 
 	CWnd::Invalidate();
@@ -283,6 +296,8 @@ void CChineseChessDlg::OnBnClickedBrestart()
 	this->game = Game(&player1, &player2);
 	this->history.clear();
 	this->history = vector<pair<Piece, Piece>>();
+	this->Count = 60;
+	SetTimer(1, 1000, NULL);
 	CWnd::Invalidate();
 	CChineseChessDlg::OnInitDialog();
 }
@@ -361,6 +376,8 @@ afx_msg void CChineseChessDlg::Start_Button_ini(){
 	GetDlgItem(IDC_BUNDO)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BTURNOFF)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BLOADGAME)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_EDIT_TIME)->ShowWindow(SW_HIDE);
+
 	if (this->Mute) GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_HIDE);
 	else GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_SHOW);
 }
@@ -381,6 +398,8 @@ afx_msg void CChineseChessDlg::SGame_Button_ini() {
 	GetDlgItem(IDC_BUNDO)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BTURNOFF)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BLOADGAME)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT_TIME)->ShowWindow(SW_SHOW);
+
 }
 
 
@@ -426,7 +445,7 @@ afx_msg void CChineseChessDlg::SGame_Page_ini() {
 	vector<vector<Piece>> B = this->game.getBoard();
 	Player* player1 = this->game.getPlayer1();
 	Player* player2 = this->game.getPlayer2();
-
+	SetTimer(1, 1000, NULL);
 	mem_dc.SelectObject(board);
 	dc.BitBlt(100, 100, Board.bmWidth, Board.bmHeight, &mem_dc, 0, 0, SRCCOPY);
 	//dc.StretchBlt(100, 100, 600, 600, &mem_dc, 0, 0,
@@ -605,6 +624,11 @@ void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 					this->history = vector<pair<Piece, Piece>>();
 					CChineseChessDlg::OnInitDialog();
 				}
+				Count = 60;
+				SetTimer(1, 1000, NULL);
+				
+				//sec.Format(_T("%d"),Count);
+				//SetDlgItemText(IDC_EDIT_TIME, sec);
 				CWnd::Invalidate();
 				
 			}
@@ -746,7 +770,26 @@ void CChineseChessDlg::BGM_Play()
 }
 
 
+void CChineseChessDlg::OnTimer(UINT_PTR nIDEvent)
+{
+	// TODO: 在此添加消息处理程序代码和/或调用默认值
+	if (Count == 0) {
+		game.switch_turn();
+		Count = 60;
+		sec.Format(_T("%d"), Count);
+		SetDlgItemText(IDC_EDIT_TIME, sec);
+		SetTimer(1, 1000, NULL);
+		return;
+	}
+	switch (nIDEvent) {
+	case 1:
+		sec.Format(_T("%d"), Count--);
+		SetDlgItemText(IDC_EDIT_TIME, sec);
 
-
-
+		break;
+	default:
+		break;
+	}
+	CDialogEx::OnTimer(nIDEvent);
+}
 
