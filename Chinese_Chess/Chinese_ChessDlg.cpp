@@ -64,6 +64,7 @@ CChineseChessDlg::CChineseChessDlg(CWnd* pParent /*=nullptr*/)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDI_GAME_ICON);
 	Bitmap_ini();
+	
 }
 
 void CChineseChessDlg::DoDataExchange(CDataExchange* pDX)
@@ -88,6 +89,7 @@ BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
 	ON_WM_LBUTTONDOWN()
 	ON_WM_MOUSEMOVE()
 	ON_BN_CLICKED(IDC_UI_BUTTON1, &CChineseChessDlg::OnBnClickedUiButton)
+	ON_WM_SIZE()
 END_MESSAGE_MAP()
 
 
@@ -96,8 +98,19 @@ END_MESSAGE_MAP()
 BOOL CChineseChessDlg::OnInitDialog()
 {
 	CDialogEx::OnInitDialog();
-
 	// Add "About..." menu item to system menu.
+
+	this->Resolution_x = GetSystemMetrics(SM_CXSCREEN) / Dev_window_size_x;
+	this->Resolution_y = GetSystemMetrics(SM_CYSCREEN) / Dev_window_size_y;
+	//this->Resolution_x = 1280.0 / Dev_window_size_x;
+	//this->Resolution_y = 960.0 / Dev_window_size_y;
+	int l = Dev_Wind_Left * this->Resolution_x;
+	int r = Dev_Wind_Right * this->Resolution_x;
+	int t = Dev_Wind_Top * this->Resolution_y;
+	int b = Dev_Wind_Bottom * this->Resolution_y;
+
+	CWnd::SetWindowPos(NULL,l,t,r,b,SWP_NOZORDER|SWP_NOMOVE);
+
 
 	// IDM_ABOUTBOX must be in the system command range.
 	ASSERT((IDM_ABOUTBOX & 0xFFF0) == IDM_ABOUTBOX);
@@ -361,8 +374,7 @@ afx_msg void CChineseChessDlg::SGame_Page_ini() {
 
 	CSize dim = board.GetBitmapDimension();
 
-	int lonr = GetSystemMetrics(SM_CXSCREEN);
-	int hign = GetSystemMetrics(SM_CYSCREEN);
+	
 	
 	vector<vector<Piece>> B = this->game.getBoard();
 	Player* player1 = this->game.getPlayer1();
@@ -639,4 +651,11 @@ void CChineseChessDlg::Bitmap_ini() {
 
 	selected.LoadBitmap(IDB_SELECTED);
 	selected.GetBitmap(&Selected);
+}
+
+void CChineseChessDlg::OnSize(UINT nType, int cx, int cy)
+{
+	CDialogEx::OnSize(nType, cx, cy);
+
+	// TODO: Add your message handler code here
 }

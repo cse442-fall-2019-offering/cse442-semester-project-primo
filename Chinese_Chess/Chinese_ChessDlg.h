@@ -5,6 +5,12 @@
 
 #define Dev_window_size_x	1920
 #define Dev_window_size_y	1080
+
+#define Dev_Wind_Left		500
+#define Dev_Wind_Right		1400
+#define Dev_Wind_Top		90
+#define Dev_Wind_Bottom		990
+
 #define Dev_piece_size		60
 #define Dev_board_Width		600
 #define Dev_board_Height	675
@@ -52,6 +58,9 @@ private:
 	BOOL Mute = FALSE;
 	int voulmn = 50;
 	Game game;
+
+	float Resolution_x;
+	float Resolution_y;
 
 	
 
@@ -140,4 +149,5 @@ public:
 		afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg void OnBnClickedUiButton();
 	void UIChange_Button_ini();
+	afx_msg void OnSize(UINT nType, int cx, int cy);
 };
