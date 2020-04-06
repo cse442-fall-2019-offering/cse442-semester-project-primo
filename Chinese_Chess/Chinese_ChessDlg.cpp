@@ -16,6 +16,8 @@
 #include<mmsystem.h>
 #pragma comment(lib,"winmm.lib")
 #include <Vfw.H>
+#include <string>
+#include "time.h"
 
 int PlayBGM = 0;
 int StopBGM = 0;
@@ -604,6 +606,15 @@ void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 					this->history.clear();
 					this->history = vector<pair<Piece, Piece>>();
 					CChineseChessDlg::OnInitDialog();
+
+					//Game result record
+					if(this->game.check_win()==1){
+					result_Record(false);
+					}
+					else {
+						result_Record(false);
+					}
+
 				}
 				CWnd::Invalidate();
 				
@@ -745,6 +756,46 @@ void CChineseChessDlg::BGM_Play()
 	mciSendString(_T("play backMusic repeat"), NULL, 0, NULL);
 }
 
+
+
+void CChineseChessDlg::result_Record(bool result) 
+{
+	CStdioFile file;
+	CString strline;
+	CString path("./history.txt");
+	BOOL flag = file.Open(path, CFile::modeNoTruncate);
+	if (!flag) {
+		return;
+	}
+	else {
+		file.SeekToEnd();
+		if (result) {
+			time_t t;
+			t = time(NULL);
+			struct tm* local(localtime(&t));
+			
+			CString date;
+			CString v;
+			
+			date = "%d %d %d %d", local->tm_year, local->tm_mon, local->tm_mday, local->tm_hour;
+
+			if (result) {
+				v = " r";
+			}
+			else {
+				v = " b";
+			}
+			strline = "\n";
+			strline += date;
+			strline += v;
+			file.WriteString(strline);
+		}
+
+	}
+	
+
+
+}
 
 
 

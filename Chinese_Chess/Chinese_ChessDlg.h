@@ -119,6 +119,7 @@ public:
 	afx_msg void OnBnClickedBundo();
 
 	void BGM_Play();
+	void result_Record(bool result);
 
 	bool contain(pair<int, int>);
 
