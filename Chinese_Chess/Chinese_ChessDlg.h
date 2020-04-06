@@ -130,4 +130,5 @@ public:
 	
 	CButton BTurnoff;
 	afx_msg void OnBnClickedBturnoff();
+	afx_msg void OnBnClickedSettings();
 };
