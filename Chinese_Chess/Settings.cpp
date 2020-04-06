@@ -14,10 +14,10 @@ CChineseChessDlg* _mainDlg;
 
 IMPLEMENT_DYNAMIC(Settings, CDialog)
 
-Settings::Settings(CWnd* pParent /*=nullptr*/, CChineseChessDlg mainDlg)
+Settings::Settings(CWnd* pParent /*=nullptr*/, CChineseChessDlg* mainDlg)
 	: CDialog(IDD_Settings, pParent)
 {
-	_mainDlg = &mainDlg;
+	_mainDlg = mainDlg;
 }
 
 Settings::~Settings()
@@ -41,7 +41,7 @@ END_MESSAGE_MAP()
 
 void Settings::OnBnClickedChangeui()
 {
-	_mainDlg->UIChange_Button_ini();
+	_mainDlg->OnBnClickedUiButton();
 }
 
 

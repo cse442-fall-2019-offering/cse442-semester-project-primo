@@ -7,7 +7,7 @@ class Settings : public CDialog
 {
 	DECLARE_DYNAMIC(Settings)
 
-	Settings(CWnd* pParent, CChineseChessDlg mainDlg);
+	Settings(CWnd* pParent, CChineseChessDlg* mainDlg);
 	// 标准构造函数
 	virtual ~Settings();
 
