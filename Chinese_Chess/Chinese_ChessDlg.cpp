@@ -19,7 +19,6 @@
 
 int PlayBGM = 0;
 int StopBGM = 0;
-int Loadgame = 0;
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -83,10 +82,8 @@ void CChineseChessDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BRESTART, BRestart);
 	DDX_Control(pDX, IDC_BUNDO, BUndo);
 	DDX_Control(pDX, IDC_BTURNOFF, BTurnoff);
-	DDX_Control(pDX, IDC_BLOADGAME, BLoadgame);
 	DDX_Control(pDX, IDC_EDIT_TIME, TimeCount);
 	DDX_Text(pDX, IDC_EDIT_TIME, sec);
-
 }
 
 BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
@@ -103,7 +100,6 @@ BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
 	ON_WM_MOUSEMOVE()
 	ON_BN_CLICKED(IDC_UI_BUTTON1, &CChineseChessDlg::OnBnClickedUiButton)
 	ON_BN_CLICKED(IDC_BTURNOFF, &CChineseChessDlg::OnBnClickedBturnoff)
-	ON_BN_CLICKED(IDC_BLOADGAME, &CChineseChessDlg::OnBnClickedBloadgame)
 	ON_WM_TIMER()
 END_MESSAGE_MAP()
 
@@ -239,7 +235,6 @@ HCURSOR CChineseChessDlg::OnQueryDragIcon()
 void CChineseChessDlg::OnBnClickedBstart()
 {
 	// TODO: Add your control notification handler code here
-	Loadgame = 1;
 	if (this->Model == 1|| this->Model == 3) this->Model = 2;
 	else this->Model = 1;
 	Player player1 = Player(1, human);
@@ -272,9 +267,6 @@ void CChineseChessDlg::OnBnClickedBreturn()
 	// TODO: Add your control notification handler code here
 	if (this->Model == 2) {
 		this->Model = 1;
-
-		//this->history.clear();
-		//this->history = vector<pair<Piece, Piece>>();
 		this->history.clear();
 		
 		KillTimer(1);
@@ -315,15 +307,6 @@ void CChineseChessDlg::OnBnClickedBturnoff()
 	}
 }
 
-void CChineseChessDlg::OnBnClickedBloadgame()
-{
-	if (this->Model == 1&&Loadgame == 1) {
-		this->Model = 2;
-	}
-	CWnd::Invalidate();
-	CChineseChessDlg::OnInitDialog();
-}
-
 //---------------------------Page Buttons initialization-------------------------------------
 
 afx_msg void CChineseChessDlg::Button_BackGround_ini() {
@@ -334,20 +317,17 @@ afx_msg void CChineseChessDlg::Button_BackGround_ini() {
 	CBitmap Returnbgp;
 	CBitmap Restartbgp;
 	CBitmap TurnoffBgp;
-	CBitmap LoadgameBgp;
 	Startbgp.LoadBitmap(IDB_BSTART);
 	Quitbgp.LoadBitmap(IDB_BQUIT);
 	Volbgp.LoadBitmap(IDB_BVOLUMN);
 	Returnbgp.LoadBitmap(IDB_BRETURN);
 	Restartbgp.LoadBitmap(IDB_BRESTART);
 	TurnoffBgp.LoadBitmap(IDB_BTURNOFF);
-	LoadgameBgp.LoadBitmap(IDB_BLOADGAME);
 	BStart.SetBitmap(Startbgp);
 	BQuit.SetBitmap(Quitbgp);
 	BReturn.SetBitmap(Returnbgp);
 	BRestart.SetBitmap(Restartbgp);
 	BTurnoff.SetBitmap(TurnoffBgp);
-	BLoadgame.SetBitmap(LoadgameBgp);
 	if (this->Mute) BVol.SetBitmap(NULL);
 	else BVol.SetBitmap(Volbgp);
 
@@ -362,11 +342,10 @@ afx_msg void CChineseChessDlg::Start_Button_ini(){
 /*	Enable the Start up Page buttons*/
 	BStart.MoveWindow(200, 300, 180, 70, true);
 	BQuit.MoveWindow(500, 300, 180, 70, true);
-	BReturn.MoveWindow(0, 0, 48, 48, true);
-	BRestart.MoveWindow(720, 0, 48, 48, true);
+	BReturn.MoveWindow(0, 0, 47, 47, true);
+	BRestart.MoveWindow(720, 0, 47, 47, true);
 	BUndo.MoveWindow(750, 200, 100, 50, true);
 	BTurnoff.MoveWindow(720, 720, 47, 47, true);
-	BLoadgame.MoveWindow(416, 300, 48, 48, true);
 	GetDlgItem(IDC_BQUIT)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BVOL)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_SHOW);
@@ -375,11 +354,10 @@ afx_msg void CChineseChessDlg::Start_Button_ini(){
 	GetDlgItem(IDC_BRESTART)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BUNDO)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BTURNOFF)->ShowWindow(SW_SHOW);
-	GetDlgItem(IDC_BLOADGAME)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_EDIT_TIME)->ShowWindow(SW_HIDE);
-
 	if (this->Mute) GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_HIDE);
 	else GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_SHOW);
+	//GetDlgItem(IDC_BQUIT)->ShowWindow(SW_HIDE);
 }
 
 /*	Single Game Page buttons initialization
@@ -397,9 +375,7 @@ afx_msg void CChineseChessDlg::SGame_Button_ini() {
 	GetDlgItem(IDC_BRESTART)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BUNDO)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BTURNOFF)->ShowWindow(SW_SHOW);
-	GetDlgItem(IDC_BLOADGAME)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_EDIT_TIME)->ShowWindow(SW_SHOW);
-
 }
 
 
@@ -792,4 +768,3 @@ void CChineseChessDlg::OnTimer(UINT_PTR nIDEvent)
 	}
 	CDialogEx::OnTimer(nIDEvent);
 }
-

@@ -216,12 +216,8 @@
     <None Include="res\ChineseChess.rc2" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="res\bitmap2.bmp" />
-    <Image Include="res\bloadgame.bmp" />
     <Image Include="res\board.bmp" />
     <Image Include="res\pieces\bitmap1.bmp" />
-    <Image Include="res\pieces\bitmap2.bmp" />
-    <Image Include="res\pieces\bturnoff.bmp" />
     <Image Include="res\selected.bmp" />
     <Image Include="res\bgp.bmp" />
     <Image Include="res\bgp2.bmp" />
