@@ -117,6 +117,8 @@ public:
 	afx_msg void OnBnClickedBrestart();
 	CButton BUndo;
 	afx_msg void OnBnClickedBundo();
+	CButton BHistory;
+	afx_msg void OnBnClickedBHistory();
 
 	void BGM_Play();
 	void result_Record(bool result);

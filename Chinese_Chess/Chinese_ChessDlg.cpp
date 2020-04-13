@@ -80,6 +80,7 @@ void CChineseChessDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BSTART, BStart);
 	DDX_Control(pDX, IDC_BQUIT, BQuit);
 	DDX_Control(pDX, IDC_BVOL, BVol);
+	DDX_Control(pDX, IDC_History, BHistory);
 	DDX_Control(pDX, IDC_BRETURN, BReturn);
 	DDX_Control(pDX, IDC_BRESTART, BRestart);
 	DDX_Control(pDX, IDC_BUNDO, BUndo);
@@ -97,6 +98,7 @@ BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BRETURN, &CChineseChessDlg::OnBnClickedBreturn)
 	ON_BN_CLICKED(IDC_BRESTART, &CChineseChessDlg::OnBnClickedBrestart)
 	ON_BN_CLICKED(IDC_BUNDO, &CChineseChessDlg::OnBnClickedBundo)
+	ON_BN_CLICKED(IDC_History, &CChineseChessDlg::OnBnClickedBHistory)
 	ON_WM_LBUTTONDOWN()
 	ON_WM_MOUSEMOVE()
 	ON_BN_CLICKED(IDC_UI_BUTTON1, &CChineseChessDlg::OnBnClickedUiButton)
@@ -354,12 +356,14 @@ afx_msg void CChineseChessDlg::Start_Button_ini(){
 	BUndo.MoveWindow(750, 200, 100, 50, true);
 	BTurnoff.MoveWindow(720, 720, 47, 47, true);
 	BLoadgame.MoveWindow(416, 300, 48, 48, true);
+	BHistory.MoveWindow(416, 400, 48, 48, true);
 	GetDlgItem(IDC_BQUIT)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BVOL)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BSTART)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BRETURN)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BRESTART)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_History)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BUNDO)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BTURNOFF)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BLOADGAME)->ShowWindow(SW_SHOW);
@@ -383,6 +387,7 @@ afx_msg void CChineseChessDlg::SGame_Button_ini() {
 	GetDlgItem(IDC_BUNDO)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BTURNOFF)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BLOADGAME)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_History)->ShowWindow(SW_HIDE);
 }
 
 
@@ -749,6 +754,13 @@ void CChineseChessDlg::OnBnClickedBundo()
 		CWnd::Invalidate();
 	}
 	// TODO: Add your control notification handler code here
+}
+
+void CChineseChessDlg::OnBnClickedBHistory()
+{
+	
+
+
 }
 
 void CChineseChessDlg::BGM_Play()
