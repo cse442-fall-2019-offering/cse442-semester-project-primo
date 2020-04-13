@@ -110,6 +110,7 @@ BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_MUL_LOCAL, &CChineseChessDlg::OnBnClickedMulLocal)
 	ON_WM_TIMER()
 	ON_BN_CLICKED(IDC_BLOADGAME, &CChineseChessDlg::OnBnClickedBloadgame)
+	ON_WM_SIZE()
 END_MESSAGE_MAP()
 
 
@@ -405,7 +406,7 @@ afx_msg void CChineseChessDlg::Button_BackGround_ini() {
 	BReturn.SetBitmap(Returnbgp);
 	BRestart.SetBitmap(Restartbgp);
 	BTurnoff.SetBitmap(TurnoffBgp);
-	BLoadgame.SetBitmap(LoadgameBgp)
+	BLoadgame.SetBitmap(LoadgameBgp);
 	
 	if (this->Mute) BVol.SetBitmap(NULL);
 	else BVol.SetBitmap(Volbgp);
@@ -671,7 +672,7 @@ void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 
 	if (this->Model == Single_Page|| this->Model == Multi_Local_Page) {
 		pair<int, int> location = getIndex(this->cur_point);
-		if (location.second == -1) {
+		if (location.first != -1) {
 			CString strx;
 			strx.Format(_T("%d"), location.first);
 			CString stry;
@@ -750,7 +751,7 @@ void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 pair<int, int> CChineseChessDlg::getIndex(CPoint point) {
 	int x = point.x;
 	int y = point.y;
-	if (x < 100 || x > 600 || y < 100 || y > 675) {
+	if (x < 100 || x > 700 || y < 120 || y > 730) {
 		pair<int, int> pair(-1, -1);
 		return pair;
 	}
@@ -857,4 +858,9 @@ void CChineseChessDlg::OnTimer(UINT_PTR nIDEvent)
 }
 
 
+void CChineseChessDlg::OnSize(UINT nType, int cx, int cy)
+{
+	CDialogEx::OnSize(nType, cx, cy);
 
+	// TODO: Add your message handler code here
+}
