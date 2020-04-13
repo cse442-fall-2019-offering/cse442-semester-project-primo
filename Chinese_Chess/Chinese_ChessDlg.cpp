@@ -425,6 +425,7 @@ afx_msg void CChineseChessDlg::Start_Button_ini(){
 	GetDlgItem(IDC_BRESTART)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BUNDO)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_Player)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_BLOADGAME)->ShowWindow(SW_SHOW);
 //	GetDlgItem(IDC_EDIT_TIME)->ShowWindow(SW_HIDE);
 
 	if (this->Mute) GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_HIDE);
@@ -448,6 +449,7 @@ afx_msg void CChineseChessDlg::SGame_Button_ini() {
 	GetDlgItem(IDC_BRESTART)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BUNDO)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BTURNOFF)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_BLOADGAME)->ShowWindow(SW_HIDE);
 }
 
 afx_msg void CChineseChessDlg::Mlocal_Button_ini() {
@@ -463,6 +465,7 @@ afx_msg void CChineseChessDlg::Mlocal_Button_ini() {
 	GetDlgItem(IDC_BUNDO)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BTURNOFF)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_Player)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_BLOADGAME)->ShowWindow(SW_HIDE);
 }
 
 void CChineseChessDlg::UIChange_Button_ini()
