@@ -164,8 +164,6 @@ public:
 	CButton BMul_Local;
 	afx_msg void OnBnClickedMulLocal();
 	CStatic Show_Player;
-	CButton BLoadgame;
-	afx_msg void OnBnClickedBloadgame();
 	CEdit TimeCount;
 	CString sec;
 	afx_msg void OnTimer(UINT_PTR nIDEvent);

@@ -86,9 +86,6 @@ void CChineseChessDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BTURNOFF, BTurnoff);
 	DDX_Control(pDX, IDC_MUL_LOCAL, BMul_Local);
 	DDX_Control(pDX, IDC_Player, Show_Player);
-	DDX_Control(pDX, IDC_BLOADGAME, BLoadgame);
-	DDX_Control(pDX, IDC_EDIT_TIME, TimeCount);
-	DDX_Text(pDX, IDC_EDIT_TIME, sec);
 }
 
 BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
@@ -107,7 +104,6 @@ BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
 	ON_WM_SIZE()
 	ON_BN_CLICKED(IDC_BTURNOFF, &CChineseChessDlg::OnBnClickedBturnoff)
 	ON_BN_CLICKED(IDC_MUL_LOCAL, &CChineseChessDlg::OnBnClickedMulLocal)
-	ON_BN_CLICKED(IDC_BLOADGAME, &CChineseChessDlg::OnBnClickedBloadgame)
 	ON_WM_TIMER()
 END_MESSAGE_MAP()
 
@@ -337,7 +333,6 @@ void CChineseChessDlg::OnBnClickedBreturn()
 		KillTimer(1);
 		this->Count = 60;
 		sec.Format(_T("%d"), Count);
-		SetDlgItemText(IDC_EDIT_TIME, sec);
 		this->history = vector<pair<Piece, Piece>>();
 	}
 
@@ -372,15 +367,6 @@ void CChineseChessDlg::OnBnClickedBturnoff()
 	}
 }
 
-void CChineseChessDlg::OnBnClickedBloadgame()
-{
-	if (this->Model == 1&&Loadgame == 1) {
-		this->Model = 2;
-	}
-	CWnd::Invalidate();
-	CChineseChessDlg::OnInitDialog();
-}
-
 //---------------------------Page Buttons initialization-------------------------------------
 
 afx_msg void CChineseChessDlg::Button_BackGround_ini() {
@@ -391,20 +377,17 @@ afx_msg void CChineseChessDlg::Button_BackGround_ini() {
 	CBitmap Returnbgp;
 	CBitmap Restartbgp;
 	CBitmap TurnoffBgp;
-	CBitmap LoadgameBgp;
 	Startbgp.LoadBitmap(IDB_BSTART);
 	Quitbgp.LoadBitmap(IDB_BQUIT);
 	Volbgp.LoadBitmap(IDB_BVOLUMN);
 	Returnbgp.LoadBitmap(IDB_BRETURN);
 	Restartbgp.LoadBitmap(IDB_BRESTART);
 	TurnoffBgp.LoadBitmap(IDB_BTURNOFF);
-	LoadgameBgp.LoadBitmap(IDB_BLOADGAME);
 	BStart.SetBitmap(Startbgp);
 	BQuit.SetBitmap(Quitbgp);
 	BReturn.SetBitmap(Returnbgp);
 	BRestart.SetBitmap(Restartbgp);
 	BTurnoff.SetBitmap(TurnoffBgp);
-	BLoadgame.SetBitmap(LoadgameBgp);
 	if (this->Mute) BVol.SetBitmap(NULL);
 	else BVol.SetBitmap(Volbgp);
 
@@ -426,7 +409,6 @@ afx_msg void CChineseChessDlg::Start_Button_ini(){
 	GetDlgItem(IDC_BVOL)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BTURNOFF)->ShowWindow(SW_SHOW);
-	GetDlgItem(IDC_BLOADGAME)->ShowWindow(SW_SHOW);
 
 	BReturn.MoveWindow(0, 0, 47, 47, true);
 	BRestart.MoveWindow(720, 0, 47, 47, true);
@@ -437,7 +419,6 @@ afx_msg void CChineseChessDlg::Start_Button_ini(){
 	GetDlgItem(IDC_BRESTART)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BUNDO)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_Player)->ShowWindow(SW_HIDE);
-	GetDlgItem(IDC_EDIT_TIME)->ShowWindow(SW_HIDE);
 
 	if (this->Mute) GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_HIDE);
 	else GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_SHOW);
@@ -494,8 +475,6 @@ void CChineseChessDlg::UIChange_Button_ini()
 	mem_dc.SelectObject(bitmap); // Selects bitmap into CDC
 	dc.StretchBlt(0, 0, rect.Width(), rect.Height(), &mem_dc, 0, 0,
 		Bitmap.bmWidth, Bitmap.bmHeight, SRCCOPY);
-	GetDlgItem(IDC_BLOADGAME)->ShowWindow(SW_HIDE);
-	GetDlgItem(IDC_EDIT_TIME)->ShowWindow(SW_SHOW);
 }
 
 
@@ -835,14 +814,12 @@ void CChineseChessDlg::OnTimer(UINT_PTR nIDEvent)
 		game.switch_turn();
 		Count = 60;
 		sec.Format(_T("%d"), Count);
-		SetDlgItemText(IDC_EDIT_TIME, sec);
 		SetTimer(1, 1000, NULL);
 		return;
 	}
 	switch (nIDEvent) {
 	case 1:
 		sec.Format(_T("%d"), Count--);
-		SetDlgItemText(IDC_EDIT_TIME, sec);
 
 		break;
 	default:
