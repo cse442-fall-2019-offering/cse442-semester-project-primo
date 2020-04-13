@@ -14,6 +14,7 @@
 #include "Game.h"
 #include <vector>
 #include<mmsystem.h>
+#include "History.h"
 #pragma comment(lib,"winmm.lib")
 #include <Vfw.H>
 #include <string>
@@ -758,7 +759,8 @@ void CChineseChessDlg::OnBnClickedBundo()
 
 void CChineseChessDlg::OnBnClickedBHistory()
 {
-	
+	History dlg;
+	dlg.DoModal();
 
 
 }
