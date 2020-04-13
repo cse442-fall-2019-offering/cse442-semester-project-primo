@@ -17,6 +17,7 @@
 #define IDB_BSTART                      113
 #define IDB_BVOLUMN                     114
 #define IDB_BVOL1                       115
+#define IDB_BITMAP1                     116
 #define IDB_BOARD                       200
 #define IDB_BGP                         201
 #define IDB_BGP2                        202
@@ -32,9 +33,12 @@
 #define IDC_STATIC3                     1010
 #define IDC_BUNDO                       1011
 #define IDC_BTURNOFF                    1012
-#define IDC_BLOADGAME                   1014
-#define IDC_EDIT_TIME                   1015
+#define IDC_MUL_LOCAL                   1013
+#define IDC_Player                      1014
 #define IDC_EDIT1                       1017
+#define IDC_EDIT_TIME                   1017
+#define IDC_BUTTON1                     1019
+#define IDC_BLOADGAME                   1019
 #define IDB_PCAN2                       1100
 #define IDB_PCHAR2                      1101
 #define IDB_PBISHOP2                    1102
@@ -55,9 +59,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        110
+#define _APS_NEXT_RESOURCE_VALUE        118
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1018
+#define _APS_NEXT_CONTROL_VALUE         1020
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif
