@@ -35,7 +35,6 @@
 #define IDC_BTURNOFF                    1012
 #define IDC_MUL_LOCAL                   1013
 #define IDC_Player                      1014
-#define IDC_EDIT1                       1017
 #define IDC_EDIT_TIME                   1017
 #define IDC_BUTTON1                     1019
 #define IDC_BLOADGAME                   1019

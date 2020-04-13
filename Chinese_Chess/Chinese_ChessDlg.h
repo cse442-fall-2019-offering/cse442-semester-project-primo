@@ -170,4 +170,6 @@ public:
 	CSliderCtrl BVolbar;
 	CButton BLoadgame;
 	afx_msg void OnBnClickedBloadgame();
+	afx_msg void OnSize(UINT nType, int cx, int cy);
+
 };
