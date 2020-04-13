@@ -7,9 +7,9 @@
 #define Dev_window_size_y	1080
 
 #define Dev_Wind_Left		500
-#define Dev_Wind_Right		1400
-#define Dev_Wind_Top		90
-#define Dev_Wind_Bottom		990
+#define Dev_Wind_Right		900
+#define Dev_Wind_Top		100
+#define Dev_Wind_Bottom		850
 
 #define Dev_piece_size		60
 #define Dev_board_Width		600
