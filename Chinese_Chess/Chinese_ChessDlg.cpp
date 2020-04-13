@@ -102,7 +102,7 @@ BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
 	ON_WM_LBUTTONDOWN()
 	ON_WM_MOUSEMOVE()
 	ON_BN_CLICKED(IDC_UI_BUTTON1, &CChineseChessDlg::OnBnClickedUiButton)
-	ON_WM_SIZE()
+//	ON_WM_SIZE()
 	ON_BN_CLICKED(IDC_BTURNOFF, &CChineseChessDlg::OnBnClickedBturnoff)
 	ON_BN_CLICKED(IDC_MUL_LOCAL, &CChineseChessDlg::OnBnClickedMulLocal)
 	ON_WM_TIMER()
@@ -520,8 +520,6 @@ afx_msg void CChineseChessDlg::SGame_Page_ini() {
 	mem_dc.CreateCompatibleDC(&dc); 
 
 	CSize dim = board.GetBitmapDimension();
-
-	
 	
 	vector<vector<Piece>> B = this->game.getBoard();
 	Player* player1 = this->game.getPlayer1();
@@ -531,6 +529,7 @@ afx_msg void CChineseChessDlg::SGame_Page_ini() {
 	//dc.BitBlt(100, 100, Board.bmWidth/2, Board.bmHeight/2, &mem_dc, 0, 0, SRCCOPY);
 	dc.StretchBlt(100, 100, 600, 675, &mem_dc, 0, 0,
 		Board.bmWidth, Board.bmHeight, SRCCOPY);
+	
 	int ini_x, ini_y;
 	int increase_x, increase_y;
 	ini_x = 120;
@@ -646,7 +645,6 @@ void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 
 	if (this->Model == Single_Page|| this->Model == Multi_Local_Page) {
 		pair<int, int> location = getIndex(this->cur_point);
-
 		//dispLay the coordinates on the board, if its out of range, print -1,-1
 		CString strx;
 		strx.Format(_T("%d"), location.first);
@@ -798,12 +796,6 @@ void CChineseChessDlg::Bitmap_ini() {
 	selected.GetBitmap(&Selected);
 }
 
-void CChineseChessDlg::OnSize(UINT nType, int cx, int cy)
-{
-	CDialogEx::OnSize(nType, cx, cy);
-}
-
-	// TODO: Add your message handler code here
 void CChineseChessDlg::BGM_Play()
 {
 	mciSendString(_T("open res\\BGM.mp3 alias backMusic"), NULL, 0, NULL);

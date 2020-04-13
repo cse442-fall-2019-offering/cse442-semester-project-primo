@@ -157,7 +157,7 @@ public:
 		afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg void OnBnClickedUiButton();
 	void UIChange_Button_ini();
-	afx_msg void OnSize(UINT nType, int cx, int cy);
+//	afx_msg void OnSize(UINT nType, int cx, int cy);
 	
 	CButton BTurnoff;
 	afx_msg void OnBnClickedBturnoff();
