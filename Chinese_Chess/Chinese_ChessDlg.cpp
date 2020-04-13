@@ -419,6 +419,7 @@ afx_msg void CChineseChessDlg::Start_Button_ini(){
 	BRestart.MoveWindow(720, 0, 47, 47, true);
 	BUndo.MoveWindow(750, 200, 100, 50, true);
 	BTurnoff.MoveWindow(720, 720, 47, 47, true);
+	BLoadgame.MoveWindow(416, 300, 48, 48, true);
 	Show_Player.MoveWindow(350, 50, 200, 20, true);
 	GetDlgItem(IDC_BRETURN)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BRESTART)->ShowWindow(SW_HIDE);
