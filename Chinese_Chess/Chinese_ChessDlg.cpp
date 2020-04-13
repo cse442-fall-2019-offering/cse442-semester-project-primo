@@ -121,8 +121,8 @@ BOOL CChineseChessDlg::OnInitDialog()
 	CDialogEx::OnInitDialog();
 	// Add "About..." menu item to system menu.
 
-	this->Resolution_x = GetSystemMetrics(SM_CXSCREEN) / Dev_window_size_x;
-	this->Resolution_y = GetSystemMetrics(SM_CYSCREEN) / Dev_window_size_y;
+	this->Resolution_x = GetSystemMetrics(SM_CXSCREEN) * 1.0/ Dev_window_size_x;
+	this->Resolution_y = GetSystemMetrics(SM_CYSCREEN) * 1.0/ Dev_window_size_y;
 	int l = Dev_Wind_Left * this->Resolution_x;
 	int r = Dev_Wind_Right * this->Resolution_x;
 	int t = Dev_Wind_Top * this->Resolution_y;
