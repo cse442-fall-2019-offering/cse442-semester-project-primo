@@ -751,12 +751,13 @@ void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 pair<int, int> CChineseChessDlg::getIndex(CPoint point) {
 	int x = point.x;
 	int y = point.y;
-	if (x < 100 || x > 700 || y < 120 || y > 730) {
+	int line = (y - 120) / 63;
+	int row = (x - 120) / 63;
+	if (row < 0 || row > 8 || line < 0 || line > 9) {
 		pair<int, int> pair(-1, -1);
 		return pair;
 	}
-	int line = (y - 120) / 63;
-	int row = (x - 120) / 63;
+	
 	pair<int, int> pair(line, row);
 
 	return pair;
