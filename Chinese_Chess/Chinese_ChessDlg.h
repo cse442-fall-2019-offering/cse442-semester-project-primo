@@ -168,4 +168,6 @@ public:
 	CString sec;
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 	CSliderCtrl BVolbar;
+	CButton BLoadgame;
+	afx_msg void OnBnClickedBloadgame();
 };

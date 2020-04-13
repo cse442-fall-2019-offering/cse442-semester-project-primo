@@ -109,6 +109,7 @@ BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BTURNOFF, &CChineseChessDlg::OnBnClickedBturnoff)
 	ON_BN_CLICKED(IDC_MUL_LOCAL, &CChineseChessDlg::OnBnClickedMulLocal)
 	ON_WM_TIMER()
+	ON_BN_CLICKED(IDC_BLOADGAME, &CChineseChessDlg::OnBnClickedBloadgame)
 END_MESSAGE_MAP()
 
 
@@ -370,6 +371,15 @@ void CChineseChessDlg::OnBnClickedBturnoff()
 	}
 }
 
+void CChineseChessDlg::OnBnClickedBloadgame()
+{
+	if (this->Model == 1 && Loadgame == 1) {
+		this->Model = 2;
+	}
+	CWnd::Invalidate();
+	CChineseChessDlg::OnInitDialog();
+}
+
 //---------------------------Page Buttons initialization-------------------------------------
 
 afx_msg void CChineseChessDlg::Button_BackGround_ini() {
@@ -380,6 +390,7 @@ afx_msg void CChineseChessDlg::Button_BackGround_ini() {
 	CBitmap Returnbgp;
 	CBitmap Restartbgp;
 	CBitmap TurnoffBgp;
+	CBitmap LoadgameBgp;
 	
 	Startbgp.LoadBitmap(IDB_BSTART);
 	Quitbgp.LoadBitmap(IDB_BQUIT);
@@ -387,12 +398,14 @@ afx_msg void CChineseChessDlg::Button_BackGround_ini() {
 	Returnbgp.LoadBitmap(IDB_BRETURN);
 	Restartbgp.LoadBitmap(IDB_BRESTART);
 	TurnoffBgp.LoadBitmap(IDB_BTURNOFF);
-	
+	LoadgameBgp.LoadBitmapW(IDB_BLOADGAME);
+
 	BStart.SetBitmap(Startbgp);
 	BQuit.SetBitmap(Quitbgp);
 	BReturn.SetBitmap(Returnbgp);
 	BRestart.SetBitmap(Restartbgp);
 	BTurnoff.SetBitmap(TurnoffBgp);
+	BLoadgame.SetBitmap(LoadgameBgp)
 	
 	if (this->Mute) BVol.SetBitmap(NULL);
 	else BVol.SetBitmap(Volbgp);
@@ -424,6 +437,7 @@ afx_msg void CChineseChessDlg::Start_Button_ini(){
 	BTurnoff.MoveWindow(720, 720, 47, 47, true);
 	BLoadgame.MoveWindow(416, 300, 48, 48, true);
 	Show_Player.MoveWindow(350, 50, 200, 20, true);
+
 	GetDlgItem(IDC_BRETURN)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BRESTART)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BUNDO)->ShowWindow(SW_HIDE);
@@ -841,3 +855,6 @@ void CChineseChessDlg::OnTimer(UINT_PTR nIDEvent)
 	}
 	CDialogEx::OnTimer(nIDEvent);
 }
+
+
+
