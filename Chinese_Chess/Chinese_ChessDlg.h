@@ -167,4 +167,5 @@ public:
 	CEdit TimeCount;
 	CString sec;
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
+	CSliderCtrl BVolbar;
 };

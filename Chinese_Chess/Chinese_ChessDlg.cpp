@@ -86,6 +86,7 @@ void CChineseChessDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BTURNOFF, BTurnoff);
 	DDX_Control(pDX, IDC_MUL_LOCAL, BMul_Local);
 	DDX_Control(pDX, IDC_Player, Show_Player);
+	DDX_Control(pDX, IDC_VOLBAR, BVolbar);
 }
 
 BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
@@ -375,17 +376,20 @@ afx_msg void CChineseChessDlg::Button_BackGround_ini() {
 	CBitmap Returnbgp;
 	CBitmap Restartbgp;
 	CBitmap TurnoffBgp;
+	
 	Startbgp.LoadBitmap(IDB_BSTART);
 	Quitbgp.LoadBitmap(IDB_BQUIT);
 	Volbgp.LoadBitmap(IDB_BVOLUMN);
 	Returnbgp.LoadBitmap(IDB_BRETURN);
 	Restartbgp.LoadBitmap(IDB_BRESTART);
 	TurnoffBgp.LoadBitmap(IDB_BTURNOFF);
+	
 	BStart.SetBitmap(Startbgp);
 	BQuit.SetBitmap(Quitbgp);
 	BReturn.SetBitmap(Returnbgp);
 	BRestart.SetBitmap(Restartbgp);
 	BTurnoff.SetBitmap(TurnoffBgp);
+	
 	if (this->Mute) BVol.SetBitmap(NULL);
 	else BVol.SetBitmap(Volbgp);
 
@@ -401,6 +405,8 @@ afx_msg void CChineseChessDlg::Start_Button_ini(){
 	BStart.MoveWindow(200, 300, 180, 70, true);
 	BQuit.MoveWindow(500, 300, 180, 70, true);
 	BMul_Local.MoveWindow(200, 400, 180, 70, true);
+	BVol.MoveWindow(840, 440, 30, 30, true);
+	BVolbar.MoveWindow(840, 290, 30, 150, true);
 	GetDlgItem(IDC_BSTART)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BQUIT)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_MUL_LOCAL)->ShowWindow(SW_SHOW);
@@ -714,8 +720,6 @@ void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 
 	CDialogEx::OnLButtonDown(nFlags, point);
 }
-
-
 
 pair<int, int> CChineseChessDlg::getIndex(CPoint point) {
 	int x = point.x;
