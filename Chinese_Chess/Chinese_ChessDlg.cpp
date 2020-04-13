@@ -468,6 +468,7 @@ afx_msg void CChineseChessDlg::SGame_Button_ini() {
 	GetDlgItem(IDC_BUNDO)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BTURNOFF)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BLOADGAME)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT_TIME)->ShowWindow(SW_SHOW);
 }
 
 afx_msg void CChineseChessDlg::Mlocal_Button_ini() {
@@ -484,6 +485,7 @@ afx_msg void CChineseChessDlg::Mlocal_Button_ini() {
 	GetDlgItem(IDC_BTURNOFF)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_Player)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BLOADGAME)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT_TIME)->ShowWindow(SW_SHOW);
 }
 
 void CChineseChessDlg::UIChange_Button_ini()
