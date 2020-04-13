@@ -520,6 +520,7 @@ afx_msg void CChineseChessDlg::Start_Page_ini() {
 /*	Single Game Page initialization
 */
 afx_msg void CChineseChessDlg::SGame_Page_ini() {
+	Loadgame = 1;
 	CRect rect;
 	GetClientRect(&rect);
 	
