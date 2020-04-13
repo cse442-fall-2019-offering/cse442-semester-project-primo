@@ -601,14 +601,15 @@ void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 				pair<Piece, Piece> step(old_m, old_d);
 
 				this->history.push_back(step);
-				if (this->game.check_win() != 0) {
+				int result = this->game.check_win();
+				if (result != 0) {
 					this->Model = 1;
 					this->history.clear();
 					this->history = vector<pair<Piece, Piece>>();
 					CChineseChessDlg::OnInitDialog();
 
 					//Game result record
-					if(this->game.check_win()==1){
+					if(result==1){
 					result_Record(false);
 					}
 					else {
@@ -762,35 +763,35 @@ void CChineseChessDlg::result_Record(bool result)
 {
 	CStdioFile file;
 	CString strline;
-	CString path("./history.txt");
-	BOOL flag = file.Open(path, CFile::modeNoTruncate);
+	CString path("history.txt");
+	BOOL flag = file.Open(path, CFile::modeCreate | CFile::modeNoTruncate | CFile::modeWrite);
 	if (!flag) {
 		return;
 	}
 	else {
 		file.SeekToEnd();
+		time_t t;
+		t = time(NULL);
+		struct tm local;
+		localtime_s(&local, &t);
+			
+		CString date;
+		CString v;
+		local.tm_year += 1900;
+		local.tm_mon += 1;
+			
+		date.Format(L"%d %d %d %d", local.tm_year, local.tm_mon, local.tm_mday, local.tm_hour);
+
 		if (result) {
-			time_t t;
-			t = time(NULL);
-			struct tm* local(localtime(&t));
-			
-			CString date;
-			CString v;
-			
-			date = "%d %d %d %d", local->tm_year, local->tm_mon, local->tm_mday, local->tm_hour;
-
-			if (result) {
-				v = " r";
+			v = " r";
 			}
-			else {
-				v = " b";
+		else {
+			v = " b";
 			}
-			strline = "\n";
-			strline += date;
-			strline += v;
-			file.WriteString(strline);
-		}
-
+		strline = "\n";
+		strline += date;
+		strline += v;
+		file.WriteString(strline);
 	}
 	
 
