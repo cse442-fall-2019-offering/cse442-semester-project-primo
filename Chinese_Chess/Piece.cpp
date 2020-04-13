@@ -761,6 +761,15 @@ vector<pair<int, int>> Piece::Soldier_move(vector<vector<Piece>> Board) {
 }
 
 //setter function
+void Piece::copy(Piece p) {
+	this->line = p.get_line();
+	this->row = p.get_row();
+	this->ini_line = p.get_ini_line();
+	this->ini_row = p.get_ini_row();
+	this->type = p.get_type();
+	this->player = p.get_player();
+}
+
 void Piece::set_line(int line) {
 	this->line = line;
 }

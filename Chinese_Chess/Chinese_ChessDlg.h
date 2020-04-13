@@ -51,10 +51,12 @@ public:
 #define Startup_Page 1
 #define Single_Page 2
 #define UI2_Page 3
+#define Multi_Local_Page 4
 
 
 private:
 	int Model = 1;
+	int Count=60;
 	BOOL Mute = FALSE;
 	int voulmn = 50;
 	Game game;
@@ -62,7 +64,7 @@ private:
 	float Resolution_x;
 	float Resolution_y;
 
-	
+	vector< pair<Piece, Piece> > history;
 
 	CPoint cur_point;
 
@@ -127,6 +129,8 @@ protected:
 	afx_msg void Start_Page_ini();
 	afx_msg void SGame_Button_ini();
 	afx_msg void SGame_Page_ini();
+	afx_msg void Mlocal_Page_ini();
+	afx_msg void Mlocal_Button_ini();
 
 	pair<int, int> getIndex(CPoint point);
 
@@ -142,6 +146,10 @@ public:
 	afx_msg void OnBnClickedBreturn();
 	CButton BRestart;
 	afx_msg void OnBnClickedBrestart();
+	CButton BUndo;
+	afx_msg void OnBnClickedBundo();
+
+	void BGM_Play();
 
 	bool contain(pair<int, int>);
 
@@ -150,4 +158,15 @@ public:
 	afx_msg void OnBnClickedUiButton();
 	void UIChange_Button_ini();
 	afx_msg void OnSize(UINT nType, int cx, int cy);
+	
+	CButton BTurnoff;
+	afx_msg void OnBnClickedBturnoff();
+	CButton BMul_Local;
+	afx_msg void OnBnClickedMulLocal();
+	CStatic Show_Player;
+	CButton BLoadgame;
+	afx_msg void OnBnClickedBloadgame();
+	CEdit TimeCount;
+	CString sec;
+	afx_msg void OnTimer(UINT_PTR nIDEvent);
 };

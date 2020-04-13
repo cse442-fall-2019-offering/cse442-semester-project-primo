@@ -152,6 +152,21 @@
     <Image Include="res\board.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\pieces\bitmap1.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bloadgame.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\pieces\bitmap2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bitmap2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\pieces\bturnoff.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Media Include="res\sound of piece.WAV">
