@@ -1,4 +1,3 @@
-﻿
 // Chinese_ChessDlg.cpp : implementation file
 //
 
@@ -13,6 +12,7 @@
 #include <Windows.h>
 #include "Game.h"
 #include <vector>
+#include "Settings.h"
 #include<mmsystem.h>
 #pragma comment(lib,"winmm.lib")
 #include <Vfw.H>
@@ -112,6 +112,7 @@ BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_UI_BUTTON1, &CChineseChessDlg::OnBnClickedUiButton)
 //	ON_WM_SIZE()
 	ON_BN_CLICKED(IDC_BTURNOFF, &CChineseChessDlg::OnBnClickedBturnoff)
+	ON_BN_CLICKED(IDC_Settings, &CChineseChessDlg::OnBnClickedSettings)
 	ON_BN_CLICKED(IDC_MUL_LOCAL, &CChineseChessDlg::OnBnClickedMulLocal)
 	ON_WM_TIMER()
 	ON_BN_CLICKED(IDC_BLOADGAME, &CChineseChessDlg::OnBnClickedBloadgame)
@@ -1040,5 +1041,10 @@ void CChineseChessDlg::OnSize(UINT nType, int cx, int cy)
 {
 	CDialogEx::OnSize(nType, cx, cy);
 
-	// TODO: Add your message handler code here
+
+void CChineseChessDlg::OnBnClickedSettings()
+{
+	Settings dlg(nullptr,this);
+	dlg.DoModal();
+
 }

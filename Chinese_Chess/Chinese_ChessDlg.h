@@ -170,6 +170,7 @@ public:
 	
 	CButton BTurnoff;
 	afx_msg void OnBnClickedBturnoff();
+	afx_msg void OnBnClickedSettings();
 	CButton BMul_Local;
 	afx_msg void OnBnClickedMulLocal();
 	CStatic Show_Player;

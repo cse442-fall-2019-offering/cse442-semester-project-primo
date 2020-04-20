@@ -14,6 +14,7 @@
 #define IDB_BRESTART                    110
 #define IDB_BRETURN                     111
 #define IDB_BQUIT                       112
+#define IDD_Settings                    112
 #define IDB_BSTART                      113
 #define IDB_BVOLUMN                     114
 #define IDB_BVOL1                       115
@@ -37,6 +38,8 @@
 #define IDC_STATIC3                     1010
 #define IDC_BUNDO                       1011
 #define IDC_BTURNOFF                    1012
+#define IDC_ChangeUI                    1013
+#define IDC_Settings                    1015
 #define IDC_MUL_LOCAL                   1013
 #define IDC_Player                      1014
 #define IDC_EDIT_TIME                   1017
