@@ -170,6 +170,9 @@
     <Image Include="res\bturnoff.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\bturnon.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Media Include="res\sound of piece.WAV">

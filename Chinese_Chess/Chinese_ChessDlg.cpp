@@ -370,6 +370,8 @@ void CChineseChessDlg::OnBnClickedBturnoff()
 		mciSendString(_T("resume backMusic"), NULL, 0, NULL);
 		StopBGM = 0;
 	}
+	CWnd::Invalidate();
+	CChineseChessDlg::OnInitDialog();
 }
 
 void CChineseChessDlg::OnBnClickedBloadgame()
@@ -391,6 +393,7 @@ afx_msg void CChineseChessDlg::Button_BackGround_ini() {
 	CBitmap Returnbgp;
 	CBitmap Restartbgp;
 	CBitmap TurnoffBgp;
+	CBitmap TurnonBgp;
 	CBitmap LoadgameBgp;
 	
 	Startbgp.LoadBitmap(IDB_BSTART);
@@ -399,7 +402,8 @@ afx_msg void CChineseChessDlg::Button_BackGround_ini() {
 	Returnbgp.LoadBitmap(IDB_BRETURN);
 	Restartbgp.LoadBitmap(IDB_BRESTART);
 	TurnoffBgp.LoadBitmap(IDB_BTURNOFF);
-	LoadgameBgp.LoadBitmapW(IDB_BLOADGAME);
+	TurnonBgp.LoadBitmap(IDB_BTURNON);
+	LoadgameBgp.LoadBitmap(IDB_BLOADGAME);
 
 	BStart.SetBitmap(Startbgp);
 	BQuit.SetBitmap(Quitbgp);
@@ -410,6 +414,9 @@ afx_msg void CChineseChessDlg::Button_BackGround_ini() {
 	
 	if (this->Mute) BVol.SetBitmap(NULL);
 	else BVol.SetBitmap(Volbgp);
+
+	if(StopBGM==0) BTurnoff.SetBitmap(TurnoffBgp);
+	else BTurnoff.SetBitmap(TurnonBgp);
 
 /*	Single Game Page buttons' background Initialization*/
 
@@ -435,7 +442,7 @@ afx_msg void CChineseChessDlg::Start_Button_ini(){
 	BReturn.MoveWindow(0, 0, 47, 47, true);
 	BRestart.MoveWindow(720, 0, 47, 47, true);
 	BUndo.MoveWindow(750, 200, 100, 50, true);
-	BTurnoff.MoveWindow(720, 720, 47, 47, true);
+	BTurnoff.MoveWindow(830, 480, 47, 47, true);
 	BLoadgame.MoveWindow(416, 300, 48, 48, true);
 	Show_Player.MoveWindow(350, 50, 200, 20, true);
 
@@ -448,6 +455,7 @@ afx_msg void CChineseChessDlg::Start_Button_ini(){
 
 	if (this->Mute) GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_HIDE);
 	else GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_SHOW);
+
 }
 
 /*	Single Game Page buttons initialization

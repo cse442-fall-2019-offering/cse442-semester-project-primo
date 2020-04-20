@@ -58,6 +58,7 @@ private:
 	int Model = 1;
 	int Count=60;
 	BOOL Mute = FALSE;
+	BOOL MUSIC = FALSE;
 	int voulmn = 50;
 	Game game;
 
