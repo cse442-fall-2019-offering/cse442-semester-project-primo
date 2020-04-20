@@ -90,6 +90,11 @@ void CChineseChessDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_EDIT_TIME, TimeCount);
 	DDX_Text(pDX, IDC_EDIT_TIME, sec);
 	DDX_Control(pDX, IDC_VOLBAR, BVolbar);
+	DDX_Control(pDX, IDC_BMULTI, BMul);
+	DDX_Control(pDX, IDC_BEASY, BEasy);
+	DDX_Control(pDX, IDC_BMEDIUM, BMedium);
+	DDX_Control(pDX, IDC_BHARD, BHard);
+	DDX_Control(pDX, IDC_BONLINE, BOline);
 }
 
 BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
@@ -111,6 +116,11 @@ BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
 	ON_WM_TIMER()
 	ON_BN_CLICKED(IDC_BLOADGAME, &CChineseChessDlg::OnBnClickedBloadgame)
 	ON_WM_SIZE()
+	ON_BN_CLICKED(IDC_BMULTI, &CChineseChessDlg::OnBnClickedBmulti)
+	ON_BN_CLICKED(IDC_BMEDIUM, &CChineseChessDlg::OnBnClickedBmedium)
+	ON_BN_CLICKED(IDC_BEASY, &CChineseChessDlg::OnBnClickedBeasy)
+	ON_BN_CLICKED(IDC_BHARD, &CChineseChessDlg::OnBnClickedBhard)
+	ON_BN_CLICKED(IDC_BONLINE, &CChineseChessDlg::OnBnClickedBonline)
 END_MESSAGE_MAP()
 
 
@@ -162,9 +172,24 @@ BOOL CChineseChessDlg::OnInitDialog()
 			CChineseChessDlg::Start_Button_ini();
 			break;
 		case Single_Page:
+			CChineseChessDlg::Single_Button_ini();
+			break;
+		case Multi_Page:
+			CChineseChessDlg::Multi_Button_ini();
+			break;
+		case Easy_Game_Page:
 			CChineseChessDlg::SGame_Button_ini();
 			break;
-		case Multi_Local_Page:
+		case Medium_Game_Page:
+			CChineseChessDlg::SGame_Button_ini();
+			break;
+		case Hard_Game_Page:
+			CChineseChessDlg::SGame_Button_ini();
+			break;
+		case Mlocal_Page:
+			CChineseChessDlg::Mlocal_Button_ini();
+			break;
+		case Monline_Page:
 			CChineseChessDlg::Mlocal_Button_ini();
 			break;
 		default :
@@ -222,21 +247,34 @@ void CChineseChessDlg::OnPaint()
 			CChineseChessDlg::Start_Page_ini();
 			break;
 		case Single_Page:
+			CChineseChessDlg::Start_Page_ini();
+			break;
+		case Multi_Page:
+			CChineseChessDlg::Start_Page_ini();
+			break;
+		case Easy_Game_Page:
 			CChineseChessDlg::SGame_Page_ini();
-
-			if (this->game.getturns() == 0) CChineseChessDlg::SetDlgItemText(IDC_STATIC3, _T("Player 1"));
-			else CChineseChessDlg::SetDlgItemText(IDC_STATIC3, _T("Player 2"));
 			break;
-		case UI2_Page:
-			CChineseChessDlg::UIChange_Button_ini();
+		case Medium_Game_Page:
+			CChineseChessDlg::SGame_Page_ini();
 			break;
-		case Multi_Local_Page:
+		case Hard_Game_Page:
+			CChineseChessDlg::SGame_Page_ini();
+			break;
+		case Mlocal_Page:
 			CChineseChessDlg::SGame_Page_ini();
 
 			if (this->game.getturns() == 0) CChineseChessDlg::SetDlgItemText(IDC_STATIC3, _T("Player 1"));
 			else CChineseChessDlg::SetDlgItemText(IDC_STATIC3, _T("Player 2"));
 			if (this->game.getturns() == 0) CChineseChessDlg::SetDlgItemText(IDC_Player, _T("Player1, please make a movement"));
 			else CChineseChessDlg::SetDlgItemText(IDC_Player, _T("Player2, please make a movement"));
+			break;
+			break;
+		case Monline_Page:
+			CChineseChessDlg::Mlocal_Button_ini();
+			break;
+		case UI2_Page:
+			CChineseChessDlg::UIChange_Button_ini();
 			break;
 		default:
 			break;
@@ -263,25 +301,75 @@ void CChineseChessDlg::OnBnClickedBstart()
 	// TODO: Add your control notification handler code here
 	if (this->Model == Startup_Page || this->Model == UI2_Page) this->Model = Single_Page;
 	else this->Model = Startup_Page;
-	Player player1 = Player(1, human);
+	/*Player player1 = Player(1, human);
 	Player player2 = Player(2, human);
-	this->game = Game(&player1, &player2);
+	this->game = Game(&player1, &player2);*/
 	CWnd::Invalidate();
 	CChineseChessDlg::OnInitDialog();
 	
 	//CDialogEx::OnOK();
 }
 
+void CChineseChessDlg::OnBnClickedBmulti()
+{
+	// TODO: Add your control notification handler code here
+	if (this->Model == Startup_Page || this->Model == UI2_Page) this->Model = Multi_Page;
+	else this->Model = Startup_Page;
+	CWnd::Invalidate();
+	CChineseChessDlg::OnInitDialog();
+}
+
+void CChineseChessDlg::OnBnClickedBeasy()
+{
+	// TODO: Add your control notification handler code here
+	if (this->Model == Single_Page) this->Model = Easy_Game_Page;
+	else this->Model = Single_Page;
+	Player player1 = Player(1, human);
+	Player player2 = Player(2, human);
+	this->game = Game(&player1, &player2);
+	CWnd::Invalidate();
+	CChineseChessDlg::OnInitDialog();
+}
+
+void CChineseChessDlg::OnBnClickedBmedium()
+{
+	// TODO: Add your control notification handler code here
+	if (this->Model == Single_Page) this->Model = Medium_Game_Page;
+	else this->Model = Single_Page;
+	Player player1 = Player(1, human);
+	Player player2 = Player(2, human);
+	this->game = Game(&player1, &player2);
+	CWnd::Invalidate();
+	CChineseChessDlg::OnInitDialog();
+}
+
+void CChineseChessDlg::OnBnClickedBhard()
+{
+	// TODO: Add your control notification handler code here
+	if (this->Model == Single_Page) this->Model = Hard_Game_Page;
+	else this->Model = Single_Page;
+	Player player1 = Player(1, human);
+	Player player2 = Player(2, human);
+	this->game = Game(&player1, &player2);
+	CWnd::Invalidate();
+	CChineseChessDlg::OnInitDialog();
+}
+
 void CChineseChessDlg::OnBnClickedMulLocal()
 {
 	// TODO: Add your control notification handler code here
-	if (this->Model == Startup_Page || this->Model == UI2_Page) this->Model = Multi_Local_Page;
+	if (this->Model == Startup_Page || this->Model == UI2_Page) this->Model = Mlocal_Page;
 	else this->Model = Startup_Page;
 	Player player1 = Player(1, human);
 	Player player2 = Player(2, human);
 	this->game = Game(&player1, &player2);
 	CWnd::Invalidate();
 	CChineseChessDlg::OnInitDialog();
+}
+
+void CChineseChessDlg::OnBnClickedBonline()
+{
+	// TODO: Add your control notification handler code here
 }
 
 void CChineseChessDlg::OnBnClickedBquit()
@@ -330,7 +418,7 @@ void CChineseChessDlg::OnBnClickedBundo()
 void CChineseChessDlg::OnBnClickedBreturn()
 {
 	// TODO: Add your control notification handler code here
-	if (this->Model == Single_Page || this->Model == Multi_Local_Page) {
+	if (isGame(this->Model)) {
 		this->Model = Startup_Page;
 		this->history.clear();
 		
@@ -376,8 +464,8 @@ void CChineseChessDlg::OnBnClickedBturnoff()
 
 void CChineseChessDlg::OnBnClickedBloadgame()
 {
-	if (this->Model == 1 && Loadgame == 1) {
-		this->Model = 2;
+	if (!isGame(this->Model)) {
+		this->Model = Easy_Game_Page;
 	}
 	CWnd::Invalidate();
 	CChineseChessDlg::OnInitDialog();
@@ -427,56 +515,132 @@ afx_msg void CChineseChessDlg::Button_BackGround_ini() {
 afx_msg void CChineseChessDlg::Start_Button_ini(){
 
 /*	Enable the Start up Page buttons*/
-	BStart.MoveWindow(200, 300, 180, 70, true);
-	BQuit.MoveWindow(500, 300, 180, 70, true);
-	BMul_Local.MoveWindow(200, 400, 180, 70, true);
+	BStart.MoveWindow(350, 200, 180, 70, true);
+	BMul.MoveWindow(350, 300, 180, 70, true);
+	BQuit.MoveWindow(350, 400, 180, 70, true);
+	BLoadgame.MoveWindow(700, 100, 48, 48, true);
 	BVol.MoveWindow(840, 440, 30, 30, true);
 	BVolbar.MoveWindow(840, 290, 30, 150, true);
+	BTurnoff.MoveWindow(830, 480, 47, 47, true);
 	GetDlgItem(IDC_BSTART)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_BMULTI)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BQUIT)->ShowWindow(SW_SHOW);
-	GetDlgItem(IDC_MUL_LOCAL)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_BLOADGAME)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BVOL)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BTURNOFF)->ShowWindow(SW_SHOW);
 
-	BReturn.MoveWindow(0, 0, 47, 47, true);
-	BRestart.MoveWindow(720, 0, 47, 47, true);
-	BUndo.MoveWindow(750, 200, 100, 50, true);
-	BTurnoff.MoveWindow(830, 480, 47, 47, true);
-	BLoadgame.MoveWindow(416, 300, 48, 48, true);
 	Show_Player.MoveWindow(350, 50, 200, 20, true);
+	BMul_Local.MoveWindow(200, 400, 180, 70, true);
 
+	GetDlgItem(IDC_BEASY)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_BMEDIUM)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_BHARD)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_MUL_LOCAL)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_BONLINE)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BRETURN)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BRESTART)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BUNDO)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_Player)->ShowWindow(SW_HIDE);
+	
+	GetDlgItem(IDC_EDIT_TIME)->ShowWindow(SW_HIDE);
+
+}
+
+afx_msg void CChineseChessDlg::Single_Button_ini() {
+	
+	BEasy.MoveWindow(350, 200, 180, 70, true);
+	BMedium.MoveWindow(350, 300, 180, 70, true);
+	BHard.MoveWindow(350, 400, 180, 70, true);
+	BQuit.MoveWindow(350, 500, 180, 70, true);
+
+	GetDlgItem(IDC_BEASY)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_BMEDIUM)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_BHARD)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_BQUIT)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_BVOL)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_BTURNOFF)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BLOADGAME)->ShowWindow(SW_SHOW);
+
+
+	BTurnoff.MoveWindow(830, 480, 47, 47, true);
+	BLoadgame.MoveWindow(700, 100, 48, 48, true);
+	BVol.MoveWindow(840, 440, 30, 30, true);
+	BVolbar.MoveWindow(840, 290, 30, 150, true);
+	
+	GetDlgItem(IDC_BONLINE)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_BSTART)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_BMULTI)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_MUL_LOCAL)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_BRETURN)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_BRESTART)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_BUNDO)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_Player)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_EDIT_TIME)->ShowWindow(SW_HIDE);
 
 	if (this->Mute) GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_HIDE);
 	else GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_SHOW);
+}
 
+afx_msg void CChineseChessDlg::Multi_Button_ini() {
+
+	BMul_Local.MoveWindow(350, 200, 180, 70, true);
+	BOline.MoveWindow(350, 300, 180, 70, true);
+	BQuit.MoveWindow(350, 400, 180, 70, true);
+	
+	GetDlgItem(IDC_MUL_LOCAL)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_BONLINE)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_BQUIT)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_BVOL)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_BTURNOFF)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_BLOADGAME)->ShowWindow(SW_SHOW);
+	
+	GetDlgItem(IDC_BSTART)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_BMULTI)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_BEASY)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_BMEDIUM)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_BHARD)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_BRETURN)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_BRESTART)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_BUNDO)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_Player)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT_TIME)->ShowWindow(SW_HIDE);
 }
 
 /*	Single Game Page buttons initialization
 */
 afx_msg void CChineseChessDlg::SGame_Button_ini() {
-/*	Enable the Single Game Page buttons*/
-
-/*	Disable the Start up Page buttons*/
-	GetDlgItem(IDC_BQUIT)->ShowWindow(SW_HIDE);
-	GetDlgItem(IDC_BVOL)->ShowWindow(SW_HIDE);
-	GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_HIDE);
-	GetDlgItem(IDC_BSTART)->ShowWindow(SW_HIDE);
-	GetDlgItem(IDC_MUL_LOCAL)->ShowWindow(SW_HIDE);
-	GetDlgItem(IDC_Player)->ShowWindow(SW_HIDE);
+/*	Enabled buttons*/
+	BReturn.MoveWindow(0, 0, 47, 47, true);
+	BRestart.MoveWindow(720, 0, 47, 47, true);
+	BUndo.MoveWindow(750, 200, 100, 50, true);
+	BTurnoff.MoveWindow(830, 480, 47, 47, true);
 
 	GetDlgItem(IDC_BRETURN)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BRESTART)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BUNDO)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BTURNOFF)->ShowWindow(SW_SHOW);
-	GetDlgItem(IDC_BLOADGAME)->ShowWindow(SW_HIDE);
+	
 	GetDlgItem(IDC_EDIT_TIME)->ShowWindow(SW_SHOW);
+/*	Disabled buttons*/
+
+	GetDlgItem(IDC_BSTART)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_BEASY)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_BMEDIUM)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_BHARD)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_BMULTI)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_MUL_LOCAL)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_BONLINE)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_BQUIT)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_BVOL)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_BLOADGAME)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_MUL_LOCAL)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_Player)->ShowWindow(SW_HIDE);
+
+	
 }
 
 afx_msg void CChineseChessDlg::Mlocal_Button_ini() {
@@ -674,13 +838,11 @@ void CChineseChessDlg::OnMouseMove(UINT nFlags, CPoint point)
 	CDialogEx::OnMouseMove(nFlags, point);
 }
 
-
-
 void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	// TODO: Add your message handler code here and/or call default
 
-	if (this->Model == Single_Page|| this->Model == Multi_Local_Page) {
+	if (isGame(this->Model)) {
 		pair<int, int> location = getIndex(this->cur_point);
 		if (location.first != -1) {
 			CString strx;
@@ -868,6 +1030,10 @@ void CChineseChessDlg::OnTimer(UINT_PTR nIDEvent)
 	CDialogEx::OnTimer(nIDEvent);
 }
 
+boolean CChineseChessDlg::isGame(int model) {
+	if (model >= Easy_Game_Page && model <= Monline_Page) return true;
+	return false;
+}
 
 void CChineseChessDlg::OnSize(UINT nType, int cx, int cy)
 {

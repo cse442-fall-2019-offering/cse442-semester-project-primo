@@ -50,8 +50,13 @@ public:
 
 #define Startup_Page 1
 #define Single_Page 2
-#define UI2_Page 3
-#define Multi_Local_Page 4
+#define Multi_Page 3
+#define Easy_Game_Page 4
+#define Medium_Game_Page 5
+#define Hard_Game_Page 6
+#define Mlocal_Page 7
+#define Monline_Page 8
+#define UI2_Page 9
 
 
 private:
@@ -128,10 +133,12 @@ protected:
 	afx_msg void Button_BackGround_ini();
 	afx_msg void Start_Button_ini();
 	afx_msg void Start_Page_ini();
+	afx_msg void Single_Button_ini();
+	afx_msg void Multi_Button_ini();
 	afx_msg void SGame_Button_ini();
 	afx_msg void SGame_Page_ini();
-	afx_msg void Mlocal_Page_ini();
 	afx_msg void Mlocal_Button_ini();
+	afx_msg void Mlocal_Page_ini();
 
 	pair<int, int> getIndex(CPoint point);
 
@@ -153,6 +160,7 @@ public:
 	void BGM_Play();
 
 	bool contain(pair<int, int>);
+	boolean isGame(int model);
 
 		afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 		afx_msg void OnMouseMove(UINT nFlags, CPoint point);
@@ -173,4 +181,14 @@ public:
 	afx_msg void OnBnClickedBloadgame();
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 
+	CButton BMul;
+	afx_msg void OnBnClickedBmulti();
+	CButton BEasy;
+	afx_msg void OnBnClickedBeasy();
+	CButton BMedium;
+	afx_msg void OnBnClickedBmedium();
+	CButton BHard;
+	afx_msg void OnBnClickedBhard();
+	CButton BOline;
+	afx_msg void OnBnClickedBonline();
 };
