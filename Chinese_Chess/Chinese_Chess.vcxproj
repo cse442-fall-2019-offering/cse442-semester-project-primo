@@ -221,6 +221,7 @@
     <Image Include="res\board.bmp" />
     <Image Include="res\bturnoff.bmp" />
     <Image Include="res\bturnon.bmp" />
+    <Image Include="res\bundo.bmp" />
     <Image Include="res\pieces\bitmap1.bmp" />
     <Image Include="res\pieces\bitmap2.bmp" />
     <Image Include="res\pieces\bturnoff.bmp" />
