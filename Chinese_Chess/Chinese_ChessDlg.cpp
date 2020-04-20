@@ -483,6 +483,7 @@ afx_msg void CChineseChessDlg::Button_BackGround_ini() {
 	CBitmap TurnoffBgp;
 	CBitmap TurnonBgp;
 	CBitmap LoadgameBgp;
+	CBitmap UndoBgp;
 	
 	Startbgp.LoadBitmap(IDB_BSTART);
 	Quitbgp.LoadBitmap(IDB_BQUIT);
@@ -492,6 +493,7 @@ afx_msg void CChineseChessDlg::Button_BackGround_ini() {
 	TurnoffBgp.LoadBitmap(IDB_BTURNOFF);
 	TurnonBgp.LoadBitmap(IDB_BTURNON);
 	LoadgameBgp.LoadBitmap(IDB_BLOADGAME);
+	UndoBgp.LoadBitmap(IDB_BUNDO);
 
 	BStart.SetBitmap(Startbgp);
 	BQuit.SetBitmap(Quitbgp);
@@ -499,6 +501,7 @@ afx_msg void CChineseChessDlg::Button_BackGround_ini() {
 	BRestart.SetBitmap(Restartbgp);
 	BTurnoff.SetBitmap(TurnoffBgp);
 	BLoadgame.SetBitmap(LoadgameBgp);
+	BUndo.SetBitmap(UndoBgp);
 	
 	if (this->Mute) BVol.SetBitmap(NULL);
 	else BVol.SetBitmap(Volbgp);
@@ -578,6 +581,7 @@ afx_msg void CChineseChessDlg::Single_Button_ini() {
 	GetDlgItem(IDC_BUNDO)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_Player)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_EDIT_TIME)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_BUNDO)->ShowWindow(SW_HIDE);
 
 	if (this->Mute) GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_HIDE);
 	else GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_SHOW);
@@ -622,7 +626,6 @@ afx_msg void CChineseChessDlg::SGame_Button_ini() {
 	GetDlgItem(IDC_BRESTART)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BUNDO)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BTURNOFF)->ShowWindow(SW_SHOW);
-	
 	GetDlgItem(IDC_EDIT_TIME)->ShowWindow(SW_SHOW);
 /*	Disabled buttons*/
 
@@ -639,8 +642,6 @@ afx_msg void CChineseChessDlg::SGame_Button_ini() {
 	GetDlgItem(IDC_BLOADGAME)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_MUL_LOCAL)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_Player)->ShowWindow(SW_HIDE);
-
-	
 }
 
 afx_msg void CChineseChessDlg::Mlocal_Button_ini() {
