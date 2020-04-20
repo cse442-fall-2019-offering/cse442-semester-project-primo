@@ -18,6 +18,8 @@
 #define IDB_BVOLUMN                     114
 #define IDB_BVOL1                       115
 #define IDB_BITMAP1                     116
+#define IDB_BITMAP2                     118
+#define IDB_BTURNON                     118
 #define IDB_BOARD                       200
 #define IDB_BGP                         201
 #define IDB_BGP2                        202
@@ -59,7 +61,7 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        118
+#define _APS_NEXT_RESOURCE_VALUE        119
 #define _APS_NEXT_COMMAND_VALUE         32771
 #define _APS_NEXT_CONTROL_VALUE         1021
 #define _APS_NEXT_SYMED_VALUE           101
