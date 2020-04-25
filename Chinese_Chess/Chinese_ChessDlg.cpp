@@ -19,6 +19,7 @@
 
 int PlayBGM = 0;
 int StopBGM = 0;
+int Playsound = 0;
 int Loadgame = 0;
 
 #ifdef _DEBUG
@@ -95,6 +96,7 @@ void CChineseChessDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BMEDIUM, BMedium);
 	DDX_Control(pDX, IDC_BHARD, BHard);
 	DDX_Control(pDX, IDC_BONLINE, BOline);
+	DDX_Control(pDX, IDC_BTURNOFFSOUND, BTurnoffsound);
 }
 
 BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
@@ -122,6 +124,8 @@ BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BEASY, &CChineseChessDlg::OnBnClickedBeasy)
 	ON_BN_CLICKED(IDC_BHARD, &CChineseChessDlg::OnBnClickedBhard)
 	ON_BN_CLICKED(IDC_BONLINE, &CChineseChessDlg::OnBnClickedBonline)
+	ON_BN_CLICKED(IDC_BTURNOFFSOUND, &CChineseChessDlg::OnBnClickedTurnoffsound)
+
 END_MESSAGE_MAP()
 
 
@@ -472,6 +476,14 @@ void CChineseChessDlg::OnBnClickedBloadgame()
 	CChineseChessDlg::OnInitDialog();
 }
 
+void CChineseChessDlg::OnBnClickedTurnoffsound()
+{
+	if (Playsound == 0) Playsound = 1;
+	else Playsound = 0;
+	CWnd::Invalidate();
+	CChineseChessDlg::OnInitDialog();
+}
+
 //---------------------------Page Buttons initialization-------------------------------------
 
 afx_msg void CChineseChessDlg::Button_BackGround_ini() {
@@ -485,6 +497,7 @@ afx_msg void CChineseChessDlg::Button_BackGround_ini() {
 	CBitmap TurnonBgp;
 	CBitmap LoadgameBgp;
 	CBitmap UndoBgp;
+	CBitmap TurnoffsoundBgp;
 	
 	Startbgp.LoadBitmap(IDB_BSTART);
 	Quitbgp.LoadBitmap(IDB_BQUIT);
@@ -495,6 +508,7 @@ afx_msg void CChineseChessDlg::Button_BackGround_ini() {
 	TurnonBgp.LoadBitmap(IDB_BTURNON);
 	LoadgameBgp.LoadBitmap(IDB_BLOADGAME);
 	UndoBgp.LoadBitmap(IDB_BUNDO);
+	TurnoffsoundBgp.LoadBitmap(IDB_BTURNOFFSOUND);
 
 	BStart.SetBitmap(Startbgp);
 	BQuit.SetBitmap(Quitbgp);
@@ -503,7 +517,8 @@ afx_msg void CChineseChessDlg::Button_BackGround_ini() {
 	BTurnoff.SetBitmap(TurnoffBgp);
 	BLoadgame.SetBitmap(LoadgameBgp);
 	BUndo.SetBitmap(UndoBgp);
-	
+	BTurnoffsound.SetBitmap(TurnoffsoundBgp);
+
 	if (this->Mute) BVol.SetBitmap(NULL);
 	else BVol.SetBitmap(Volbgp);
 
@@ -525,7 +540,10 @@ afx_msg void CChineseChessDlg::Start_Button_ini(){
 	BLoadgame.MoveWindow(700, 100, 48, 48, true);
 	BVol.MoveWindow(840, 440, 30, 30, true);
 	BVolbar.MoveWindow(840, 290, 30, 150, true);
-	BTurnoff.MoveWindow(830, 480, 47, 47, true);
+	BTurnoff.MoveWindow(830, 480, 48, 48, true);
+	BTurnoffsound.MoveWindow(830, 530, 48, 48, true);
+
+
 	GetDlgItem(IDC_BSTART)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BMULTI)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BQUIT)->ShowWindow(SW_SHOW);
@@ -533,6 +551,7 @@ afx_msg void CChineseChessDlg::Start_Button_ini(){
 	GetDlgItem(IDC_BVOL)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BTURNOFF)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_BTURNOFFSOUND)->ShowWindow(SW_SHOW);
 
 	Show_Player.MoveWindow(350, 50, 200, 20, true);
 	BMul_Local.MoveWindow(200, 400, 180, 70, true);
@@ -566,6 +585,7 @@ afx_msg void CChineseChessDlg::Single_Button_ini() {
 	GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BTURNOFF)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BLOADGAME)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_BTURNOFFSOUND)->ShowWindow(SW_SHOW);
 
 
 	BTurnoff.MoveWindow(830, 480, 47, 47, true);
@@ -601,6 +621,7 @@ afx_msg void CChineseChessDlg::Multi_Button_ini() {
 	GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BTURNOFF)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BLOADGAME)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_BTURNOFFSOUND)->ShowWindow(SW_SHOW);
 	
 	GetDlgItem(IDC_BSTART)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BMULTI)->ShowWindow(SW_HIDE);
@@ -628,6 +649,7 @@ afx_msg void CChineseChessDlg::SGame_Button_ini() {
 	GetDlgItem(IDC_BUNDO)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BTURNOFF)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_EDIT_TIME)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_BTURNOFFSOUND)->ShowWindow(SW_SHOW);
 /*	Disabled buttons*/
 
 	GetDlgItem(IDC_BSTART)->ShowWindow(SW_HIDE);
@@ -660,6 +682,7 @@ afx_msg void CChineseChessDlg::Mlocal_Button_ini() {
 	GetDlgItem(IDC_Player)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BLOADGAME)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_EDIT_TIME)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_BTURNOFFSOUND)->ShowWindow(SW_SHOW);
 }
 
 void CChineseChessDlg::UIChange_Button_ini()
@@ -894,8 +917,8 @@ void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 					this->game.aviliable_flag = 0;
 					this->game.switch_turn();
 
-					PlaySound(MAKEINTRESOURCE(IDR_PIECE), NULL, SND_RESOURCE | SND_ASYNC);
-
+					if(Playsound==0) PlaySound(MAKEINTRESOURCE(IDR_PIECE), NULL, SND_RESOURCE | SND_ASYNC);
+					
 					pair<Piece, Piece> step(old_m, old_d);
 
 					this->history.push_back(step);
@@ -1041,10 +1064,12 @@ void CChineseChessDlg::OnSize(UINT nType, int cx, int cy)
 {
 	CDialogEx::OnSize(nType, cx, cy);
 
-
-void CChineseChessDlg::OnBnClickedSettings()
-{
+}
+void CChineseChessDlg::OnBnClickedSettings(){
 	Settings dlg(nullptr,this);
 	dlg.DoModal();
 
 }
+
+
+
