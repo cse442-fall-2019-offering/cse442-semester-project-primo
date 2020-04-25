@@ -192,4 +192,6 @@ public:
 	afx_msg void OnBnClickedBhard();
 	CButton BOline;
 	afx_msg void OnBnClickedBonline();
+	CButton BTurnoffsound;
+	afx_msg void OnBnClickedTurnoffsound();
 };
