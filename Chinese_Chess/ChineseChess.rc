@@ -196,7 +196,7 @@ BEGIN
     PUSHBUTTON      "Multi-local button",IDC_MUL_LOCAL,0,52,61,14
     LTEXT           "Player1, Please make a movement",IDC_Player,177,15,115,8,0,WS_EX_RTLREADING
     PUSHBUTTON      "Load game",IDC_BLOADGAME,22,13,40,14,BS_BITMAP
-    EDITTEXT        IDC_EDIT_TIME,324,11,40,14,ES_AUTOHSCROLL
+    EDITTEXT        IDC_EDIT_TIME,357,9,40,14,ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER
     PUSHBUTTON      "Change Style",IDC_UI_BUTTON1,422,7,50,14
     PUSHBUTTON      "Multiplayer Game",IDC_BMULTI,19,26,62,14
     PUSHBUTTON      "Easy",IDC_BEASY,0,39,20,14
@@ -205,6 +205,7 @@ BEGIN
     PUSHBUTTON      "Online Game",IDC_BONLINE,60,52,47,14
     PUSHBUTTON      "Turn off Sound",IDC_BTURNOFFSOUND,110,0,51,14,BS_BITMAP
     PUSHBUTTON      "Settings",IDC_Settings,96,25,31,14,BS_BITMAP
+    LTEXT           "time: ",IDC_STATIC,343,9,19,8
 END
 
 
@@ -286,6 +287,7 @@ BEGIN
     0, 0, 0, 0,
     0, 0, 0, 0,
     0, 0, 100, 100,
+    0, 0, 0, 0,
     0, 0, 0, 0,
     0, 0, 0, 0,
     0, 0, 0, 0,
