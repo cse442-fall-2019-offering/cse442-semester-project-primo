@@ -65,6 +65,7 @@ private:
 	BOOL Mute = FALSE;
 	BOOL MUSIC = FALSE;
 	int voulmn = 50;
+	int radio;
 	Game game;
 
 	float Resolution_x;
@@ -194,4 +195,8 @@ public:
 	afx_msg void OnBnClickedBonline();
 	CButton BTurnoffsound;
 	afx_msg void OnBnClickedTurnoffsound();
+	afx_msg void OnBnClickedOffensive();
+	afx_msg void OnBnClickedDefensive();
+	CButton defensive;
+	CButton offensive;
 };

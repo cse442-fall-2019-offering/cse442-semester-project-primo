@@ -205,7 +205,9 @@ BEGIN
     PUSHBUTTON      "Online Game",IDC_BONLINE,60,52,47,14
     PUSHBUTTON      "Turn off Sound",IDC_BTURNOFFSOUND,110,0,51,14,BS_BITMAP
     PUSHBUTTON      "Settings",IDC_Settings,96,25,31,14,BS_BITMAP
-    LTEXT           "time: ",IDC_STATIC,343,9,19,8
+    LTEXT           "time: ",IDC_STATIC,338,10,19,8
+    CONTROL         "Defensive",IDC_DEFENSIVE,"Button",BS_AUTORADIOBUTTON | WS_GROUP,221,98,48,10
+    CONTROL         "Offensive",IDC_OFFENSIVE,"Button",BS_AUTORADIOBUTTON,314,98,47,10
 END
 
 
@@ -287,6 +289,8 @@ BEGIN
     0, 0, 0, 0,
     0, 0, 0, 0,
     0, 0, 100, 100,
+    0, 0, 0, 0,
+    0, 0, 0, 0,
     0, 0, 0, 0,
     0, 0, 0, 0,
     0, 0, 0, 0,
