@@ -175,7 +175,7 @@ BOOL CChineseChessDlg::OnInitDialog()
 	BStart.SetButtonStyle(BS_BITMAP);
 	CheckRadioButton(IDC_DEFENSIVE, IDC_OFFENSIVE, IDC_DEFENSIVE);
 	defensive.SetCheck(TRUE);
-	offensive.SetCheck(FALSE);
+	offensive.SetCheck(FALSE); 
 	CChineseChessDlg::Button_BackGround_ini();
 
 	switch (Model) {
@@ -565,8 +565,8 @@ afx_msg void CChineseChessDlg::Start_Button_ini(){
 	GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BTURNOFF)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BTURNOFFSOUND)->ShowWindow(SW_SHOW);
-	GetDlgItem(IDC_DEFENSIVE)->ShowWindow(SW_SHOW);
-	GetDlgItem(IDC_OFFENSIVE)->ShowWindow(SW_SHOW);
+	GetDlgItem(IDC_DEFENSIVE)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_OFFENSIVE)->ShowWindow(SW_HIDE);
 	Show_Player.MoveWindow(350, 50, 200, 20, true);
 	BMul_Local.MoveWindow(200, 400, 180, 70, true);
 
