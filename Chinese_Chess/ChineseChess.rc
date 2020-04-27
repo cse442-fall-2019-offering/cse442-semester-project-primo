@@ -17,7 +17,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// Chinese (Simplified, PRC) resources
+// 中文(简体，中国) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
 LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
@@ -38,12 +38,12 @@ IDR_PIECE               WAVE                    "res\\sound of piece.WAV"
 
 IDB_BTURNOFFSOUND       BITMAP                  "res\\bturnoffsound.bmp"
 
-#endif    // Chinese (Simplified, PRC) resources
+#endif    // 中文(简体，中国) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// English (United States) resources
+// 英语(美国) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
@@ -216,6 +216,7 @@ BEGIN
     PUSHBUTTON      "Turn off Sound",IDC_BTURNOFFSOUND,110,0,51,14,BS_BITMAP
     PUSHBUTTON      "Settings",IDC_Settings,96,25,31,14,BS_BITMAP
     LTEXT           "time: ",IDC_STATIC,340,9,19,8
+    PUSHBUTTON      "Sample Game",IDC_Sample,105,52,50,14
 END
 
 
@@ -313,6 +314,7 @@ BEGIN
     0, 0, 0, 0,
     0, 0, 0, 0,
     0, 0, 0, 0,
+    0, 0, 0, 0,
     0, 0, 0, 0
 END
 
@@ -327,7 +329,7 @@ BEGIN
     IDS_ABOUTBOX            "&About Chinese_Chess..."
 END
 
-#endif    // English (United States) resources
+#endif    // 英语(美国) resources
 /////////////////////////////////////////////////////////////////////////////
 
 

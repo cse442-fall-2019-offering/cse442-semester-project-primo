@@ -15,11 +15,10 @@ public:
 
 	//Board initialization
 	void init_Board();
+	void init_Sample();
 
 	//debug and test function
 	void Game::print_Board();
-
-	
 
 	int aviliable_flag;
 

@@ -16,6 +16,63 @@ Game::~Game() {
 
 }
 
+void Game::init_Sample() {
+	Player* player1 = this->player1;
+	Player* player2 = this->player2;
+	player1->set_ID(1);
+	player2->set_ID(2);
+
+	this->Board = vector<vector<Piece>>(10, vector<Piece>(9, Piece()));
+	int i = 0;
+	int j = 0;
+	for (i = 0; i < 10; i++) {
+		for (j = 0; j < 9; j++) {
+			this->Board.at(i).at(j).set_line(i);
+			this->Board.at(i).at(j).set_row(j);
+			this->Board.at(i).at(j).set_ini_line(i);
+			this->Board.at(i).at(j).set_ini_row(j);
+			this->Board.at(i).at(j).set_type(no_piece);
+			this->Board.at(i).at(j).set_player(NULL);
+		}
+	}
+
+	//set the initial position for all pieces
+	//line 0
+
+	this->Board.at(0).at(1).set_type(Horse);
+	this->Board.at(0).at(1).set_player(player1);
+
+	this->Board.at(0).at(3).set_type(Advisor);
+	this->Board.at(0).at(3).set_player(player2);
+
+	this->Board.at(1).at(5).set_type(Chariots);
+	this->Board.at(1).at(5).set_player(player1);
+
+	//line 2
+	this->Board.at(2).at(3).set_type(Advisor);
+	this->Board.at(2).at(3).set_player(player2);
+
+	this->Board.at(2).at(4).set_type(King);
+	this->Board.at(2).at(4).set_player(player2);
+
+	//line 3
+	this->Board.at(3).at(4).set_type(Chariots);
+	this->Board.at(3).at(4).set_player(player2);
+
+	//line 4
+	this->Board.at(4).at(4).set_type(Soldier);
+	this->Board.at(4).at(4).set_player(player2);
+
+	//line 8
+	this->Board.at(8).at(3).set_type(Soldier);
+	this->Board.at(8).at(3).set_player(player2);
+
+	//line 9
+	this->Board.at(9).at(4).set_type(King);
+	this->Board.at(9).at(4).set_player(player1);
+
+}
+
 void Game::init_Board() {
 	Player* player1 = this->player1;
 	Player* player2 = this->player2;

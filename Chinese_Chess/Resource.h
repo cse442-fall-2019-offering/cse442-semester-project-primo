@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Visual C++ generated include file.
-// Used by ChineseChess.rc
+// Microsoft Visual C++ 生成的包含文件。
+// 供 ChineseChess.rc 使用
 //
 #define IDM_ABOUTBOX                    0x0010
 #define IDD_ABOUTBOX                    100
@@ -57,6 +57,7 @@
 #define IDC_BTURNOFFSOUND               1027
 #define IDC_BUTTON1                     1028
 #define IDC_SETTING                     1028
+#define IDC_Sample                      1030
 #define IDB_PCAN2                       1100
 #define IDB_PCHAR2                      1101
 #define IDB_PBISHOP2                    1102

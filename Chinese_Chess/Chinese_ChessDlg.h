@@ -57,7 +57,7 @@ public:
 #define Mlocal_Page 7
 #define Monline_Page 8
 #define UI2_Page 9
-
+#define Sample_Page 10
 
 private:
 	int Model = 1;
@@ -139,12 +139,15 @@ protected:
 	afx_msg void SGame_Page_ini();
 	afx_msg void Mlocal_Button_ini();
 	afx_msg void Mlocal_Page_ini();
+	afx_msg void Sample_Page_ini();
 	void UIChange_Button_ini();
 
 	pair<int, int> getIndex(CPoint point);
 
 	DECLARE_MESSAGE_MAP()
 public:
+	CButton Sample;
+	afx_msg void onBnClickedSample();
 	CButton BStart;
 	afx_msg void OnBnClickedBstart();
 	CButton BMul;
