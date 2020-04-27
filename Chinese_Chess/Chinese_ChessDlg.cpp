@@ -257,6 +257,11 @@ void CChineseChessDlg::OnPaint()
 			CChineseChessDlg::Start_Page_ini();
 			break;
 		case Easy_Game_Page:
+			if (this->game.getturns() == 1) {
+				vector<vector<Piece>> board = this->game.getBoard();
+				this->game.getPlayer1()->move(board);
+				this->game.switch_turn();
+			}
 			CChineseChessDlg::SGame_Page_ini();
 			break;
 		case Medium_Game_Page:
@@ -328,7 +333,7 @@ void CChineseChessDlg::OnBnClickedBeasy()
 	if (this->Model == Single_Page) this->Model = Easy_Game_Page;
 	else this->Model = Single_Page;
 	Player player1 = Player(1, human);
-	Player player2 = Player(2, human);
+	Player player2 = Player(2, Easy_AI);
 	this->game = Game(&player1, &player2);
 	CWnd::Invalidate();
 	CChineseChessDlg::OnInitDialog();
@@ -340,7 +345,7 @@ void CChineseChessDlg::OnBnClickedBmedium()
 	if (this->Model == Single_Page) this->Model = Medium_Game_Page;
 	else this->Model = Single_Page;
 	Player player1 = Player(1, human);
-	Player player2 = Player(2, human);
+	Player player2 = Player(2, Medium_AI);
 	this->game = Game(&player1, &player2);
 	CWnd::Invalidate();
 	CChineseChessDlg::OnInitDialog();
@@ -352,7 +357,7 @@ void CChineseChessDlg::OnBnClickedBhard()
 	if (this->Model == Single_Page) this->Model = Hard_Game_Page;
 	else this->Model = Single_Page;
 	Player player1 = Player(1, human);
-	Player player2 = Player(2, human);
+	Player player2 = Player(2, Hard_AI);
 	this->game = Game(&player1, &player2);
 	CWnd::Invalidate();
 	CChineseChessDlg::OnInitDialog();
@@ -1015,7 +1020,7 @@ void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	// TODO: Add your message handler code here and/or call default
 
-	if (isGame(this->Model) > 0) {
+	if (isGame(this->Model) > 0 && this->game.getturns() == 0) {
 		pair<int, int> location = getIndex(this->cur_point);
 		if (location.first != -1) {
 			CString strx;
@@ -1029,7 +1034,10 @@ void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 
 				Piece s_piece = this->game.getBoard().at(location.first).at(location.second);
 				this->selected_piece = s_piece;
-				this->aviliable = s_piece.aviliable_move(this->game.getBoard(), this->game.getturns(), this->game.getPlayer1(), this->game.getPlayer2());
+				Player* curplayer;
+				if (this->game.getturns() == 0) curplayer = this->game.getPlayer1();
+				else curplayer = this->game.getPlayer2();
+				this->aviliable = s_piece.aviliable_move(this->game.getBoard(), curplayer);
 				if (this->aviliable.size() > 0) {
 					this->game.aviliable_flag = 1;
 					CWnd::Invalidate();

@@ -1,4 +1,8 @@
 #pragma once
+
+#ifndef Piece_H
+#define Piece_H
+
 #include <vector>
 #include <utility> 
 #include "Player.h"
@@ -32,7 +36,7 @@ public:
 
 
 	//movement function
-	vector<pair<int, int>> aviliable_move(vector<vector<Piece>> Board, int turns, Player* p1, Player* p2);
+	vector<pair<int, int>> aviliable_move(vector<vector<Piece>> Board, Player* cur_player);
 
 	
 
@@ -68,4 +72,4 @@ private:
 	vector<pair<int, int>> Soldier_move(vector<vector<Piece>> Board);
 };
 
-
+#endif

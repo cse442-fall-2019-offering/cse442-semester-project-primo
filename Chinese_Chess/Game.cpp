@@ -9,7 +9,7 @@ Game::Game(Player* player1, Player* player2) {
 	this->player2 = player2;
 	this->init_Board();
 	srand((unsigned)time(NULL));
-	int turn = rand() % 2;
+	turns = rand() % 2;
 	this->aviliable_flag = 0;
 }
 Game::~Game() {

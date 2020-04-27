@@ -20,3 +20,13 @@ void Player::set_ID(int ID) {
 int Player::get_ID() {
 	return this->ID;
 }
+
+void Player::move(vector<vector<Piece>> board) {
+	/*vector<pair<pair<int, int>, pair<int, int>>> all;
+	for (int i = 0; i < 10; i++) {
+		for (int j = 0; j < 9; j++) {
+			Piece p = board.at(i).at(j);
+			vector<pair<int, int>> aviliable = p.aviliable_move(board, this);
+		}
+	}*/
+}

@@ -1,4 +1,7 @@
 #pragma once
+#ifndef GAME_H
+#define GAME_H
+
 #include "Piece.h"
 #include <string>
 #include <corecrt_wstring.h>
@@ -44,3 +47,4 @@ private:
 	int turns;
 };
 
+#endif

@@ -4,11 +4,8 @@
 #include <stdlib.h>
 
 
-vector<pair<int, int>> Piece::aviliable_move(vector<vector<Piece>> Board, int turns, Player* p1, Player* p2) {
+vector<pair<int, int>> Piece::aviliable_move(vector<vector<Piece>> Board, Player* cur_player) {
 	vector<pair<int, int>> aviliable;
-	Player* cur_player;
-	if (turns == 0) cur_player = p1;
-	else cur_player = p2;
 
 	if (this->player != cur_player) return aviliable;
 
