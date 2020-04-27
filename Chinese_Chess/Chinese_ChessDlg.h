@@ -140,6 +140,7 @@ protected:
 	afx_msg void SGame_Page_ini();
 	afx_msg void Mlocal_Button_ini();
 	afx_msg void Mlocal_Page_ini();
+	void UIChange_Button_ini();
 
 	pair<int, int> getIndex(CPoint point);
 
@@ -147,10 +148,28 @@ protected:
 public:
 	CButton BStart;
 	afx_msg void OnBnClickedBstart();
+	CButton BMul;
+	afx_msg void OnBnClickedBmulti();
 	CButton BQuit;
 	afx_msg void OnBnClickedBquit();
+
+	CButton BEasy;
+	afx_msg void OnBnClickedBeasy();
+	CButton BMedium;
+	afx_msg void OnBnClickedBmedium();
+	CButton BHard;
+	afx_msg void OnBnClickedBhard();
+	CButton BMul_Local;
+	afx_msg void OnBnClickedMulLocal();
+	CButton BOline;
+	afx_msg void OnBnClickedBonline();
+
+
+	CButton BTurnoffsound;
+	afx_msg void OnBnClickedTurnoffsound();
 	CButton BVol;
 	afx_msg void OnBnClickedBvol();
+	CSliderCtrl BVolbar;
 	CButton BReturn;
 	afx_msg void OnBnClickedBreturn();
 	CButton BRestart;
@@ -158,29 +177,26 @@ public:
 	CButton BUndo;
 	afx_msg void OnBnClickedBundo();
 
-	void BGM_Play();
-
-	bool contain(pair<int, int>);
-	boolean isGame(int model);
-
-		afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
-		afx_msg void OnMouseMove(UINT nFlags, CPoint point);
 	afx_msg void OnBnClickedUiButton();
-	void UIChange_Button_ini();
-//	afx_msg void OnSize(UINT nType, int cx, int cy);
-	
+	CButton BLoadgame;
+	afx_msg void OnBnClickedBloadgame();
 	CButton BTurnoff;
 	afx_msg void OnBnClickedBturnoff();
+
+	void BGM_Play();
+
+	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
+	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
+	
+//	afx_msg void OnSize(UINT nType, int cx, int cy);
+	
+	
 	afx_msg void OnBnClickedSettings();
-	CButton BMul_Local;
-	afx_msg void OnBnClickedMulLocal();
 	CStatic Show_Player;
 	CEdit TimeCount;
 	CString sec;
+
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
-	CSliderCtrl BVolbar;
-	CButton BLoadgame;
-	afx_msg void OnBnClickedBloadgame();
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 
 	CButton BMul;
@@ -199,4 +215,9 @@ public:
 	afx_msg void OnBnClickedDefensive();
 	CButton defensive;
 	CButton offensive;
+
+	bool contain(pair<int, int>);
+	int isGame(int model);
+	void setgameboard(CPaintDC dc, CDC mem_dc, int ini_x, int ini_y, int ix, int iy);
+
 };
