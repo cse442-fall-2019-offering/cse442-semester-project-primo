@@ -17,7 +17,7 @@
 #undef APSTUDIO_READONLY_SYMBOLS
 
 /////////////////////////////////////////////////////////////////////////////
-// 中文(简体，中国) resources
+// Chinese (Simplified, PRC) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
 LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
@@ -38,12 +38,12 @@ IDR_PIECE               WAVE                    "res\\sound of piece.WAV"
 
 IDB_BTURNOFFSOUND       BITMAP                  "res\\bturnoffsound.bmp"
 
-#endif    // 中文(简体，中国) resources
+#endif    // Chinese (Simplified, PRC) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
 /////////////////////////////////////////////////////////////////////////////
-// 英语(美国) resources
+// English (United States) resources
 
 #if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
 LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
@@ -105,6 +105,16 @@ IDB_PADVISOR1           BITMAP                  "res\\Pieces\\red-guard.bmp"
 IDB_PHORSE1             BITMAP                  "res\\Pieces\\red-knight.bmp"
 
 IDB_PSOLDIER1           BITMAP                  "res\\Pieces\\red-soldier.bmp"
+
+IDB_BEASY               BITMAP                  "res\\beasy.bmp"
+
+IDB_BHARD               BITMAP                  "res\\bhard.bmp"
+
+IDB_BMEDIUM             BITMAP                  "res\\bmedium.bmp"
+
+IDB_BMUL                BITMAP                  "res\\bmul.bmp"
+
+IDB_BSINGLE             BITMAP                  "res\\bsingle.bmp"
 
 
 #ifdef APSTUDIO_INVOKED
@@ -193,19 +203,19 @@ BEGIN
     LTEXT           "None",IDC_STATIC3,477,23,26,8
     PUSHBUTTON      "Undo",IDC_BUNDO,0,13,22,14
     PUSHBUTTON      "turnoff",IDC_BTURNOFF,84,0,27,14,BS_BITMAP
-    PUSHBUTTON      "Multi-local button",IDC_MUL_LOCAL,0,52,61,14
+    PUSHBUTTON      "Multi-local button",IDC_MUL_LOCAL,0,52,61,14,BS_BITMAP
     LTEXT           "Player1, Please make a movement",IDC_Player,177,15,115,8,0,WS_EX_RTLREADING
     PUSHBUTTON      "Load game",IDC_BLOADGAME,22,13,40,14,BS_BITMAP
     EDITTEXT        IDC_EDIT_TIME,357,9,40,14,ES_AUTOHSCROLL | ES_READONLY | NOT WS_BORDER
     PUSHBUTTON      "Change Style",IDC_UI_BUTTON1,422,7,50,14
-    PUSHBUTTON      "Multiplayer Game",IDC_BMULTI,19,26,62,14
-    PUSHBUTTON      "Easy",IDC_BEASY,0,39,20,14
-    PUSHBUTTON      "Medium",IDC_BMEDIUM,19,39,31,14
-    PUSHBUTTON      "Hard",IDC_BHARD,49,39,20,14
-    PUSHBUTTON      "Online Game",IDC_BONLINE,60,52,47,14
+    PUSHBUTTON      "Multiplayer Game",IDC_BMULTI,19,26,62,14,BS_BITMAP
+    PUSHBUTTON      "Easy",IDC_BEASY,0,39,20,14,BS_BITMAP
+    PUSHBUTTON      "Medium",IDC_BMEDIUM,19,39,31,14,BS_BITMAP
+    PUSHBUTTON      "Hard",IDC_BHARD,49,39,20,14,BS_BITMAP
+    PUSHBUTTON      "Online Game",IDC_BONLINE,60,52,47,14,BS_BITMAP
     PUSHBUTTON      "Turn off Sound",IDC_BTURNOFFSOUND,110,0,51,14,BS_BITMAP
     PUSHBUTTON      "Settings",IDC_Settings,96,25,31,14,BS_BITMAP
-    LTEXT           "time: ",IDC_STATIC,343,9,19,8
+    LTEXT           "time: ",IDC_STATIC,340,9,19,8
 END
 
 
@@ -317,7 +327,7 @@ BEGIN
     IDS_ABOUTBOX            "&About Chinese_Chess..."
 END
 
-#endif    // 英语(美国) resources
+#endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////
 
 
