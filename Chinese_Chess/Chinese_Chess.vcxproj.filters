@@ -188,6 +188,21 @@
     <Image Include="res\bturnoffsound.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\beasy.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bhard.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bmedium.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bmul.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bsingle.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Media Include="res\sound of piece.WAV">
