@@ -28,11 +28,13 @@ public:
 
 	void switch_turn();
 
+	void move();
+
 
 	//getter function
 	Player* getPlayer1();
 	Player* getPlayer2();
-	int getturns();
+	Player* getturns();
 	vector<vector<Piece>> getBoard();
 
 	//setter function
@@ -44,7 +46,7 @@ private:
 	vector<vector<Piece>> Board;
 	Player* player1;
 	Player* player2;
-	int turns;
+	Player* turns;
 };
 
 #endif

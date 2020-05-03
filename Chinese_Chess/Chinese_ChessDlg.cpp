@@ -257,11 +257,7 @@ void CChineseChessDlg::OnPaint()
 			CChineseChessDlg::Start_Page_ini();
 			break;
 		case Easy_Game_Page:
-			if (this->game.getturns() == 1) {
-				vector<vector<Piece>> board = this->game.getBoard();
-				this->game.getPlayer1()->move(board);
-				this->game.switch_turn();
-			}
+			this->game.move();
 			CChineseChessDlg::SGame_Page_ini();
 			break;
 		case Medium_Game_Page:
@@ -273,9 +269,9 @@ void CChineseChessDlg::OnPaint()
 		case Mlocal_Page:
 			CChineseChessDlg::SGame_Page_ini();
 
-			if (this->game.getturns() == 0) CChineseChessDlg::SetDlgItemText(IDC_STATIC3, _T("Player 1"));
+			if (this->game.getturns() == this->game.getPlayer1()) CChineseChessDlg::SetDlgItemText(IDC_STATIC3, _T("Player 1"));
 			else CChineseChessDlg::SetDlgItemText(IDC_STATIC3, _T("Player 2"));
-			if (this->game.getturns() == 0) CChineseChessDlg::SetDlgItemText(IDC_Player, _T("Player1, please make a movement"));
+			if (this->game.getturns() == this->game.getPlayer1()) CChineseChessDlg::SetDlgItemText(IDC_Player, _T("Player1, please make a movement"));
 			else CChineseChessDlg::SetDlgItemText(IDC_Player, _T("Player2, please make a movement"));
 			break;
 		case Monline_Page:
@@ -1020,7 +1016,7 @@ void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	// TODO: Add your message handler code here and/or call default
 
-	if (isGame(this->Model) > 0 && this->game.getturns() == 0) {
+	if (isGame(this->Model) > 0 && this->game.getturns() == this->game.getPlayer1()) {
 		pair<int, int> location = getIndex(this->cur_point);
 		if (location.first != -1) {
 			CString strx;
@@ -1034,9 +1030,7 @@ void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 
 				Piece s_piece = this->game.getBoard().at(location.first).at(location.second);
 				this->selected_piece = s_piece;
-				Player* curplayer;
-				if (this->game.getturns() == 0) curplayer = this->game.getPlayer1();
-				else curplayer = this->game.getPlayer2();
+				Player* curplayer = this->game.getturns();
 				this->aviliable = s_piece.aviliable_move(this->game.getBoard(), curplayer);
 				if (this->aviliable.size() > 0) {
 					this->game.aviliable_flag = 1;

@@ -1,7 +1,7 @@
 #pragma once
 
-#ifndef Piece_H
-#define Piece_H
+#ifndef PIECE_H
+#define PIECE_H
 
 #include <vector>
 #include <utility> 
@@ -16,6 +16,8 @@
 #define Cannon		6
 #define Soldier		7
 using namespace std;
+
+class Player;
 
 class Piece
 {

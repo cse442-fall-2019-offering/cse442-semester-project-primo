@@ -9,7 +9,9 @@ Game::Game(Player* player1, Player* player2) {
 	this->player2 = player2;
 	this->init_Board();
 	srand((unsigned)time(NULL));
-	turns = rand() % 2;
+	int turn = rand() % 2;
+	if (turn == 0) this->turns = player1;
+	this->turns = player2;
 	this->aviliable_flag = 0;
 }
 Game::~Game() {
@@ -148,45 +150,6 @@ void Game::print_Board() {
 	vector<pair<int, int>> aviliable;
 	int type = 0;
 	int id = 0;
-	//king test
-	/*board.at(1).at(3).set_type(King);
-	board.at(1).at(3).set_player(board.at(0).at(3).get_player());
-	board.at(3).at(4) = board.at(3).at(5);
-	board.at(6).at(4) = board.at(6).at(5);*/
-	
-	//advisor test
-	/*board.at(1).at(4) = board.at(0).at(3);
-	board.at(1).at(4).set_line(1);
-	board.at(1).at(4).set_row(4);*/
-
-	//bishop test
-	//board.at(1).at(1) = board.at(0).at(0); //block test
-	/*board.at(2).at(0) = board.at(0).at(0); //take test
-	board.at(2).at(0).set_line(2);
-	board.at(2).at(0).set_row(0);
-	board.at(2).at(0).set_player(board.at(9).at(0).get_player());*/
-	//aviliable = board.at(0).at(2).aviliable_move(board);
-
-	//horse test
-	//aviliable = board.at(0).at(1).aviliable_move(board);
-
-	//Chariots test
-	//aviliable = board.at(0).at(0).aviliable_move(board);
-
-	//Cannon test
-	//aviliable = board.at(2).at(1).aviliable_move(board);
-	//board.at(2).at(0) = board.at(2).at(1);
-	//board.at(2).at(0).set_line(2);
-	//board.at(2).at(0).set_row(0);
-	//aviliable = board.at(2).at(0).aviliable_move(board);
-
-	//Soilder test
-	//aviliable = board.at(3).at(0).aviliable_move(board);	//start case for p2
-	//aviliable = board.at(6).at(0).aviliable_move(board);	//start case for p1
-	/*board.at(5).at(0) = board.at(3).at(0);				//passed the river case
-	board.at(5).at(0).set_line(5);
-	board.at(5).at(0).set_row(0);
-	board.at(6).at(0).set_player(&this->player2);*/
 	for (int i = 0; i < 10; i++) {
 		for (int j = 0; j < 9; j++) {
 			Piece p = board.at(i).at(j);
@@ -212,7 +175,7 @@ Player* Game::getPlayer1() {
 Player* Game::getPlayer2() {
 	return this->player2;
 }
-int Game::getturns() {
+Player* Game::getturns() {
 	return this->turns;
 }
 vector<vector<Piece>> Game::getBoard() {
@@ -224,8 +187,8 @@ void Game::setboard(int x, int y, Piece piece) {
 }
 
 void Game::switch_turn() {
-	if (this->turns == 0) this->turns = 1;
-	else this->turns = 0;
+	if (this->turns == this->player1) this->turns = this->player2;
+	else this->turns = this->player1;
 }
 
 int Game::check_win() {
@@ -243,4 +206,11 @@ int Game::check_win() {
 	if (k1 == 0 && k2 == 1) return 2;
 	if (k2 == 0 && k1 == 1) return 1;
 	else return 0;
+}
+
+void Game::move() {
+	Player* curplayer = this->getturns();
+	if (curplayer->get_ID() != human) {
+		this->switch_turn();
+	}
 }
