@@ -161,6 +161,48 @@
     <Image Include="res\pieces\bitmap1.bmp">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="res\bloadgame.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\pieces\bitmap2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bitmap2.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\pieces\bturnoff.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bturnoff.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bturnon.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bundo.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\pieces\bitmap4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bturnoffsound.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\beasy.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bhard.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bmedium.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bmul.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bsingle.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
   <ItemGroup>
     <Media Include="res\sound of piece.WAV">
