@@ -1424,13 +1424,13 @@ void CChineseChessDlg::result_Record(bool result)
 		local.tm_year += 1900;
 		local.tm_mon += 1;
 			
-		date.Format(L"%d %d %d %d", local.tm_year, local.tm_mon, local.tm_mday, local.tm_hour);
+		date.Format(L"%d     %d              %d         %d          ", local.tm_year, local.tm_mon, local.tm_mday, local.tm_hour);
 
 		if (result) {
-			v = " r";
+			v = "red";
 			}
 		else {
-			v = " b";
+			v = "black";
 			}
 		strline = "\n";
 		strline += date;
