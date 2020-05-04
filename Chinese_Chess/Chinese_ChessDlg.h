@@ -72,6 +72,8 @@ private:
 	float Resolution_x;
 	float Resolution_y;
 
+	int wait_flag;
+
 	vector< pair<Piece, Piece> > history;
 
 	CPoint cur_point;

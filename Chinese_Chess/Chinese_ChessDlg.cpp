@@ -71,6 +71,7 @@ CChineseChessDlg::CChineseChessDlg(CWnd* pParent /*=nullptr*/)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDI_GAME_ICON);
 	Bitmap_ini();
+	int wait_flag = 0;
 	
 	this->history = vector<pair<Piece, Piece>>();
 }
@@ -259,14 +260,18 @@ void CChineseChessDlg::OnPaint()
 			break;
 		case Easy_Game_Page:
 			t = this->game.getturns()->get_type();
-			if (t != human) {
-				this->game.move();
-			}
+			
 			if (this->game.getturns() == this->game.getPlayer1()) CChineseChessDlg::SetDlgItemText(IDC_STATIC3, _T("Player 1"));
 			else CChineseChessDlg::SetDlgItemText(IDC_STATIC3, _T("Player 2"));
 			if (this->game.getturns() == this->game.getPlayer1()) CChineseChessDlg::SetDlgItemText(IDC_Player, _T("Player1, please make a movement"));
 			else CChineseChessDlg::SetDlgItemText(IDC_Player, _T("Player2, please make a movement"));
 			CChineseChessDlg::SGame_Page_ini();
+			if (t != human) {
+				this->game.move();
+				Sleep(1000);
+				CWnd::Invalidate();
+				
+			}
 			break;
 		case Medium_Game_Page:
 			CChineseChessDlg::SGame_Page_ini();

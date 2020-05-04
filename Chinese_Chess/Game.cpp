@@ -215,7 +215,6 @@ void Game::move() {
 		switch (curplayer->get_type()) {
 			case Easy_AI:
 				easymove();
-//				Sleep(1000);
 				this->switch_turn();
 				break;
 			case Medium_AI:
