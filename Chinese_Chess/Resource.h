@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Visual C++ generated include file.
-// Used by ChineseChess.rc
+// Microsoft Visual C++ ��ɵİ��ļ���
+// �� ChineseChess.rc ʹ��
 //
 #define IDM_ABOUTBOX                    0x0010
 #define IDD_ABOUTBOX                    100
@@ -59,6 +59,7 @@
 #define IDC_BTURNOFFSOUND               1027
 #define IDC_BUTTON1                     1028
 #define IDC_SETTING                     1028
+
 #define IDC_OFFENSIVE                   1028
 #define IDC_DEFENSIVE                   1029
 #define IDC_RADIO2                      1030
@@ -70,6 +71,7 @@
 #define IDC_Day                         1036
 #define IDC_Result                      1037
 #define IDC_Hour                        1038
+#define IDC_Sample                      1039
 
 #define IDB_PCAN2                       1100
 #define IDB_PCHAR2                      1101
