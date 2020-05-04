@@ -65,6 +65,7 @@ private:
 	BOOL Mute = FALSE;
 	BOOL MUSIC = FALSE;
 	int voulmn = 50;
+	int radio;
 	Game game;
 
 	float Resolution_x;
@@ -178,6 +179,8 @@ public:
 	afx_msg void OnBnClickedBrestart();
 	CButton BUndo;
 	afx_msg void OnBnClickedBundo();
+	CButton BHistory;
+	afx_msg void OnBnClickedBHistory();
 
 	afx_msg void OnBnClickedUiButton();
 	CButton BLoadgame;
@@ -186,6 +189,7 @@ public:
 	afx_msg void OnBnClickedBturnoff();
 
 	void BGM_Play();
+	void result_Record(bool result);
 
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
@@ -201,7 +205,25 @@ public:
 	afx_msg void OnTimer(UINT_PTR nIDEvent);
 	afx_msg void OnSize(UINT nType, int cx, int cy);
 
+	CButton BMul;
+	afx_msg void OnBnClickedBmulti();
+	CButton BEasy;
+	afx_msg void OnBnClickedBeasy();
+	CButton BMedium;
+	afx_msg void OnBnClickedBmedium();
+	CButton BHard;
+	afx_msg void OnBnClickedBhard();
+	CButton BOline;
+	afx_msg void OnBnClickedBonline();
+	CButton BTurnoffsound;
+	afx_msg void OnBnClickedTurnoffsound();
+	afx_msg void OnBnClickedOffensive();
+	afx_msg void OnBnClickedDefensive();
+	CButton defensive;
+	CButton offensive;
+
 	bool contain(pair<int, int>);
 	int isGame(int model);
 	void setgameboard(CPaintDC dc, CDC mem_dc, int ini_x, int ini_y, int ix, int iy);
+
 };
