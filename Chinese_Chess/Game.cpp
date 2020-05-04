@@ -15,6 +15,24 @@ Game::Game(Player* player1, Player* player2) {
 	this->aviliable_flag = 0;
 	this->set_flag = 0;
 }
+
+Game::Game(Player* player1, Player* player2, int go_first) {
+	this->player1 = player1;
+	this->player2 = player2;
+	this->init_Board();
+	if (go_first == -1) {
+		srand((unsigned)time(NULL));
+		int turn = rand() % 2;
+		if (turn == 0) this->turns = player1;
+		else this->turns = player2;
+	}
+	else if (go_first == 0) this->turns = player1;
+	else this->turns = player2;
+	
+	this->aviliable_flag = 0;
+	this->set_flag = 0;
+}
+
 Game::~Game() {
 
 }

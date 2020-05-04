@@ -72,7 +72,7 @@ CChineseChessDlg::CChineseChessDlg(CWnd* pParent /*=nullptr*/)
 	m_hIcon = AfxGetApp()->LoadIcon(IDI_GAME_ICON);
 	Bitmap_ini();
 	this->tick = 0;
-	
+	this->go_first = -1;
 	this->history = vector<pair<Piece, Piece>>();
 }
 
@@ -98,6 +98,7 @@ void CChineseChessDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BHARD, BHard);
 	DDX_Control(pDX, IDC_BONLINE, BOline);
 	DDX_Control(pDX, IDC_BTURNOFFSOUND, BTurnoffsound);
+	DDX_Control(pDX, IDC_BSTEP, BStep);
 }
 
 BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
@@ -127,6 +128,7 @@ BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BONLINE, &CChineseChessDlg::OnBnClickedBonline)
 	ON_BN_CLICKED(IDC_BTURNOFFSOUND, &CChineseChessDlg::OnBnClickedTurnoffsound)
 
+	ON_BN_CLICKED(IDC_BSTEP, &CChineseChessDlg::OnBnClickedBstep)
 END_MESSAGE_MAP()
 
 
@@ -370,7 +372,7 @@ void CChineseChessDlg::OnBnClickedBeasy()
 	else this->Model = Single_Page;
 	this->player1 = Player(1, human);
 	this->player2 = Player(2, Easy_AI);
-	this->game = Game(&player1, &player2);
+	this->game = Game(&player1, &player2, this->go_first);
 	CWnd::Invalidate();
 	CChineseChessDlg::OnInitDialog();
 }
@@ -382,7 +384,7 @@ void CChineseChessDlg::OnBnClickedBmedium()
 	else this->Model = Single_Page;
 	this->player1 = Player(1, human);
 	this->player2 = Player(2, Medium_AI);
-	this->game = Game(&player1, &player2);
+	this->game = Game(&player1, &player2, this->go_first);
 	CWnd::Invalidate();
 	CChineseChessDlg::OnInitDialog();
 }
@@ -394,7 +396,7 @@ void CChineseChessDlg::OnBnClickedBhard()
 	else this->Model = Single_Page;
 	this->player1 = Player(1, human);
 	this->player2 = Player(2, Hard_AI);
-	this->game = Game(&player1, &player2);
+	this->game = Game(&player1, &player2, this->go_first);
 	CWnd::Invalidate();
 	CChineseChessDlg::OnInitDialog();
 }
@@ -1349,4 +1351,21 @@ void CChineseChessDlg::vcsleep(int times)
 		DoEvents();
 	}
 
+}
+
+void CChineseChessDlg::OnBnClickedBstep()
+{
+	// TODO: Add your control notification handler code here
+	if (this->go_first == -1) {
+		CChineseChessDlg::SetDlgItemText(IDC_BSTEP, _T("Player1 will move first"));
+		this->go_first = 0;
+	}
+	else if (this->go_first == 0) {
+		CChineseChessDlg::SetDlgItemText(IDC_BSTEP, _T("Player2 will move first"));
+		this->go_first = 1;
+	}
+	else {
+		CChineseChessDlg::SetDlgItemText(IDC_BSTEP, _T("no specified first move"));
+		this->go_first = -1;
+	}
 }

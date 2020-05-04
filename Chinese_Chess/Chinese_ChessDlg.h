@@ -74,6 +74,7 @@ private:
 
 	int wait_flag;
 	int tick;
+	int go_first;
 
 	vector< pair<Piece, Piece> > history;
 
@@ -208,4 +209,6 @@ public:
 	int isGame(int model);
 	void setgameboard(CPaintDC dc, CDC mem_dc, int ini_x, int ini_y, int ix, int iy);
 	void vcsleep(int times);
+	CButton BStep;
+	afx_msg void OnBnClickedBstep();
 };

@@ -16,6 +16,7 @@ class Game
 public:
 	Game();
 	Game(Player* player1, Player* player2);
+	Game(Player* player1, Player* player2, int go_first);
 	~Game();
 
 	//Board initialization

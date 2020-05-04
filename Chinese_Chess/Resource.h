@@ -57,6 +57,7 @@
 #define IDC_BTURNOFFSOUND               1027
 #define IDC_BUTTON1                     1028
 #define IDC_SETTING                     1028
+#define IDC_BSTEP                       1028
 #define IDB_PCAN2                       1100
 #define IDB_PCHAR2                      1101
 #define IDB_PBISHOP2                    1102

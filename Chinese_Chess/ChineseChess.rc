@@ -216,6 +216,7 @@ BEGIN
     PUSHBUTTON      "Turn off Sound",IDC_BTURNOFFSOUND,110,0,51,14,BS_BITMAP
     PUSHBUTTON      "Settings",IDC_Settings,96,25,31,14,BS_BITMAP
     LTEXT           "time: ",IDC_STATIC,340,9,19,8
+    PUSHBUTTON      "no specified first move",IDC_BSTEP,423,20,79,14
 END
 
 
@@ -297,6 +298,7 @@ BEGIN
     0, 0, 0, 0,
     0, 0, 0, 0,
     0, 0, 100, 100,
+    0, 0, 0, 0,
     0, 0, 0, 0,
     0, 0, 0, 0,
     0, 0, 0, 0,
