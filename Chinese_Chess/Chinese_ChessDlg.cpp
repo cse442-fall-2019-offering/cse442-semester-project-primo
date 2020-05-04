@@ -14,8 +14,11 @@
 #include <vector>
 #include "Settings.h"
 #include<mmsystem.h>
+#include "History.h"
 #pragma comment(lib,"winmm.lib")
 #include <Vfw.H>
+#include <string>
+#include "time.h"
 
 int PlayBGM = 0;
 int StopBGM = 0;
@@ -81,6 +84,7 @@ void CChineseChessDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BSTART, BStart);
 	DDX_Control(pDX, IDC_BQUIT, BQuit);
 	DDX_Control(pDX, IDC_BVOL, BVol);
+	DDX_Control(pDX, IDC_History, BHistory);
 	DDX_Control(pDX, IDC_BRETURN, BReturn);
 	DDX_Control(pDX, IDC_BRESTART, BRestart);
 	DDX_Control(pDX, IDC_BUNDO, BUndo);
@@ -111,6 +115,7 @@ BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BRETURN, &CChineseChessDlg::OnBnClickedBreturn)
 	ON_BN_CLICKED(IDC_BRESTART, &CChineseChessDlg::OnBnClickedBrestart)
 	ON_BN_CLICKED(IDC_BUNDO, &CChineseChessDlg::OnBnClickedBundo)
+	ON_BN_CLICKED(IDC_History, &CChineseChessDlg::OnBnClickedBHistory)
 	ON_WM_LBUTTONDOWN()
 	ON_WM_MOUSEMOVE()
 	ON_BN_CLICKED(IDC_UI_BUTTON1, &CChineseChessDlg::OnBnClickedUiButton)
@@ -576,6 +581,7 @@ afx_msg void CChineseChessDlg::Button_BackGround_ini() {
 afx_msg void CChineseChessDlg::Start_Button_ini(){
 
 /*	Enable the Start up Page buttons*/
+
 	BStart.MoveWindow(350, 200, 180, 70, true);
 	BMul.MoveWindow(350, 300, 180, 70, true);
 	BQuit.MoveWindow(350, 400, 180, 70, true);
@@ -584,10 +590,11 @@ afx_msg void CChineseChessDlg::Start_Button_ini(){
 	BVolbar.MoveWindow(840, 290, 30, 150, true);
 	BTurnoff.MoveWindow(830, 480, 48, 48, true);
 	BTurnoffsound.MoveWindow(830, 530, 48, 48, true);
-
+	BHistory.MoveWindow(350, 500, 180, 70, true);
 
 	GetDlgItem(IDC_BSTART)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BMULTI)->ShowWindow(SW_SHOW);
+
 	GetDlgItem(IDC_BQUIT)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BLOADGAME)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BVOL)->ShowWindow(SW_SHOW);
@@ -611,6 +618,7 @@ afx_msg void CChineseChessDlg::Start_Button_ini(){
 	GetDlgItem(IDC_BONLINE)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BRETURN)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BRESTART)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_History)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_BUNDO)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_Player)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_STATIC)->ShowWindow(SW_HIDE);
@@ -775,8 +783,11 @@ void CChineseChessDlg::UIChange_Button_ini()
 	dc.StretchBlt(0, 0, rect.Width(), rect.Height(), &mem_dc, 0, 0,
 		Bitmap.bmWidth, Bitmap.bmHeight, SRCCOPY);
 	GetDlgItem(IDC_BLOADGAME)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_History)->ShowWindow(SW_HIDE);
+
 	GetDlgItem(IDC_EDIT_TIME)->ShowWindow(SW_SHOW);
 	GetDlgItem(IDC_STATIC)->ShowWindow(SW_SHOW);
+
 }
 
 
@@ -1063,6 +1074,7 @@ void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 					CWnd::Invalidate();
 				}
 			}
+
 			else {
 				if (this->contain(location)) {
 					int line = location.first;
@@ -1103,6 +1115,14 @@ void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 						this->history.clear();
 						this->history = vector<pair<Piece, Piece>>();
 						CChineseChessDlg::OnInitDialog();
+            
+          	//Game result record
+				  	if(result==1){
+				    	result_Record(false);
+					  }
+					  else {
+						  result_Record(true);
+				  	}
 					}
 					if (isGame(this->Model) == 2) {
 						Count = 60;
@@ -1112,6 +1132,7 @@ void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 						SetDlgItemText(IDC_EDIT_TIME, sec);
 					}
 					CWnd::Invalidate();
+
 
 				}
 			}
@@ -1210,7 +1231,14 @@ void CChineseChessDlg::OnTimer(UINT_PTR nIDEvent)
 	CDialogEx::OnTimer(nIDEvent);
 }
 
+void CChineseChessDlg::OnBnClickedBHistory()
+{
+	History dlg;
+	dlg.DoModal();
+}
+
 void CChineseChessDlg::OnSize(UINT nType, int cx, int cy)
+
 {
 	CDialogEx::OnSize(nType, cx, cy);
 
@@ -1254,10 +1282,52 @@ int CChineseChessDlg::isGame(int model) {
 
 
 
+void CChineseChessDlg::result_Record(bool result) 
+{
+	CStdioFile file;
+	CString strline;
+	CString path("history.txt");
+	BOOL flag = file.Open(path, CFile::modeCreate | CFile::modeNoTruncate | CFile::modeWrite);
+	if (!flag) {
+		return;
+	}
+	else {
+		file.SeekToEnd();
+		time_t t;
+		t = time(NULL);
+		struct tm local;
+		localtime_s(&local, &t);
+			
+		CString date;
+		CString v;
+		local.tm_year += 1900;
+		local.tm_mon += 1;
+			
+		date.Format(L"%d %d %d %d", local.tm_year, local.tm_mon, local.tm_mday, local.tm_hour);
+
+		if (result) {
+			v = " r";
+			}
+		else {
+			v = " b";
+			}
+		strline = "\n";
+		strline += date;
+		strline += v;
+		file.WriteString(strline);
+	}
+	
+
+
+}
+
+
+
 void CChineseChessDlg::OnBnClickedOffensive()
 {
 	radio = 1;
 }
+
 
 
 void CChineseChessDlg::OnBnClickedDefensive()

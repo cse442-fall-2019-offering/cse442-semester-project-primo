@@ -176,6 +176,8 @@ public:
 	afx_msg void OnBnClickedBrestart();
 	CButton BUndo;
 	afx_msg void OnBnClickedBundo();
+	CButton BHistory;
+	afx_msg void OnBnClickedBHistory();
 
 	afx_msg void OnBnClickedUiButton();
 	CButton BLoadgame;
@@ -184,6 +186,7 @@ public:
 	afx_msg void OnBnClickedBturnoff();
 
 	void BGM_Play();
+	void result_Record(bool result);
 
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 	afx_msg void OnMouseMove(UINT nFlags, CPoint point);
