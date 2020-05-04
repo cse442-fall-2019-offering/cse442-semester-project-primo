@@ -42,7 +42,11 @@
     <ClInclude Include="Piece.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+
     <ClInclude Include="History.h">
+
+    <ClInclude Include="Settings.h">
+
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -66,6 +70,7 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="History.cpp">
+    <ClCompile Include="Settings.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -171,6 +176,36 @@
       <Filter>Resource Files</Filter>
     </Image>
     <Image Include="res\pieces\bturnoff.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bturnoff.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bturnon.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bundo.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\pieces\bitmap4.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bturnoffsound.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\beasy.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bhard.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bmedium.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bmul.bmp">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="res\bsingle.bmp">
       <Filter>Resource Files</Filter>
     </Image>
   </ItemGroup>
