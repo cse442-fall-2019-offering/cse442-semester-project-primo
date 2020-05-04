@@ -247,6 +247,15 @@ void CChineseChessDlg::OnPaint()
 	}
 	else
 	{	
+		if (isGame(this->Model) > 0) {
+			if (this->game.check_win() != 0) {
+				this->Model = 1;
+				this->history.clear();
+				this->history = vector<pair<Piece, Piece>>();
+				CWnd::Invalidate();
+				CChineseChessDlg::OnInitDialog();
+			}
+		}
 		int t;
 		switch (Model) {
 		case Startup_Page:
@@ -260,11 +269,6 @@ void CChineseChessDlg::OnPaint()
 			break;
 		case Easy_Game_Page:
 			t = this->game.getturns()->get_type();
-			
-			if (this->game.getturns() == this->game.getPlayer1()) CChineseChessDlg::SetDlgItemText(IDC_STATIC3, _T("Player 1"));
-			else CChineseChessDlg::SetDlgItemText(IDC_STATIC3, _T("Player 2"));
-			if (this->game.getturns() == this->game.getPlayer1()) CChineseChessDlg::SetDlgItemText(IDC_Player, _T("Player1, please make a movement"));
-			else CChineseChessDlg::SetDlgItemText(IDC_Player, _T("Player2, please make a movement"));
 			CChineseChessDlg::SGame_Page_ini();
 			if (t != human && this->game.set_flag != 1) {
 				this->game.move();
@@ -278,11 +282,6 @@ void CChineseChessDlg::OnPaint()
 			break;
 		case Medium_Game_Page:
 			t = this->game.getturns()->get_type();
-
-			if (this->game.getturns() == this->game.getPlayer1()) CChineseChessDlg::SetDlgItemText(IDC_STATIC3, _T("Player 1"));
-			else CChineseChessDlg::SetDlgItemText(IDC_STATIC3, _T("Player 2"));
-			if (this->game.getturns() == this->game.getPlayer1()) CChineseChessDlg::SetDlgItemText(IDC_Player, _T("Player1, please make a movement"));
-			else CChineseChessDlg::SetDlgItemText(IDC_Player, _T("Player2, please make a movement"));
 			CChineseChessDlg::SGame_Page_ini();
 			if (t != human && this->game.set_flag != 1) {
 				this->game.move();
@@ -295,7 +294,17 @@ void CChineseChessDlg::OnPaint()
 			}
 			break;
 		case Hard_Game_Page:
+			t = this->game.getturns()->get_type();
 			CChineseChessDlg::SGame_Page_ini();
+			if (t != human && this->game.set_flag != 1) {
+				this->game.move();
+				vcsleep(100);
+				this->game.set_flag = 1;
+			}
+			if (this->game.set_flag == 1) {
+				this->game.set_flag = 0;
+				CWnd::Invalidate();
+			}
 			break;
 		case Mlocal_Page:
 			CChineseChessDlg::SGame_Page_ini();
@@ -383,8 +392,8 @@ void CChineseChessDlg::OnBnClickedBhard()
 	// TODO: Add your control notification handler code here
 	if (this->Model == Single_Page) this->Model = Hard_Game_Page;
 	else this->Model = Single_Page;
-	Player player1 = Player(1, human);
-	Player player2 = Player(2, Hard_AI);
+	this->player1 = Player(1, human);
+	this->player2 = Player(2, Hard_AI);
 	this->game = Game(&player1, &player2);
 	CWnd::Invalidate();
 	CChineseChessDlg::OnInitDialog();
@@ -1103,12 +1112,7 @@ void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 					pair<Piece, Piece> step(old_m, old_d);
 
 					this->history.push_back(step);
-					if (this->game.check_win() != 0) {
-						this->Model = 1;
-						this->history.clear();
-						this->history = vector<pair<Piece, Piece>>();
-						CChineseChessDlg::OnInitDialog();
-					}
+					
 					if (isGame(this->Model) == 2) {
 						Count = 60;
 						SetTimer(1, 1000, NULL);

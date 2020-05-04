@@ -51,8 +51,7 @@ private:
 	Player* player2;
 	Player* turns;
 	void easy_move();
-	void medium_move(float bias);
-	void hard_move(float bias);
+	void level_move(float bias);
 	vector<pair<pair<int, int>, pair<int, int>>> all_movement();
 	vector<pair<int, int>> most_agressive();
 	vector<pair<int, int>> second_agressive();

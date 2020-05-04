@@ -218,11 +218,12 @@ void Game::move() {
 				this->switch_turn();
 				break;
 			case Medium_AI:
-				medium_move(0.5);
+				level_move(0.5);
 				this->switch_turn();
 				break;
 			case Hard_AI:
-				hard_move(0.75);
+				level_move(0.9);
+				this->switch_turn();
 				break;
 			default:
 				break;
@@ -244,11 +245,13 @@ void Game::easy_move() {
 	make_move(empty, destination);
 }
 
-void Game::medium_move(float bias) {
+void Game::level_move(float bias) {
 	vector<pair<pair<int, int>, pair<int, int>>> total_aviliable = this->all_movement();
 	vector<pair<int, int>> most_agressive = this->most_agressive();
 	vector<pair<int, int>> second_agressive = this->second_agressive();
 	vector<pair<pair<int, int>, pair<int, int>>> defense;
+	vector<pair<pair<int, int>, pair<int, int>>> offence;
+	pair<pair<int, int>, pair<int, int>> check;
 
 	if (most_agressive.size() != 0) {
 		for (int k = 0; k < total_aviliable.size(); k++) {
@@ -290,16 +293,55 @@ void Game::medium_move(float bias) {
 		}
 	}
 
-	int size = total_aviliable.size();
-	srand((unsigned)time(NULL));
-	int rand_step = rand() % size;
-	pair<int, int> destination = total_aviliable.at(rand_step).second;
-	pair<int, int> empty = total_aviliable.at(rand_step).first;
-	make_move(empty, destination);
-}
+	for (int k = 0; k < total_aviliable.size(); k++) {
+		pair<int, int> start = total_aviliable.at(k).first;
+		pair<int, int> dest = total_aviliable.at(k).second;
+		int x = dest.first;
+		int y = dest.second;
+		Piece p = this->Board.at(x).at(y);
+		if (p.get_type() == King) {
+			make_move(start, dest);
+			return;
+		}
+		if (p.get_type() != no_piece) {
+			pair<pair<int, int>, pair<int, int>> b_d(start, dest);
+			offence.push_back(b_d);
+		}
+	}
 
-void Game::hard_move(float bias) {
+	srand((unsigned)time(NULL)); 
+	float r = (rand() % 101)/100.0;
+	if (r > bias) {
+		int size = total_aviliable.size();
+		srand((unsigned)time(NULL));
+		int rand_step = rand() % size;
+		pair<int, int> start = total_aviliable.at(rand_step).first;
+		pair<int, int> dest = total_aviliable.at(rand_step).second;
+		make_move(start, dest);
+		return;
+	}
+	else {
+		if (offence.size() != 0) {
+			int size = offence.size();
+			srand((unsigned)time(NULL));
+			int rand_step = rand() % size;
+			pair<int, int> start = offence.at(rand_step).first;
+			pair<int, int> dest = offence.at(rand_step).second;
+			make_move(start, dest);
+			return;
+		}
+		else {
+			int size = total_aviliable.size();
+			srand((unsigned)time(NULL));
+			int rand_step = rand() % size;
+			pair<int, int> start = total_aviliable.at(rand_step).first;
+			pair<int, int> dest = total_aviliable.at(rand_step).second;
+			make_move(start, dest);
+			return;
+		}
+	}
 
+	
 }
 
 vector<pair<pair<int, int>, pair<int, int>>> Game::all_movement() {
