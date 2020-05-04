@@ -73,6 +73,7 @@ private:
 	float Resolution_y;
 
 	int wait_flag;
+	int tick;
 
 	vector< pair<Piece, Piece> > history;
 
@@ -144,6 +145,7 @@ protected:
 	afx_msg void Mlocal_Button_ini();
 	afx_msg void Mlocal_Page_ini();
 	void UIChange_Button_ini();
+	afx_msg void DoEvents();
 
 	pair<int, int> getIndex(CPoint point);
 
@@ -205,4 +207,5 @@ public:
 	bool contain(pair<int, int>);
 	int isGame(int model);
 	void setgameboard(CPaintDC dc, CDC mem_dc, int ini_x, int ini_y, int ix, int iy);
+	void vcsleep(int times);
 };

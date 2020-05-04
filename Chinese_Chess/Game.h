@@ -27,6 +27,7 @@ public:
 	
 
 	int aviliable_flag;
+	int set_flag;
 
 	void switch_turn();
 
@@ -49,7 +50,14 @@ private:
 	Player* player1;
 	Player* player2;
 	Player* turns;
-	void easymove();
+	void easy_move();
+	void medium_move(float bias);
+	void hard_move(float bias);
+	vector<pair<pair<int, int>, pair<int, int>>> all_movement();
+	vector<pair<int, int>> most_agressive();
+	vector<pair<int, int>> second_agressive();
+	void make_move(pair<int, int> start, pair<int, int> dest);
+	bool contain_pair(vector<pair<int, int>> list, pair<int, int> node);
 };
 
 #endif

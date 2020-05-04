@@ -71,7 +71,7 @@ CChineseChessDlg::CChineseChessDlg(CWnd* pParent /*=nullptr*/)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDI_GAME_ICON);
 	Bitmap_ini();
-	int wait_flag = 0;
+	this->tick = 0;
 	
 	this->history = vector<pair<Piece, Piece>>();
 }
@@ -266,15 +266,33 @@ void CChineseChessDlg::OnPaint()
 			if (this->game.getturns() == this->game.getPlayer1()) CChineseChessDlg::SetDlgItemText(IDC_Player, _T("Player1, please make a movement"));
 			else CChineseChessDlg::SetDlgItemText(IDC_Player, _T("Player2, please make a movement"));
 			CChineseChessDlg::SGame_Page_ini();
-			if (t != human) {
+			if (t != human && this->game.set_flag != 1) {
 				this->game.move();
-				Sleep(1000);
+				vcsleep(100);
+				this->game.set_flag = 1;
+			}
+			if (this->game.set_flag == 1) {
+				this->game.set_flag = 0;
 				CWnd::Invalidate();
-				
 			}
 			break;
 		case Medium_Game_Page:
+			t = this->game.getturns()->get_type();
+
+			if (this->game.getturns() == this->game.getPlayer1()) CChineseChessDlg::SetDlgItemText(IDC_STATIC3, _T("Player 1"));
+			else CChineseChessDlg::SetDlgItemText(IDC_STATIC3, _T("Player 2"));
+			if (this->game.getturns() == this->game.getPlayer1()) CChineseChessDlg::SetDlgItemText(IDC_Player, _T("Player1, please make a movement"));
+			else CChineseChessDlg::SetDlgItemText(IDC_Player, _T("Player2, please make a movement"));
 			CChineseChessDlg::SGame_Page_ini();
+			if (t != human && this->game.set_flag != 1) {
+				this->game.move();
+				vcsleep(100);
+				this->game.set_flag = 1;
+			}
+			if (this->game.set_flag == 1) {
+				this->game.set_flag = 0;
+				CWnd::Invalidate();
+			}
 			break;
 		case Hard_Game_Page:
 			CChineseChessDlg::SGame_Page_ini();
@@ -353,8 +371,8 @@ void CChineseChessDlg::OnBnClickedBmedium()
 	// TODO: Add your control notification handler code here
 	if (this->Model == Single_Page) this->Model = Medium_Game_Page;
 	else this->Model = Single_Page;
-	Player player1 = Player(1, human);
-	Player player2 = Player(2, Medium_AI);
+	this->player1 = Player(1, human);
+	this->player2 = Player(2, Medium_AI);
 	this->game = Game(&player1, &player2);
 	CWnd::Invalidate();
 	CChineseChessDlg::OnInitDialog();
@@ -1098,6 +1116,7 @@ void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 						sec.Format(_T("%d"), Count);
 						SetDlgItemText(IDC_EDIT_TIME, sec);
 					}
+					this->game.set_flag = 1;
 					CWnd::Invalidate();
 
 				}
@@ -1106,7 +1125,6 @@ void CChineseChessDlg::OnLButtonDown(UINT nFlags, CPoint point)
 		
 	}
 	
-
 	CDialogEx::OnLButtonDown(nFlags, point);
 }
 
@@ -1307,4 +1325,24 @@ void CChineseChessDlg::setgameboard(CPaintDC dc, CDC mem_dc, int ini_x, int ini_
 			}
 		}
 	}
+}
+
+afx_msg void CChineseChessDlg::DoEvents()
+{
+	MSG msg;
+	while (PeekMessage(&msg, NULL, 0, 0, PM_REMOVE))
+	{
+		DispatchMessage(&msg);
+		TranslateMessage(&msg);
+	}
+}
+
+void CChineseChessDlg::vcsleep(int times)
+{
+	for (int i = 0; i < times; i++)
+	{
+		Sleep(10);
+		DoEvents();
+	}
+
 }

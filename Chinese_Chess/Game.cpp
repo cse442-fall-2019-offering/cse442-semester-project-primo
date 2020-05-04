@@ -10,10 +10,10 @@ Game::Game(Player* player1, Player* player2) {
 	this->init_Board();
 	srand((unsigned)time(NULL));
 	int turn = rand() % 2;
-	turn = 0;
 	if (turn == 0) this->turns = player1;
 	else this->turns = player2;
 	this->aviliable_flag = 0;
+	this->set_flag = 0;
 }
 Game::~Game() {
 
@@ -211,15 +211,18 @@ int Game::check_win() {
 
 void Game::move() {
 	Player* curplayer = this->getturns();
-	if (curplayer != this->player1) {
+	if (curplayer->get_type() != human) {
 		switch (curplayer->get_type()) {
 			case Easy_AI:
-				easymove();
+				easy_move();
 				this->switch_turn();
 				break;
 			case Medium_AI:
+				medium_move(0.5);
+				this->switch_turn();
 				break;
 			case Hard_AI:
+				hard_move(0.75);
 				break;
 			default:
 				break;
@@ -228,9 +231,80 @@ void Game::move() {
 	}
 }
 
-void Game::easymove() {
+void Game::easy_move() {
 	Player* curplayer = this->turns;
 	vector<vector<Piece>> board = this->Board;
+	vector<pair<pair<int, int>, pair<int, int>>> total_aviliable = this->all_movement();
+	
+	int size = total_aviliable.size();
+	srand((unsigned)time(NULL));
+	int rand_step = rand() % size;
+	pair<int, int> destination = total_aviliable.at(rand_step).second;
+	pair<int, int> empty = total_aviliable.at(rand_step).first;
+	make_move(empty, destination);
+}
+
+void Game::medium_move(float bias) {
+	vector<pair<pair<int, int>, pair<int, int>>> total_aviliable = this->all_movement();
+	vector<pair<int, int>> most_agressive = this->most_agressive();
+	vector<pair<int, int>> second_agressive = this->second_agressive();
+	vector<pair<pair<int, int>, pair<int, int>>> defense;
+
+	if (most_agressive.size() != 0) {
+		for (int k = 0; k < total_aviliable.size(); k++) {
+			pair<int, int> start = total_aviliable.at(k).first;
+			pair<int, int> dest = total_aviliable.at(k).second;
+			if (contain_pair(most_agressive, dest)) {
+				pair<pair<int, int>, pair<int, int>> b_d(start, dest);
+				defense.push_back(b_d);
+			}
+		}
+		if (defense.size() != 0) {
+			int size = defense.size();
+			srand((unsigned)time(NULL));
+			int rand_step = rand() % size;
+			pair<int, int> start = defense.at(rand_step).first;
+			pair<int, int> dest= defense.at(rand_step).second;
+			make_move(start, dest);
+			return;
+		}
+	}
+
+	if (second_agressive.size() != 0) {
+		for (int k = 0; k < total_aviliable.size(); k++) {
+			pair<int, int> start = total_aviliable.at(k).first;
+			pair<int, int> dest = total_aviliable.at(k).second;
+			if (contain_pair(second_agressive, dest)) {
+				pair<pair<int, int>, pair<int, int>> s_d(start, dest);
+				defense.push_back(s_d);
+			}
+		}
+		if (defense.size() != 0) {
+			int size = defense.size();
+			srand((unsigned)time(NULL));
+			int rand_step = rand() % size;
+			pair<int, int> start = defense.at(rand_step).first;
+			pair<int, int> dest = defense.at(rand_step).second;
+			make_move(start, dest);
+			return;
+		}
+	}
+
+	int size = total_aviliable.size();
+	srand((unsigned)time(NULL));
+	int rand_step = rand() % size;
+	pair<int, int> destination = total_aviliable.at(rand_step).second;
+	pair<int, int> empty = total_aviliable.at(rand_step).first;
+	make_move(empty, destination);
+}
+
+void Game::hard_move(float bias) {
+
+}
+
+vector<pair<pair<int, int>, pair<int, int>>> Game::all_movement() {
+	vector<vector<Piece>> board = this->Board;
+	Player* curplayer = this->turns;
 	vector<pair<pair<int, int>, pair<int, int>>> total_aviliable;
 	for (int i = 0; i < 10; i++) {
 		for (int j = 0; j < 9; j++) {
@@ -244,29 +318,87 @@ void Game::easymove() {
 			}
 		}
 	}
-	int size = total_aviliable.size();
-	srand((unsigned)time(NULL));
-	int rand_step = rand() % size;
-	pair<int, int> destination = total_aviliable.at(rand_step).second;
-	pair<int, int> empty = total_aviliable.at(rand_step).first;
+	return total_aviliable;
+}
 
-	int x = destination.first;
-	int y = destination.second;
+vector<pair<int, int>> Game::most_agressive() {
+	Player* oppoent;
+	vector<vector<Piece>> board = this->Board;
+	if (this->turns == player1) oppoent = player2;
+	else oppoent = player1;
+	vector<pair<int, int>> most_agressive;
+	for (int i = 0; i < 10; i++) {
+		for (int j = 0; j < 9; j++) {
+			Piece p = board.at(i).at(j);
+			pair<int, int> select(i, j);
+			vector<pair<int, int>> aviliable = p.aviliable_move(board, oppoent);
+			for (int k = 0; k < aviliable.size(); k++) {
+				int x = aviliable.at(k).first;
+				int y = aviliable.at(k).second;
+				Piece dest = board.at(x).at(y);
+				if (dest.get_type() == King) {
+					most_agressive.push_back(select);
+					break;
+				}
+			}
+		}
+	}
+	return most_agressive;
+}
+
+vector<pair<int, int>> Game::second_agressive() {
+	Player* oppoent;
+	vector<vector<Piece>> board = this->Board;
+	if (this->turns == player1) oppoent = player2;
+	else oppoent = player1;
+	vector<pair<int, int>> second_agressive;
+	for (int i = 0; i < 10; i++) {
+		for (int j = 0; j < 9; j++) {
+			Piece p = board.at(i).at(j);
+			pair<int, int> select(i, j);
+			vector<pair<int, int>> aviliable = p.aviliable_move(board, oppoent);
+			for (int k = 0; k < aviliable.size(); k++) {
+				int x = aviliable.at(k).first;
+				int y = aviliable.at(k).second;
+				Piece dest = board.at(x).at(y);
+				if (dest.get_type() != King && dest.get_type() != no_piece) {
+					second_agressive.push_back(select);
+					break;
+				}
+			}
+		}
+	}
+	return second_agressive;
+}
+
+void Game::make_move(pair<int, int> start, pair<int, int> dest) {
+	int x = dest.first;
+	int y = dest.second;
+	int sx = start.first;
+	int sy = start.second;
+	vector<vector<Piece>> board = this->Board;
 	Piece move = Piece();
-	move.copy(board.at(empty.first).at(empty.second));
+	move.copy(board.at(sx).at(sy));
 	move.set_line(x);
 	move.set_row(y);
 
 	this->setboard(x, y, move);
 
 	Piece null_p = Piece();
-	null_p.set_line(empty.first);
-	null_p.set_row(empty.second);
-	null_p.set_ini_line(empty.first);
-	null_p.set_ini_row(empty.second);
+	null_p.set_line(sx);
+	null_p.set_row(sy);
+	null_p.set_ini_line(sx);
+	null_p.set_ini_row(sy);
 	null_p.set_player(NULL);
 	null_p.set_type(no_piece);
 
-	this->Board.at(empty.first).at(empty.second) = null_p;
-	this->setboard(empty.first, empty.second, null_p);
+	this->setboard(sx, sy, null_p);
+}
+
+bool Game::contain_pair(vector<pair<int, int>> list, pair<int, int> node) {
+	for (int i = 0; i < list.size(); i++) {
+		pair<int, int> ele = list.at(i);
+		if (ele.first == node.first && ele.second == node.second) return true;
+	}
+	return false;
 }
