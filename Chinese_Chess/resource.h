@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
-// Microsoft Visual C++ Éú³ÉµÄ°üº¬ÎÄ¼þ¡£
-// ¹© ChineseChess.rc Ê¹ÓÃ
+// Microsoft Visual C++ ï¿½ï¿½ÉµÄ°ï¿½ï¿½Ä¼ï¿½ï¿½ï¿½
+// ï¿½ï¿½ ChineseChess.rc Ê¹ï¿½ï¿½
 //
 #define IDM_ABOUTBOX                    0x0010
 #define IDD_ABOUTBOX                    100
@@ -15,9 +15,19 @@
 #define IDD_History                     110
 #define IDB_BRETURN                     111
 #define IDB_BQUIT                       112
+#define IDD_Settings                    112
 #define IDB_BSTART                      113
 #define IDB_BVOLUMN                     114
 #define IDB_BVOL1                       115
+#define IDB_BTURNON                     118
+#define IDB_BUNDO                       119
+#define IDB_BTURNOFFSOUND               122
+#define IDB_BEASY                       124
+#define IDB_BHARD                       125
+#define IDB_BMEDIUM                     126
+#define IDB_BMUL                        127
+#define IDB_BITMAP1                     128
+#define IDB_BSINGLE                     128
 #define IDB_BOARD                       200
 #define IDB_BGP                         201
 #define IDB_BGP2                        202
@@ -33,15 +43,36 @@
 #define IDC_STATIC3                     1010
 #define IDC_BUNDO                       1011
 #define IDC_BTURNOFF                    1012
-#define IDC_BLOADGAME                   1014
-#define IDC_History                     1016
-#define IDC_CLOSE                       1017
-#define IDC_RICHEDIT21                  1018
-#define IDC_Month                       1019
-#define IDC_Year                        1020
-#define IDC_Day                         1021
-#define IDC_Result                      1022
-#define IDC_Hour                        1023
+
+#define IDC_ChangeUI                    1013
+#define IDC_MUL_LOCAL                   1013
+#define IDC_Player                      1014
+#define IDC_Settings                    1015
+#define IDC_EDIT_TIME                   1017
+#define IDC_BLOADGAME                   1019
+#define IDC_UI_BUTTON                   1020
+#define IDC_BMULTI                      1021
+#define IDC_BEASY                       1022
+#define IDC_BMEDIUM                     1023
+#define IDC_BHARD                       1024
+#define IDC_BONLINE                     1026
+#define IDC_BTURNOFFSOUND               1027
+#define IDC_BUTTON1                     1028
+#define IDC_SETTING                     1028
+
+#define IDC_OFFENSIVE                   1028
+#define IDC_DEFENSIVE                   1029
+#define IDC_RADIO2                      1030
+#define IDC_RADIO1                      1031
+#define IDC_History                     1032
+#define IDC_CLOSE                       1033
+#define IDC_Month                       1034
+#define IDC_Year                        1035
+#define IDC_Day                         1036
+#define IDC_Result                      1037
+#define IDC_Hour                        1038
+#define IDC_Sample                      1039
+
 #define IDB_PCAN2                       1100
 #define IDB_PCHAR2                      1101
 #define IDB_PBISHOP2                    1102
@@ -62,9 +93,12 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        112
+
+#define _APS_NEXT_RESOURCE_VALUE        129
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1024
+#define _APS_NEXT_CONTROL_VALUE         1032
+
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif
+
