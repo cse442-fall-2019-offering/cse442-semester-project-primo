@@ -1263,6 +1263,7 @@ void CChineseChessDlg::OnBnClickedOffensive()
 void CChineseChessDlg::OnBnClickedDefensive()
 {
 	radio = 0;
+}
 
 void CChineseChessDlg::setgameboard(CPaintDC dc, CDC mem_dc, int ini_x, int ini_y, int ix, int iy) {
 	Player* player1 = this->game.getPlayer1();
