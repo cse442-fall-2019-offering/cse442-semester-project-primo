@@ -245,7 +245,8 @@ void CChineseChessDlg::OnPaint()
 		dc.DrawIcon(x, y, m_hIcon);
 	}
 	else
-	{
+	{	
+		int t;
 		switch (Model) {
 		case Startup_Page:
 			CChineseChessDlg::Start_Page_ini();
@@ -257,7 +258,14 @@ void CChineseChessDlg::OnPaint()
 			CChineseChessDlg::Start_Page_ini();
 			break;
 		case Easy_Game_Page:
-			this->game.move();
+			t = this->game.getturns()->get_type();
+			if (t != human) {
+				this->game.move();
+			}
+			if (this->game.getturns() == this->game.getPlayer1()) CChineseChessDlg::SetDlgItemText(IDC_STATIC3, _T("Player 1"));
+			else CChineseChessDlg::SetDlgItemText(IDC_STATIC3, _T("Player 2"));
+			if (this->game.getturns() == this->game.getPlayer1()) CChineseChessDlg::SetDlgItemText(IDC_Player, _T("Player1, please make a movement"));
+			else CChineseChessDlg::SetDlgItemText(IDC_Player, _T("Player2, please make a movement"));
 			CChineseChessDlg::SGame_Page_ini();
 			break;
 		case Medium_Game_Page:
@@ -328,8 +336,8 @@ void CChineseChessDlg::OnBnClickedBeasy()
 	// TODO: Add your control notification handler code here
 	if (this->Model == Single_Page) this->Model = Easy_Game_Page;
 	else this->Model = Single_Page;
-	Player player1 = Player(1, human);
-	Player player2 = Player(2, Easy_AI);
+	this->player1 = Player(1, human);
+	this->player2 = Player(2, Easy_AI);
 	this->game = Game(&player1, &player2);
 	CWnd::Invalidate();
 	CChineseChessDlg::OnInitDialog();
@@ -695,7 +703,7 @@ afx_msg void CChineseChessDlg::SGame_Button_ini() {
 	GetDlgItem(IDC_VOLBAR)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_BLOADGAME)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_MUL_LOCAL)->ShowWindow(SW_HIDE);
-	GetDlgItem(IDC_Player)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_Player)->ShowWindow(SW_SHOW);///////////test
 
 	GetDlgItem(IDC_EDIT_TIME)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_STATIC)->ShowWindow(SW_HIDE);

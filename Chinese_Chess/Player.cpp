@@ -21,6 +21,10 @@ int Player::get_ID() {
 	return this->ID;
 }
 
+int Player::get_type() {
+	return this->type;
+}
+
 /*void Player::move(vector<vector<Piece>> board) {
 	/*vector<pair<pair<int, int>, pair<int, int>>> all;
 	for (int i = 0; i < 10; i++) {

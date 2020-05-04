@@ -66,6 +66,8 @@ private:
 	BOOL MUSIC = FALSE;
 	int voulmn = 50;
 	Game game;
+	Player player1;
+	Player player2;
 
 	float Resolution_x;
 	float Resolution_y;

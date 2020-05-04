@@ -10,8 +10,9 @@ Game::Game(Player* player1, Player* player2) {
 	this->init_Board();
 	srand((unsigned)time(NULL));
 	int turn = rand() % 2;
+	turn = 0;
 	if (turn == 0) this->turns = player1;
-	this->turns = player2;
+	else this->turns = player2;
 	this->aviliable_flag = 0;
 }
 Game::~Game() {
@@ -210,7 +211,63 @@ int Game::check_win() {
 
 void Game::move() {
 	Player* curplayer = this->getturns();
-	if (curplayer->get_ID() != human) {
-		this->switch_turn();
+	if (curplayer != this->player1) {
+		switch (curplayer->get_type()) {
+			case Easy_AI:
+				easymove();
+//				Sleep(1000);
+				this->switch_turn();
+				break;
+			case Medium_AI:
+				break;
+			case Hard_AI:
+				break;
+			default:
+				break;
+		}
+		
 	}
+}
+
+void Game::easymove() {
+	Player* curplayer = this->turns;
+	vector<vector<Piece>> board = this->Board;
+	vector<pair<pair<int, int>, pair<int, int>>> total_aviliable;
+	for (int i = 0; i < 10; i++) {
+		for (int j = 0; j < 9; j++) {
+			Piece p = board.at(i).at(j);
+			pair<int, int> select(i, j);
+			vector<pair<int, int>> aviliable = p.aviliable_move(board, curplayer);
+			for (int k = 0; k < aviliable.size(); k++) {
+				pair<int, int> destination = aviliable.at(k);
+				pair<pair<int, int>, pair<int, int>> p_step(select, destination);
+				total_aviliable.push_back(p_step);
+			}
+		}
+	}
+	int size = total_aviliable.size();
+	srand((unsigned)time(NULL));
+	int rand_step = rand() % size;
+	pair<int, int> destination = total_aviliable.at(rand_step).second;
+	pair<int, int> empty = total_aviliable.at(rand_step).first;
+
+	int x = destination.first;
+	int y = destination.second;
+	Piece move = Piece();
+	move.copy(board.at(empty.first).at(empty.second));
+	move.set_line(x);
+	move.set_row(y);
+
+	this->setboard(x, y, move);
+
+	Piece null_p = Piece();
+	null_p.set_line(empty.first);
+	null_p.set_row(empty.second);
+	null_p.set_ini_line(empty.first);
+	null_p.set_ini_row(empty.second);
+	null_p.set_player(NULL);
+	null_p.set_type(no_piece);
+
+	this->Board.at(empty.first).at(empty.second) = null_p;
+	this->setboard(empty.first, empty.second, null_p);
 }

@@ -8,6 +8,8 @@
 #include <stdlib.h>
 #include <iostream>
 #include <time.h>
+#include <dos.h>
+#include <Windows.h>
 
 class Game
 {
@@ -47,6 +49,7 @@ private:
 	Player* player1;
 	Player* player2;
 	Player* turns;
+	void easymove();
 };
 
 #endif
