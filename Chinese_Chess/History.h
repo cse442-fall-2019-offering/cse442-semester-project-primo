@@ -11,6 +11,8 @@ public:
 	History(CWnd* pParent = nullptr);   // 标准构造函数
 	virtual ~History();
 
+
+
 // 对话框数据
 #ifdef AFX_DESIGN_TIME
 	enum { IDD = IDD_History };
@@ -18,6 +20,7 @@ public:
 
 protected:
 	virtual void DoDataExchange(CDataExchange* pDX);    // DDX/DDV 支持
+	BOOL OnInitDialog();	
 
 	DECLARE_MESSAGE_MAP()
 public:

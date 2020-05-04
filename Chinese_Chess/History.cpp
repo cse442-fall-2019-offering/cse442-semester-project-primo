@@ -21,6 +21,29 @@ History::~History()
 {
 }
 
+BOOL History::OnInitDialog() {
+	CString str;
+	str.Format(_T("Year      Month      Day      Hour      Result \n"));
+	CStdioFile file;
+	CString strline;
+	CString path("history.txt");
+	BOOL flag = file.Open(path, CFile::modeRead);
+	if (!flag) {
+		str += _T("No Game History Yet");
+	}
+	else {
+		int i = 0;
+		file.SeekToBegin();
+		while (file.ReadString(strline)) {
+			str += strline;
+			str += _T("\n");
+		}
+	}
+
+	History::SetDlgItemText(IDC_Year, str);
+	return TRUE;
+}
+
 void History::DoDataExchange(CDataExchange* pDX)
 {
 	CDialogEx::DoDataExchange(pDX);
