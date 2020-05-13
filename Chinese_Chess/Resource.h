@@ -27,6 +27,7 @@
 #define IDB_BMUL                        127
 #define IDB_BITMAP1                     128
 #define IDB_BSINGLE                     128
+#define IDD_RULE_DIALOG                 129
 #define IDB_BOARD                       200
 #define IDB_BGP                         201
 #define IDB_BGP2                        202
@@ -58,6 +59,8 @@
 #define IDC_BUTTON1                     1028
 #define IDC_SETTING                     1028
 #define IDC_BSTEP                       1028
+#define IDC_BUTTON2                     1029
+#define IDC_BRULE                       1029
 #define IDB_PCAN2                       1100
 #define IDB_PCHAR2                      1101
 #define IDB_PBISHOP2                    1102
@@ -78,9 +81,9 @@
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
-#define _APS_NEXT_RESOURCE_VALUE        129
+#define _APS_NEXT_RESOURCE_VALUE        131
 #define _APS_NEXT_COMMAND_VALUE         32771
-#define _APS_NEXT_CONTROL_VALUE         1029
+#define _APS_NEXT_CONTROL_VALUE         1030
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

@@ -211,4 +211,6 @@ public:
 	void vcsleep(int times);
 	CButton BStep;
 	afx_msg void OnBnClickedBstep();
+	CButton BRule;
+	afx_msg void OnBnClickedBrule();
 };

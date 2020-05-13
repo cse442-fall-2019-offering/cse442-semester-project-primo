@@ -217,6 +217,22 @@ BEGIN
     PUSHBUTTON      "Settings",IDC_Settings,96,25,31,14,BS_BITMAP
     LTEXT           "time: ",IDC_STATIC,340,9,19,8
     PUSHBUTTON      "no specified first move",IDC_BSTEP,423,20,79,14
+    PUSHBUTTON      "Rules",IDC_BRULE,462,100,23,14
+END
+
+IDD_RULE_DIALOG DIALOGEX 0, 0, 310, 177
+STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "Rules"
+FONT 8, "MS Shell Dlg", 400, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "Quit",IDOK,252,156,50,14
+    LTEXT           "The piece ""?"" should be able to move through direct forward, backward, leftward and rightward until its block by another piece.",IDC_STATIC,7,7,244,18
+    LTEXT           "The piece ""?"" should be able to move two units ahead and then shift for one piece. If there is another piece is nearby the piece ""?"" , it won't be able to move ahead tho that direction. (total of 8 positions are available to move in maximum. The block will disable 2 positions. )",IDC_STATIC,7,25,280,32
+    LTEXT           "The piece ""?"" should move in a diamond only in its belonging area.",IDC_STATIC,7,59,224,8
+    LTEXT           "The piece ""?"" should move in cross by 1 unit in the middle area.",IDC_STATIC,7,69,215,8
+    LTEXT           "The piece ""?"" and ""?"" should move 1 nearby unit in middle. The two generals can not face each other",IDC_STATIC,7,79,295,17
+    LTEXT           "The piece ""?"" can move forward, backward, leftward and rightward. Also, if there is exactly one piece setting between an enemy and the cannon, the cannon can hit that enemy",IDC_STATIC,7,98,295,25
+    LTEXT           "The piece ""?"" and ""?"" should only move forward by 1 unit before it passes the river. After the soldier passes the river, it can move 1 unit to front, left and right.",IDC_STATIC,7,124,295,17
 END
 
 
@@ -279,6 +295,14 @@ BEGIN
     BEGIN
         BOTTOMMARGIN, 300
     END
+
+    IDD_RULE_DIALOG, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 302
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 170
+    END
 END
 #endif    // APSTUDIO_INVOKED
 
@@ -315,7 +339,13 @@ BEGIN
     0, 0, 0, 0,
     0, 0, 0, 0,
     0, 0, 0, 0,
+    0, 0, 0, 0,
     0, 0, 0, 0
+END
+
+IDD_RULE_DIALOG AFX_DIALOG_LAYOUT
+BEGIN
+    0
 END
 
 

@@ -16,6 +16,7 @@
 #include<mmsystem.h>
 #pragma comment(lib,"winmm.lib")
 #include <Vfw.H>
+#include "RuleDlg.h"
 
 int PlayBGM = 0;
 int StopBGM = 0;
@@ -99,6 +100,7 @@ void CChineseChessDlg::DoDataExchange(CDataExchange* pDX)
 	DDX_Control(pDX, IDC_BONLINE, BOline);
 	DDX_Control(pDX, IDC_BTURNOFFSOUND, BTurnoffsound);
 	DDX_Control(pDX, IDC_BSTEP, BStep);
+	DDX_Control(pDX, IDC_BRULE, BRule);
 }
 
 BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
@@ -129,6 +131,7 @@ BEGIN_MESSAGE_MAP(CChineseChessDlg, CDialogEx)
 	ON_BN_CLICKED(IDC_BTURNOFFSOUND, &CChineseChessDlg::OnBnClickedTurnoffsound)
 
 	ON_BN_CLICKED(IDC_BSTEP, &CChineseChessDlg::OnBnClickedBstep)
+	ON_BN_CLICKED(IDC_BRULE, &CChineseChessDlg::OnBnClickedBrule)
 END_MESSAGE_MAP()
 
 
@@ -1368,4 +1371,12 @@ void CChineseChessDlg::OnBnClickedBstep()
 		CChineseChessDlg::SetDlgItemText(IDC_BSTEP, _T("no specified first move"));
 		this->go_first = -1;
 	}
+}
+
+
+void CChineseChessDlg::OnBnClickedBrule()
+{
+	// TODO: Add your control notification handler code here
+	RuleDlg dlg;
+	dlg.DoModal();
 }
